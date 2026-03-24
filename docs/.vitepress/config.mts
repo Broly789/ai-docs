@@ -40,8 +40,7 @@ function getChapters(courseName: string) {
 export default defineConfig({
   title: "我的学习文档",
   description: "前端转 AI Agent 课程笔记",
-  // base: process.env.NODE_ENV === "production" ? "/ai-docs/" : "/",
-  base: "/ai-docs/",
+  base: process.env.DEPLOY_TARGET === "local" ? "/" : "/ai-docs/",
   lang: "zh-CN",
   srcDir: ".",
   ignoreDeadLinks: true,
@@ -108,6 +107,9 @@ export default defineConfig({
    * 自定义插件放在 `vite.plugins`，会参与打包 / dev（与文档一致）。
    */
   vite: {
+    define: {
+      "process.env": process.env,
+    },
     plugins: [
       {
         name: "resolve-symlink",

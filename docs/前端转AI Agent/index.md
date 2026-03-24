@@ -11,7 +11,8 @@ next: /前端转AI Agent/01-AI Agent 开发要学什么？/
 onMounted(() => {
   // 最稳：原生跳转，VitePress base 自动拼接
   // window.location.replace(target)
-  router.go(`/ai-docs/前端转AI Agent/00-使用前必看/`);
+  const prefix = process.env.DEPLOY_TARGET === "local" ? "/" : "/ai-docs/";
+  router.go(`${prefix}前端转AI Agent/00-使用前必看/`);  
 });
 </script>
 
