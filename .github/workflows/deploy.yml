@@ -5,19 +5,23 @@ on:
     branches:
       - main
 
+# 强制使用 Node.js 24，消除警告 ✅
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # 目前最新，无问题
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22  # 稳定版，兼容 GitHub
 
       - run: npm install
-      - run: npm run docs:build
+      - run: npm run build  # 👈 改成你本地的打包命令
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
