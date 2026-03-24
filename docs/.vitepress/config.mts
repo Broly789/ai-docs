@@ -40,7 +40,7 @@ function getChapters(courseName: string) {
 export default defineConfig({
   title: "我的学习文档",
   description: "前端转 AI Agent 课程笔记",
-  base: process.env.VITE_BASE_URL || "",
+  base: "/ai-docs/",
   lang: "zh-CN",
   srcDir: ".",
   ignoreDeadLinks: true,
