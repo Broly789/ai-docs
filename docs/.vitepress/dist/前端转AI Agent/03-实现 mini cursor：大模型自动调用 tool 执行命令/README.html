@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/assets/style.BhX5jokk.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    
+    <script type="module" src="/assets/app.CoPQOkbW.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.BJ6inucC.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.BZohXCq9.js">
+    <link rel="modulepreload" href="/assets/chunks/image-20260128133640928.OfsAp6yx.js">
+    <link rel="modulepreload" href="/assets/前端转AI Agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_README.md.BJL10sHN.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><!----><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><!----><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_03-%E5%AE%9E%E7%8E%B0%20mini%20cursor%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%20tool%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4_README" data-v-39a288b8><div><p>上节我们给大模型扩展了读文件的 tool，你说一个文件路径让它解释，它就可以自动调工具读文件内容给出解释了。</p><video src="/assets/1.BCKxxfrh.mp4" controls></video><p>那继续思考：</p><p>如果我们给它扩展了执行命令、写文件、创建目录、读取目录、读文件等 tool，是不是就能实现 cursor 的功能呢？</p><p>比如创建项目对文件做增删改：</p><video src="/assets/2.CVF8vxDK.mp4" controls></video><p>项目创建后自动执行命令安装依赖和跑服务：</p><video src="/assets/3.C5wuMbm5.mp4" controls></video><p>是不是现在就可以实现了！</p><p><img src="/assets/image-20260128133203513.DB_VUXKn.png" alt="image-20260128133203513"></p><p>虽然我们不会做那么完善，但是简易版确实可以写了。</p><p>这节我们就来实现下大模型根据 prompt 生成项目代码，自动读写文件、通过命令安装依赖、自动把项目跑起来，全程自己调用 tool 的功能：</p><p>不创建新项目了，直接在上节的 tool-test 项目继续写。</p><p>首先， node 里如何执行命令呢？</p><p>用 child_process 这个内置模块。</p><p>创建 src/node-exec.mjs</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { spawn } from&#39;node:child_process&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const command = &#39;ls -la&#39;;</span></span>
+<span class="line"><span>const cwd = process.cwd();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 解析命令和参数</span></span>
+<span class="line"><span>const [cmd, ...args] = command.split(&#39; &#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const child = spawn(cmd, args, {</span></span>
+<span class="line"><span>  cwd,</span></span>
+<span class="line"><span>stdio: &#39;inherit&#39;, // 实时输出到控制台</span></span>
+<span class="line"><span>shell: true,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let errorMsg = &#39;&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>child.on(&#39;error&#39;, (error) =&gt; {</span></span>
+<span class="line"><span>  errorMsg = error.message;</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>child.on(&#39;close&#39;, (code) =&gt; {</span></span>
+<span class="line"><span>if (code === 0) {</span></span>
+<span class="line"><span>    process.exit(0);</span></span>
+<span class="line"><span>  } else {</span></span>
+<span class="line"><span>    if (errorMsg) {</span></span>
+<span class="line"><span>      console.error(`错误: ${errorMsg}`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    process.exit(code || 1);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>});</span></span></code></pre></div><p>spawn 可以指定在 cwd 这个目录下执行命令，会创建一个子进程来跑，这也是为啥这个模块叫 child_process。</p><p>用空格分割出命令和参数部分，分别作为 cmd、args</p><p>inherit 就是这个子进程的 stdout 也输出到父进程的 stdout，也就是控制台。</p><p>跑一下：</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>node ./src/node-exec.mjs</span></span></code></pre></div><p>最终我们是要跑 npx create-vite 这个命令的，试一下：</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>const command = &#39;echo -e &quot;n\nn&quot; | pnpm create vite react-todo-app --template react-ts&#39;;</span></span></code></pre></div><p>echo 两个 n 是有时候 vite 会让你选择两个选项：用不用 rolldown、安不安装依赖</p><p>echo n 然后通过管道操作符输出给那个进程就和我们键盘输入 n 一样的效果。</p><p>测试完之后，接下来就是封装 tools 了。</p><p>我们单独一个文件来放所有的 tools：</p><p>src/all-tools.mjs</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { tool } from&#39;@langchain/core/tools&#39;;</span></span>
+<span class="line"><span>import fs from&#39;node:fs/promises&#39;;</span></span>
+<span class="line"><span>import path from&#39;node:path&#39;;</span></span>
+<span class="line"><span>import { spawn } from&#39;node:child_process&#39;;</span></span>
+<span class="line"><span>import { z } from&#39;zod&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 1. 读取文件工具</span></span>
+<span class="line"><span>const readFileTool = tool(</span></span>
+<span class="line"><span>async ({ filePath }) =&gt; {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      const content = await fs.readFile(filePath, &#39;utf-8&#39;);</span></span>
+<span class="line"><span>      console.log(`  [工具调用] read_file(&quot;${filePath}&quot;) - 成功读取 ${content.length} 字节`);</span></span>
+<span class="line"><span>      return`文件内容:\n${content}`;</span></span>
+<span class="line"><span>    } catch (error) {</span></span>
+<span class="line"><span>      console.log(`  [工具调用] read_file(&quot;${filePath}&quot;) - 错误: ${error.message}`);</span></span>
+<span class="line"><span>      return`读取文件失败: ${error.message}`;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>    name: &#39;read_file&#39;,</span></span>
+<span class="line"><span>    description: &#39;读取指定路径的文件内容&#39;,</span></span>
+<span class="line"><span>    schema: z.object({</span></span>
+<span class="line"><span>      filePath: z.string().describe(&#39;文件路径&#39;),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 2. 写入文件工具</span></span>
+<span class="line"><span>const writeFileTool = tool(</span></span>
+<span class="line"><span>async ({ filePath, content }) =&gt; {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      const dir = path.dirname(filePath);</span></span>
+<span class="line"><span>      await fs.mkdir(dir, { recursive: true });</span></span>
+<span class="line"><span>      await fs.writeFile(filePath, content, &#39;utf-8&#39;);</span></span>
+<span class="line"><span>      console.log(`  [工具调用] write_file(&quot;${filePath}&quot;) - 成功写入 ${content.length} 字节`);</span></span>
+<span class="line"><span>      return`文件写入成功: ${filePath}`;</span></span>
+<span class="line"><span>    } catch (error) {</span></span>
+<span class="line"><span>      console.log(`  [工具调用] write_file(&quot;${filePath}&quot;) - 错误: ${error.message}`);</span></span>
+<span class="line"><span>      return`写入文件失败: ${error.message}`;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>    name: &#39;write_file&#39;,</span></span>
+<span class="line"><span>    description: &#39;向指定路径写入文件内容，自动创建目录&#39;,</span></span>
+<span class="line"><span>    schema: z.object({</span></span>
+<span class="line"><span>      filePath: z.string().describe(&#39;文件路径&#39;),</span></span>
+<span class="line"><span>      content: z.string().describe(&#39;要写入的文件内容&#39;),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 3. 执行命令工具（带实时输出）</span></span>
+<span class="line"><span>const executeCommandTool = tool(</span></span>
+<span class="line"><span>async ({ command, workingDirectory }) =&gt; {</span></span>
+<span class="line"><span>    const cwd = workingDirectory || process.cwd();</span></span>
+<span class="line"><span>    console.log(`  [工具调用] execute_command(&quot;${command}&quot;)${workingDirectory ? ` - 工作目录: ${workingDirectory}` : &#39;&#39;}`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    returnnewPromise((resolve, reject) =&gt; {</span></span>
+<span class="line"><span>      // 解析命令和参数</span></span>
+<span class="line"><span>      const [cmd, ...args] = command.split(&#39; &#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const child = spawn(cmd, args, {</span></span>
+<span class="line"><span>        cwd,</span></span>
+<span class="line"><span>        stdio: &#39;inherit&#39;, // 实时输出到控制台</span></span>
+<span class="line"><span>        shell: true,</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      let errorMsg = &#39;&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      child.on(&#39;error&#39;, (error) =&gt; {</span></span>
+<span class="line"><span>        errorMsg = error.message;</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      child.on(&#39;close&#39;, (code) =&gt; {</span></span>
+<span class="line"><span>        if (code === 0) {</span></span>
+<span class="line"><span>          console.log(`  [工具调用] execute_command(&quot;${command}&quot;) - 执行成功`);</span></span>
+<span class="line"><span>          const cwdInfo = workingDirectory</span></span>
+<span class="line"><span>            ? `\n\n重要提示：命令在目录 &quot;${workingDirectory}&quot; 中执行成功。如果需要在这个项目目录中继续执行命令，请使用 workingDirectory: &quot;${workingDirectory}&quot; 参数，不要使用 cd 命令。`</span></span>
+<span class="line"><span>            : &#39;&#39;;</span></span>
+<span class="line"><span>          resolve(`命令执行成功: ${command}${cwdInfo}`);</span></span>
+<span class="line"><span>        } else {</span></span>
+<span class="line"><span>          console.log(`  [工具调用] execute_command(&quot;${command}&quot;) - 执行失败，退出码: ${code}`);</span></span>
+<span class="line"><span>          resolve(`命令执行失败，退出码: ${code}${errorMsg ? &#39;\n错误: &#39; + errorMsg : &#39;&#39;}`);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>    name: &#39;execute_command&#39;,</span></span>
+<span class="line"><span>    description: &#39;执行系统命令，支持指定工作目录，实时显示输出&#39;,</span></span>
+<span class="line"><span>    schema: z.object({</span></span>
+<span class="line"><span>      command: z.string().describe(&#39;要执行的命令&#39;),</span></span>
+<span class="line"><span>      workingDirectory: z.string().optional().describe(&#39;工作目录（推荐指定）&#39;),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 4. 列出目录内容工具</span></span>
+<span class="line"><span>const listDirectoryTool = tool(</span></span>
+<span class="line"><span>async ({ directoryPath }) =&gt; {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      const files = await fs.readdir(directoryPath);</span></span>
+<span class="line"><span>      console.log(`  [工具调用] list_directory(&quot;${directoryPath}&quot;) - 找到 ${files.length} 个项目`);</span></span>
+<span class="line"><span>      return`目录内容:\n${files.map(f =&gt; `- ${f}`).join(&#39;\n&#39;)}`;</span></span>
+<span class="line"><span>    } catch (error) {</span></span>
+<span class="line"><span>      console.log(`  [工具调用] list_directory(&quot;${directoryPath}&quot;) - 错误: ${error.message}`);</span></span>
+<span class="line"><span>      return`列出目录失败: ${error.message}`;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>    name: &#39;list_directory&#39;,</span></span>
+<span class="line"><span>    description: &#39;列出指定目录下的所有文件和文件夹&#39;,</span></span>
+<span class="line"><span>    schema: z.object({</span></span>
+<span class="line"><span>      directoryPath: z.string().describe(&#39;目录路径&#39;),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export { readFileTool, writeFileTool, executeCommandTool, listDirectoryTool };</span></span></code></pre></div><p>创建了这几个 tool：</p><ul><li><p>读文件</p></li><li><p>写文件（包含创建目录了）</p></li><li><p>读目录</p></li><li><p>执行命令</p></li></ul><p><img src="/assets/image-20260128133214495.DsTGMlb4.png" alt="image-20260128133214495"></p><p><img src="/assets/image-20260128133223519.9h9Wj-Dw.png" alt="image-20260128133223519"></p><p><img src="/assets/image-20260128133259868.B5MnBRRt.png" alt="image-20260128133259868"></p><p>这里的工具调用返回结果，我额外加了 cwd 的信息，避免之后命令胡乱 cd</p><p><img src="/assets/image-20260128133308509.kYp0WY24.png" alt="image-20260128133308509"></p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>重要提示：命令在目录 &quot;${workingDirectory}&quot; 中执行成功。</span></span>
+<span class="line"><span>如果需要在这个项目目录中继续执行命令，</span></span>
+<span class="line"><span>请使用 workingDirectory: &quot;${workingDirectory}&quot; 参数，</span></span>
+<span class="line"><span>不要使用 cd 命令。</span></span></code></pre></div><p><img src="/assets/image-20260128133318660.D64UZqWZ.png" alt="image-20260128133318660"></p><p>每个 tool 都是 name、description 以及基于 zod 声明的参数格式。</p><p>接下来就可以调用了：</p><p>创建 src/mini-cursor.mjs</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &#39;dotenv/config&#39;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from&#39;@langchain/openai&#39;;</span></span>
+<span class="line"><span>import { HumanMessage, SystemMessage, ToolMessage } from&#39;@langchain/core/messages&#39;;</span></span>
+<span class="line"><span>import { executeCommandTool, listDirectoryTool, readFileTool, writeFileTool } from&#39;./all-tools.mjs&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = new ChatOpenAI({ </span></span>
+<span class="line"><span>    modelName: &quot;qwen-plus&quot;,</span></span>
+<span class="line"><span>    apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>    temperature: 0,</span></span>
+<span class="line"><span>    configuration: {</span></span>
+<span class="line"><span>        baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const tools = [</span></span>
+<span class="line"><span>    readFileTool,</span></span>
+<span class="line"><span>    writeFileTool,</span></span>
+<span class="line"><span>    executeCommandTool,</span></span>
+<span class="line"><span>    listDirectoryTool,</span></span>
+<span class="line"><span>];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 绑定工具到模型</span></span>
+<span class="line"><span>const modelWithTools = model.bindTools(tools);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Agent 执行函数</span></span>
+<span class="line"><span>asyncfunction runAgentWithTools(query, maxIterations = 30) {</span></span>
+<span class="line"><span>    const messages = [</span></span>
+<span class="line"><span>        new SystemMessage(`你是一个项目管理助手，使用工具完成任务。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>当前工作目录: ${process.cwd()}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>工具：</span></span>
+<span class="line"><span>1. read_file: 读取文件</span></span>
+<span class="line"><span>2. write_file: 写入文件</span></span>
+<span class="line"><span>3. execute_command: 执行命令（支持 workingDirectory 参数）</span></span>
+<span class="line"><span>4. list_directory: 列出目录</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>重要规则 - execute_command：</span></span>
+<span class="line"><span>- workingDirectory 参数会自动切换到指定目录</span></span>
+<span class="line"><span>- 当使用 workingDirectory 时，绝对不要在 command 中使用 cd</span></span>
+<span class="line"><span>- 错误示例: { command: &quot;cd react-todo-app &amp;&amp; pnpm install&quot;, workingDirectory: &quot;react-todo-app&quot; }</span></span>
+<span class="line"><span>这是错误的！因为 workingDirectory 已经在 react-todo-app 目录了，再 cd react-todo-app 会找不到目录</span></span>
+<span class="line"><span>- 正确示例: { command: &quot;pnpm install&quot;, workingDirectory: &quot;react-todo-app&quot; }</span></span>
+<span class="line"><span>这样就对了！workingDirectory 已经切换到 react-todo-app，直接执行命令即可</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回复要简洁，只说做了什么`),</span></span>
+<span class="line"><span>        new HumanMessage(query)</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    for (let i = 0; i &lt; maxIterations; i++) {</span></span>
+<span class="line"><span>        console.log(`⏳ 正在等待 AI 思考...`);</span></span>
+<span class="line"><span>        const response = await modelWithTools.invoke(messages);</span></span>
+<span class="line"><span>        messages.push(response);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 检查是否有工具调用</span></span>
+<span class="line"><span>        if (!response.tool_calls || response.tool_calls.length === 0) {</span></span>
+<span class="line"><span>            console.log(`\n✨ AI 最终回复:\n${response.content}\n`);</span></span>
+<span class="line"><span>            return response.content;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 执行工具调用</span></span>
+<span class="line"><span>        for (const toolCall of response.tool_calls) {</span></span>
+<span class="line"><span>            const foundTool = tools.find(t =&gt; t.name === toolCall.name);</span></span>
+<span class="line"><span>            if (foundTool) {</span></span>
+<span class="line"><span>                const toolResult = await foundTool.invoke(toolCall.args);</span></span>
+<span class="line"><span>                messages.push(new ToolMessage({</span></span>
+<span class="line"><span>                    content: toolResult,</span></span>
+<span class="line"><span>                    tool_call_id: toolCall.id,</span></span>
+<span class="line"><span>                }));</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return messages[messages.length - 1].content;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>代码大部分我们都写过。</p><p>首先创建大模型对象：</p><p><img src="/assets/image-20260128133523596.CwCX0NYb.png" alt="image-20260128133523596"></p><p>temperature 温度指定为 0，不让 AI 随意发挥。</p><p>模型用 qwen-plus，这个更好一点。</p><p>然后把 tools 绑定到模型：</p><p><img src="/assets/image-20260128133531874.2BuyPpLv.png" alt="image-20260128133531874"></p><p>后面就是返回的对话了，因为可能会反复对话、返回调用 tools 很多次，这里加了个最大限制。</p><p>具体的调用过程和之前一样：</p><p>用 System message 指定 AI 可以做什么，回答的规范：</p><p><img src="/assets/image-20260128133540533.-HGBMcL_.png" alt="image-20260128133540533"></p><p>告诉它有哪些工具：</p><p><img src="/assets/image-20260128133548650.W29stQb2.png" alt="image-20260128133548650"></p><p>我还特意说明了下 cd 的问题，有了 cwd 之后，就不用 cd 了。</p><p>之后把调用 tool 返回的内容封装成 ToolMessage：</p><p><img src="/assets/image-20260128133557120.p8-equvU.png" alt="image-20260128133557120"></p><p>这样，模型、工具、调用流程就搭建完了。</p><p>接下来我们开始调用：</p><p>首先我们用 chalk 加点颜色，不然都是白色不好看：</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install chalk</span></span></code></pre></div><p>这行背景变绿：</p><p><img src="/assets/image-20260128133605597.Bn_6aUY8.png" alt="image-20260128133605597"></p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import chalk from &#39;chalk&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(chalk.bgGreen(`⏳ 正在等待 AI 思考...`));</span></span></code></pre></div><p>接下来写个 case：</p><p><img src="/assets/image-20260128133613624.CTGXaE88.png" alt="image-20260128133613624"></p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>const case1 = `创建一个功能丰富的 React TodoList 应用：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>1. 创建项目：echo -e &quot;n\nn&quot; | pnpm create vite react-todo-app --template react-ts</span></span>
+<span class="line"><span>2. 修改 src/App.tsx，实现完整功能的 TodoList：</span></span>
+<span class="line"><span> - 添加、删除、编辑、标记完成</span></span>
+<span class="line"><span> - 分类筛选（全部/进行中/已完成）</span></span>
+<span class="line"><span> - 统计信息显示</span></span>
+<span class="line"><span> - localStorage 数据持久化</span></span>
+<span class="line"><span>3. 添加复杂样式：</span></span>
+<span class="line"><span> - 渐变背景（蓝到紫）</span></span>
+<span class="line"><span> - 卡片阴影、圆角</span></span>
+<span class="line"><span> - 悬停效果</span></span>
+<span class="line"><span>4. 添加动画：</span></span>
+<span class="line"><span> - 添加/删除时的过渡动画</span></span>
+<span class="line"><span> - 使用 CSS transitions</span></span>
+<span class="line"><span>5. 列出目录确认</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>注意：使用 pnpm，功能要完整，样式要美观，要有动画效果</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>之后在 react-todo-app 项目中：</span></span>
+<span class="line"><span>1. 使用 pnpm install 安装依赖</span></span>
+<span class="line"><span>2. 使用 pnpm run dev 启动服务器</span></span>
+<span class="line"><span>`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>  await runAgentWithTools(case1);</span></span>
+<span class="line"><span>} catch (error) {</span></span>
+<span class="line"><span>  console.error(`\n❌ 错误: ${error.message}\n`);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>告诉它创建一个 todo app，然后安装依赖，跑起来。</p><p>你是不是在 cursor 里经常做这种事情？</p><p>今天用自己写的工具来做：</p><div class="language-plain text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">plain text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>node ./src/mini-cursor.mjs</span></span></code></pre></div><p>可以看到，过程中调用了各种工具：</p><p><img src="/assets/image-20260128133625381.CaZjjvVH.png" alt="image-20260128133625381"></p><p><img src="/assets/image-20260128133633969.DACXFWv6.png" alt="image-20260128133633969"></p><p><img src="/assets/image-20260128133640928.tzZL9Nc0.png" alt="image-20260128133640928"></p><p>我们写的 tool 都用上了。</p><p>读取目录、写入文件、读取文件、执行命令</p><p>当然，这个过程慢很正常，生成过程本来就慢，我们没用流式展示过程，其实你等待的时间一直在输出内容。流式相关的后面再做。</p><p>但是，这个项目的代码是用我们写的 mini cursor 自动创建、自动跑起来的：</p><p>它和 cursor 肯定有差距，但是已经实现部分功能了。</p><p>我们不是想真的实现 cursor，只是要知道它的实现原理。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code/tool-test" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code/tool-test</a></p></blockquote><h2 id="总结" tabindex="-1">总结 <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;总结&quot;">​</a></h2><p>这节我们创建了更多的 tool，比如目录、文件的读写，还有用 spawn 执行命令。</p><p>我们基于这些 tool 实现了部分 cursor 功能，最终效果是，它可以帮你创建项目，写入文件，执行安装依赖、跑项目的命令。</p><p>相信学到这，你就知道 cursor 的大概实现原理了。</p><p>你也可以基于 tool + llm 来做一些自己想做的功能，边学边练，AI 学起来还是很有趣的！</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><!----></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/前端转AI Agent/00-使用前必看/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>00-使用前必看</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"CnMAFySn\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"CvVzfRsR\",\"前端转ai agent_00-使用前必看_index.md\":\"BBiR6Lxu\",\"前端转ai agent_00-使用前必看_readme.md\":\"BZ9yEDUv\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"DTcMowbw\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"CwisUOri\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BWoY22E1\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"DNXrabF1\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"LbIhphAy\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"BJL10sHN\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"BcRDQ0JM\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"BIYvasNv\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"DnC1UDhE\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"DURP_uHo\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"8mPlnQ7j\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DTCeHWGV\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"C4ar6vpc\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"Do3KK1lq\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"B-kUSQDa\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"QScBSpdX\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"BKbyLJ5e\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"CmIlvG_s\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"jLnwNLTN\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"BDcwJ3Lw\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"Bbc_eH6n\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"U0-gd3C1\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"DndCBQbc\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"_rs0qLz9\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"C6_37fmX\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"BNiIoDvD\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"UQKR4nV_\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"G1RrcwxQ\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"lo_rYdQP\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"E85PZpB5\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cpzgbn6m\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"-vyGkBeE\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"DBnG2D-T\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"Am0E15Oi\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"BktHDXBV\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"C7_UTy7N\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"C6A3COS8\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"Dt4MQ5Hf\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"BBrvi3Gk\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"BLOPeznt\",\"前端转ai agent_index.md\":\"B2aMyuwc\",\"前端转ai agent_语雀答疑资料.md\":\"hf8JbnhY\"}");function deserializeFunctions(r){return Array.isArray(r)?r.map(deserializeFunctions):typeof r=="object"&&r!==null?Object.keys(r).reduce((t,n)=>(t[n]=deserializeFunctions(r[n]),t),{}):typeof r=="string"&&r.startsWith("_vp-fn_")?new Function(`return ${r.slice(7)}`)():r};window.__VP_SITE_DATA__=deserializeFunctions(JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"}]}]},\"search\":{\"provider\":\"local\",\"options\":{\"miniSearch\":{\"options\":{\"fields\":[\"text\",\"title\",\"headers\"],\"tokenize\":\"_vp-fn_(text) => {\\n              return text.split(/[^\\\\p{L}\\\\p{N}]/gu).filter(Boolean);\\n            }\",\"processTerm\":\"_vp-fn_(term) => term.length < 20 ? term.toLowerCase() : term.slice(0, 20)\",\"storeFields\":[\"title\",\"headers\"],\"indexFieldLength\":10000},\"searchOptions\":{\"boost\":{\"title\":10,\"headers\":5,\"text\":1},\"combineWith\":\"OR\",\"prefix\":true,\"fuzzy\":0.1,\"maxFuzzy\":1,\"weights\":{\"prefix\":2,\"fuzzy\":1},\"processTerm\":\"_vp-fn_(term) => term.toLowerCase()\"}}}}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}"));</script>
+    
+  </body>
+</html>
