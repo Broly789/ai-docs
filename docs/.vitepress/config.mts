@@ -88,6 +88,15 @@ export default defineConfig({
       provider: "local",
       // https://lucaong.github.io/minisearch/index.html
     },
+    // 右上角github链接
+    socialLinks: [
+      { icon: "github", link: "https://github.com/Broly789/ai-docs" },
+    ],
+
+    // 页脚
+    footer: {
+      copyright: "Copyright © 2026 Broly",
+    },
   },
 
   /**
