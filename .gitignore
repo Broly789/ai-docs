@@ -3,3 +3,5 @@ node_modules
 .vitepress/dist
 .vitepress/cache
 .obsidian/
+docs/.vitepress/dist
+docs/.vitepress/cache

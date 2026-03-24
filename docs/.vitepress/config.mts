@@ -1,12 +1,12 @@
 import { defineConfig } from "vitepress";
 import * as fs from "fs";
 import * as path from "path";
+
 const courseBaseDir = path.resolve(import.meta.dirname, "..");
 
 function processTermLower(term: string, _field?: string) {
   return term.toLowerCase();
 }
-
 // 原有目录读取函数不变
 function getCourses() {
   return fs.readdirSync(courseBaseDir).filter((name) => {
@@ -40,7 +40,7 @@ function getChapters(courseName: string) {
 export default defineConfig({
   title: "我的学习文档",
   description: "前端转 AI Agent 课程笔记",
-  base: "/ai-docs/",
+  base: process.env.VITE_BASE_URL || "",
   lang: "zh-CN",
   srcDir: ".",
   ignoreDeadLinks: true,
@@ -71,7 +71,10 @@ export default defineConfig({
     siteTitle: "我的学习文档",
     nav: [
       { text: "首页", link: "/" },
-      ...getCourses().map((course) => ({ text: course, link: `/${course}/` })),
+      ...getCourses().map((course) => ({
+        text: course,
+        link: `/${course}/`,
+      })),
     ],
     sidebar: {
       "/": getCourses().map((course) => ({
