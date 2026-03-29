@@ -18,7 +18,7 @@ npm init -y
 
 https://console.cloud.tencent.com/tts
 
-<video src="assets/1.mp4" />
+<video src="./assets/1.mp4" />
 
 拿到 secretId、secretKey 之后，就可以调用 api 了。
 
@@ -97,7 +97,7 @@ SECRET_KEY=替换成你的
 
 跑一下：
 
-<video src="assets/2.mp4" />
+<video src="./assets/2.mp4" />
 
 但这种直接传入全部文本生成语音的方式，显然不太适合我们的场景。
 
@@ -263,7 +263,7 @@ appid 从这里拿：
 
 跑一下：
 
-<video src="assets/3.mp4" />
+<video src="./assets/3.mp4" />
 
 因为文本是流式返回的，所以语音一般也要流式生成，用 streaming tts 的接口。
 
@@ -330,7 +330,7 @@ pnpm install tencentcloud-sdk-nodejs
 
 跑一下：
 
-<video src="assets/4.mp4" />
+<video src="./assets/4.mp4" />
 
 这样，我们就可以来实现豆包同款的语音交互了：
 
@@ -471,7 +471,7 @@ MODEL_NAME=qwen-plus
 
 跑一下：
 
-<video src="assets/5.mp4" />
+<video src="./assets/5.mp4" />
 
 我们先接入语音转文字，实现一个接口：
 
@@ -762,7 +762,7 @@ pnpm install tencentcloud-sdk-nodejs @nestjs/serve-static
 
 跑一下：
 
-<video src="assets/6.mp4" />
+<video src="./assets/6.mp4" />
 
 语音识别出文字，之后可以自动调用 /ai/chat/stream 接口拿到回答。
 
@@ -1245,7 +1245,7 @@ pnpm install tencentcloud-sdk-nodejs @nestjs/serve-static
 
 跑一下：
 
-<video src="assets/7.mp4" />
+<video src="./assets/7.mp4" />
 
 接下来做一下流式语音朗读就可以了。
 
@@ -1682,7 +1682,7 @@ pnpm install --save-dev @types/ws
 
 我们跑一下：
 
-<video src="assets/8.mp4" />
+<video src="./assets/8.mp4" />
 
 这样，我们就实现了豆包同款语音功能。
 
