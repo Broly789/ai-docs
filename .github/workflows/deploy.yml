@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22  # 稳定版，兼容 GitHub
+          cache: npm # 缓存依赖，加速构建
 
       - run: npm install
       - run: npm run docs:build  # 👈 改成你本地的打包命令
