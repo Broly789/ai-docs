@@ -112,13 +112,13 @@ if (error.suggestion) {
 
 跑一下：
 
-<video src="C:\Users\72718\Downloads\33-Mem0：分层记忆 + 三路召回的长期记忆方案已付费\video\1.mp4"></video>
+<video src="./assets/video/1.mp4" controls></video>
 
 mem0 只要配一个 apikey 就可以存储记忆、检索记忆了。
 
 但免费版是有调用次数限制的：
 
-<video src="C:\Users\72718\Downloads\33-Mem0：分层记忆 + 三路召回的长期记忆方案已付费\video\2.mp4"></video>
+<video src="./assets/video/2.mp4" controls></video>
 
 后面我们自己部署一下。
 
@@ -818,7 +818,7 @@ REQUEST_LOG_RETENTION_DAYS=30
 
 跑一下：
 
-<video src="./assets/5.mp4"></video>
+<video src="./assets/5.mp4" controls></video>
 
 跑起来可以看到接口文档和 mem0 的管理界面：
 
@@ -971,7 +971,7 @@ mem0 的 server 提供了 restful 的接口，用 fetch 来访问。
 
 跑一下：
 
-<video src="./assets/6.mp4"></video>
+<video src="./assets/6.mp4" controls></video>
 
 这样我们就基于本地跑的 mem0 服务实现了长期记忆的分层存储、语义检索。
 
