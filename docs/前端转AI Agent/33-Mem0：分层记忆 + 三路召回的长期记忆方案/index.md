@@ -112,13 +112,13 @@ if (error.suggestion) {
 
 跑一下：
 
-<video src="./assets/1.mp4" controls></video>
+<video src="./assets/video/1.mp4" controls></video>
 
 mem0 只要配一个 apikey 就可以存储记忆、检索记忆了。
 
 但免费版是有调用次数限制的：
 
-<video src="./assets/2.mp4" controls></video>
+<video src="./assets/video/2.mp4" controls></video>
 
 后面我们自己部署一下。
 
@@ -277,7 +277,7 @@ if (error.suggestion) console.error("建议:", error.suggestion);
 
 跑一下：
 
-<video src="./assets/3.mp4" controls></video>
+<video src="./assets/video/3.mp4" controls></video>
 
 用户、会话、Agent 三种级别的 scope 可以独立的存储和检索记忆。
 
@@ -730,7 +730,7 @@ await redis.quit();
 
 跑一下：
 
-<video src="./assets/4.mp4" controls></video>
+<video src="./assets/video/4.mp4" controls></video>
 
 这样，我们基于 Redis 实现了短期记忆，基于 Mem0 实现了长期记忆
 
@@ -818,7 +818,7 @@ REQUEST_LOG_RETENTION_DAYS=30
 
 跑一下：
 
-<video src="./assets/5.mp4" controls></video>
+<video src="./assets/video/5.mp4" controls></video>
 
 跑起来可以看到接口文档和 mem0 的管理界面：
 
@@ -971,7 +971,7 @@ mem0 的 server 提供了 restful 的接口，用 fetch 来访问。
 
 跑一下：
 
-<video src="./assets/6.mp4" controls></video>
+<video src="./assets/video/6.mp4" controls></video>
 
 这样我们就基于本地跑的 mem0 服务实现了长期记忆的分层存储、语义检索。
 
