@@ -277,7 +277,7 @@ if (error.suggestion) console.error("建议:", error.suggestion);
 
 跑一下：
 
-<video src="./assets/3.mp4"></video>
+<video src="./assets/3.mp4" controls></video>
 
 用户、会话、Agent 三种级别的 scope 可以独立的存储和检索记忆。
 
@@ -730,7 +730,7 @@ await redis.quit();
 
 跑一下：
 
-<video src="./assets/4.mp4"></video>
+<video src="./assets/4.mp4" controls></video>
 
 这样，我们基于 Redis 实现了短期记忆，基于 Mem0 实现了长期记忆
 
