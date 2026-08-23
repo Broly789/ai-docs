@@ -1,31 +1,44 @@
+# VitePress 文档自动部署工作流
+# 触发条件：向 main 分支推送代码时，GitHub Actions 自动执行本流水线
 name: Deploy VitePress
 
 on:
   push:
     branches:
-      - main
+      - main # 仅 main 分支推送，才触发部署；其他分支推送不会跑这个job
 
-# 强制使用 Node.js 24，消除警告 ✅
+# 全局环境变量：强制让第三方actions插件运行在 Node24，消除 Node20 弃用警告
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  # 部署任务名称，可以自定义
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 使用 GitHub 提供的 Ubuntu Linux 虚拟机作为CI运行机器
     steps:
-      - uses: actions/checkout@v4  # 目前最新，无问题
+      # 步骤1：拉取仓库源代码到CI服务器
+      - uses: actions/checkout@v6
+        with:
+          lfs: true # 【关键】开启Git LFS下载；你的仓库有mp4视频大文件，不加这个CI只能拿到指针文件，构建失败
 
+      # 步骤2：安装指定版本 Node.js 运行环境
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # 稳定版，兼容 GitHub
-          cache: npm # 缓存依赖，加速构建
+          node-version: 22 # 项目业务代码使用的Node版本，VitePress推荐22，不需要升级24
+          cache: npm # 开启npm依赖缓存，下次流水线可以复用缓存，加快安装依赖速度
 
+      # 步骤3：安装项目所有npm依赖（package.json中的依赖）
       - run: npm install
-      - run: npm run docs:build  # 👈 改成你本地的打包命令
 
+      # 步骤4：执行vitepress打包构建，产出静态网页产物 docs/.vitepress/dist
+      - run: npm run docs:build
+
+      # 步骤5：将打包出来dist静态文件，自动推送到 gh‑pages 分支，完成GitHub Pages上线
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
+          # GitHub内置token，不需要自己配置密钥，有权限推送当前仓库分支
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 指定要部署的文件夹：vitepress构建输出的静态资源目录
           publish_dir: docs/.vitepress/dist
