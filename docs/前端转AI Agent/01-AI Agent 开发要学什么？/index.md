@@ -5,7 +5,7 @@
 
 那你有没有想过自己开发一个 AI Agent 产品呢？
 
-![图片](assets/640.jpeg)
+![图片](./assets/640.jpeg)
 
 
 

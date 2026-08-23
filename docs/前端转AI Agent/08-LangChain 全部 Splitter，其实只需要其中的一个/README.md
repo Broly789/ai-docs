@@ -2,7 +2,7 @@
 
 上节我们学了 loader 和 splitter
 
-![image-20260128152004429](assets/image-20260128152004429.png)
+![image-20260128152004429](./assets/image-20260128152004429.png)
 
 知识可能有各种来源，比如一个视频、一个 pdf、一个网页、一个 word 文档
 
@@ -22,21 +22,21 @@
 
 比如上节我们这样分割的 Document：
 
-![image-20260128152011683](assets/image-20260128152011683.png)
+![image-20260128152011683](./assets/image-20260128152011683.png)
 
 首先按照 。的 sperator 来分割字符串，然后按照 chunk size 放入一个个 Document，也就是这样：
 
-![image-20260128152017402](assets/image-20260128152017402.png)
+![image-20260128152017402](./assets/image-20260128152017402.png)
 
 如果分割后还是大于 chunk size，就需要按照后面的 sperator 继续分割，然后加上 overlap：
 
-![image-20260128152026090](assets/image-20260128152026090.png)
+![image-20260128152026090](./assets/image-20260128152026090.png)
 
 注意，**overloap 只有文本超过 chunk size，文本被打断了才会加**，不是所有的块都会有 overlap
 
 比如上面那段话超过了 chunk size，分割到两个 chunk 里，第二个 chunk 就会按照设置重复一部分内容
 
-![image-20260128152031999](assets/image-20260128152031999.png)
+![image-20260128152031999](./assets/image-20260128152031999.png)
 
 设置这个是为了保证语义连贯性
 
@@ -52,7 +52,7 @@
 
 可以看到这个包导出的 splitter，以及它们的继承关系：
 
-![image-20260128152039521](assets/image-20260128152039521.png)
+![image-20260128152039521](./assets/image-20260128152039521.png)
 
 所有的 Splitter 都继承自 TextSplitter，包括 RecursiveCharacterTextSplitter 等。
 
@@ -92,7 +92,7 @@ pineapple 是 2 个 token
 
 我们试一下就知道了，用 js-tiktoken 这个包，它是 openai 模型的分词器
 
-![image-20260128152048976](assets/image-20260128152048976.png)
+![image-20260128152048976](./assets/image-20260128152048976.png)
 
 安装下：
 
@@ -143,7 +143,7 @@ console.log('一二三', enc.encode("一二三").length);
 
 回过头来再看下所有的 Splitter：
 
-![image-20260128152057440](assets/image-20260128152057440.png)
+![image-20260128152057440](./assets/image-20260128152057440.png)
 
 关系就比较清晰了。
 
@@ -267,7 +267,7 @@ splitDocuments.forEach(document => {
 
 它可以指定多个分隔符：
 
-![image-20260128152107144](assets/image-20260128152107144.png)
+![image-20260128152107144](./assets/image-20260128152107144.png)
 
 当 “\n” 分割后还是大，就会用 “。” 还是不行再尝试用 “，”
 
@@ -275,17 +275,17 @@ splitDocuments.forEach(document => {
 
 这样就明显好很多：
 
-![image-20260128152116395](assets/image-20260128152116395.png)
+![image-20260128152116395](./assets/image-20260128152116395.png)
 
 这两段文本是用换行符分割的。
 
 按照换行符分割后下面的文本超过 chunk size，就会尝试按照句号逗号分割，然后加上 overlap：
 
-![image-20260128152125937](assets/image-20260128152125937.png)
+![image-20260128152125937](./assets/image-20260128152125937.png)
 
 最后这个是按照逗号分隔的，也没超过 chunk size，就没有 overlap了：
 
-![image-20260128152132779](assets/image-20260128152132779.png)
+![image-20260128152132779](./assets/image-20260128152132779.png)
 
 所以说 RecursiveCharacterTextSplitter 这种递归的方式灵活太多了。
 
@@ -332,17 +332,17 @@ splitDocuments.forEach(document => {
 
 用这个 splitter，然后指定下编码：
 
-![image-20260128152140170](assets/image-20260128152140170.png)
+![image-20260128152140170](./assets/image-20260128152140170.png)
 
 跑一下：
 
-![image-20260128152149472](assets/image-20260128152149472.png)
+![image-20260128152149472](./assets/image-20260128152149472.png)
 
 可以看到，它优先保证 token 正好是 50，为了这个不惜强行打断文本。
 
 当然，打断后也加了 overlap：
 
-![image-20260128152156745](assets/image-20260128152156745.png)
+![image-20260128152156745](./assets/image-20260128152156745.png)
 
 RecursiveCharacterTextSplitter 分出的 chunk 可能大于 chunk size，也可以小，优先保证语义完整，是按照分割符来分割。
 
@@ -356,7 +356,7 @@ RecursiveCharacterTextSplitter 分出的 chunk 可能大于 chunk size，也可�
 
 可以的。重写一下它的长度计算函数就可以了：
 
-![image-20260128152203318](assets/image-20260128152203318.png)
+![image-20260128152203318](./assets/image-20260128152203318.png)
 
 这样，chunk size 指的就是 token 的长度
 
@@ -373,7 +373,7 @@ const logTextSplitter = new RecursiveCharacterTextSplitter({
 
 现在就是按照现在的 token 数量作为分割依据了：
 
-![image-20260128152209323](assets/image-20260128152209323.png)
+![image-20260128152209323](./assets/image-20260128152209323.png)
 
 这样就完全不需要用 TokenTextSplitter。
 
@@ -482,7 +482,7 @@ splitDocuments.forEach(document => {
 
 创建 MarkdownTextSplitter，不用指定分割符，内置了。
 
-![image-20260128152216985](assets/image-20260128152216985.png)
+![image-20260128152216985](./assets/image-20260128152216985.png)
 
 跑一下：
 
@@ -527,7 +527,7 @@ splitDocuments.forEach(document => {
 
 跑一下：
 
-![image-20260128152223923](assets/image-20260128152223923.png)
+![image-20260128152223923](./assets/image-20260128152223923.png)
 
 也是按照正确的语法分割的。
 
@@ -635,7 +635,7 @@ splitDocuments.forEach(document => {
 
 这样，我们就把所有 splitter 过了一遍：
 
-![image-20260128152230917](assets/image-20260128152230917.png)
+![image-20260128152230917](./assets/image-20260128152230917.png)
 
 其实看到这里你应该也有答案了，基本就用 RecursiveCharacterTextSplitter 就行。
 

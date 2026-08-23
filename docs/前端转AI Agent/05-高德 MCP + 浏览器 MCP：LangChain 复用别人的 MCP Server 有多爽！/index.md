@@ -7,11 +7,11 @@
 
 <video src="./assets/1.mp4"  controls />
 
-![image-20260128134953817](assets/image-20260128134953817.png)
+![image-20260128134953817](./assets/image-20260128134953817.png)
 
 它本质上还是 tool，只不过包了一层进程，可以通过 stdio 和 http 来访问。
 
-![image-20260128135000078](assets/image-20260128135000078.png)
+![image-20260128135000078](./assets/image-20260128135000078.png)
 
 有这一层协议之后，有个巨大的好处：
 
@@ -45,11 +45,11 @@ https://developer.amap.com/
 
 可以看到，配好之后，就可以查到这个 mcp server 里的一堆 tool 了：
 
-![image-20260128135009500](assets/image-20260128135009500.png)
+![image-20260128135009500](./assets/image-20260128135009500.png)
 
 记得我们说过 mcp 有两种接入方式么？
 
-![image-20260128135016089](assets/image-20260128135016089.png)
+![image-20260128135016089](./assets/image-20260128135016089.png)
 
 这就是 http 的接入方式。
 
@@ -169,7 +169,7 @@ mcp client 的代码和上节一样，用 @langchain/mcp-adapters
 
 这里的高德 api key 同样放到了 .env 里：
 
-![image-20260128135023814](assets/image-20260128135023814.png)
+![image-20260128135023814](./assets/image-20260128135023814.png)
 
 先注释掉高德 mcp server 跑一下：
 
@@ -187,7 +187,7 @@ mcp client 的代码和上节一样，用 @langchain/mcp-adapters
 
 然后文件读写、创建目录这种，也不用自己写 tool，可以用现成 mcp：
 
-![image-20260128135029786](assets/image-20260128135029786.png)
+![image-20260128135029786](./assets/image-20260128135029786.png)
 
 mcp 官方维护的一个 mcp server
 
@@ -206,7 +206,7 @@ mcp 官方维护的一个 mcp server
 
 后面是可访问的目录，我们配在 .env 里：
 
-![image-20260128135036933](assets/image-20260128135036933.png)
+![image-20260128135036933](./assets/image-20260128135036933.png)
 
 逗号分隔
 
@@ -220,7 +220,7 @@ mcp 官方维护的一个 mcp server
 
 不过这里还有个坑注意下：
 
-![image-20260128135046173](assets/image-20260128135046173.png)
+![image-20260128135046173](./assets/image-20260128135046173.png)
 
 一般我们写 tool 都是直接返回字符串，但是 FileSystem MCP 封装的这些 tool 返回的是对象，有 text 属性，所以要处理下：
 
@@ -290,7 +290,7 @@ await runAgentWithTools("北京南站附近的酒店，最近的 3 个酒店，�
 
 只要配好 MCP，大模型就可以直接调用里面的 tools 了：
 
-![image-20260128135053703](assets/image-20260128135053703.png)
+![image-20260128135053703](./assets/image-20260128135053703.png)
 
 > 代码上传了课程仓库： https://github.com/QuarkGluonPlasma/ai-agent-course-code/tool-test
 

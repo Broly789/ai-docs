@@ -97,7 +97,7 @@ pnpm run start:dev
 
 去数据库看一下：
 
-![image-20260319145343530](assets/image-20260319145343530-3903225.png)
+![image-20260319145343530](./assets/image-20260319145343530-3903225.png)
 
 <video  src="./assets/2.mp4"  controls />
 

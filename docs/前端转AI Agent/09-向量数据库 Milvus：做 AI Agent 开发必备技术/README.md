@@ -1,24 +1,24 @@
 前面我们实现了 RAG：
 
-![image-20260128152305563](assets/image-20260128152305563.png)
+![image-20260128152305563](./assets/image-20260128152305563.png)
 
 文档向量化放到向量数据库，每次查询根据向量化的 query 去数据库做相似度匹配，查出相关文档放到 prompt 里给大模型，大模型来生成回答。
 
 但之前向量数据库是放在内存里的：
 
-![image-20260128152311540](assets/image-20260128152311540.png)
+![image-20260128152311540](./assets/image-20260128152311540.png)
 
 而实际上 AI Agent 产品都会用 Milvus 这种向量数据库。
 
 就像 web 应用会把数据存在 mysql 里，基于对数据的增删改查实现各种业务功能。
 
-![image-20260128152316678](assets/image-20260128152316678.png)
+![image-20260128152316678](./assets/image-20260128152316678.png)
 
 根据 id 或者关键词去关联查询一系列表的数据。
 
 而 AI Agent 应用会把知识、记忆放在 Milvus 数据库中，基于对知识的检索、增删改实现各种功能。
 
-![image-20260128152321910](assets/image-20260128152321910.png)
+![image-20260128152321910](./assets/image-20260128152321910.png)
 
 不同的是这里涉及到向量化，就需要嵌入模型，比如检索、新增、修改。
 
@@ -40,7 +40,7 @@
 
 所以一般会做 mysql 和 milvus 的双写，也就是同时对两个数据库做增删改，保持数据同步。
 
-![image-20260128152328048](assets/image-20260128152328048.png)
+![image-20260128152328048](./assets/image-20260128152328048.png)
 
 这节我们先学下 Milvus，做下增删改查，跑通基于 Mivlus 的 RAG 流程。
 
@@ -48,19 +48,19 @@
 
 https://www.docker.com/
 
-![image-20260128152333957](assets/image-20260128152333957.png)
+![image-20260128152333957](./assets/image-20260128152333957.png)
 
 下载后安装，会有桌面端和命令行工具：
 
-![image-20260128152340696](assets/image-20260128152340696.png)
+![image-20260128152340696](./assets/image-20260128152340696.png)
 
-![image-20260128152348567](assets/image-20260128152348567.png)
+![image-20260128152348567](./assets/image-20260128152348567.png)
 
 如果 docker 命令可用了，就代表装好了。
 
 打开桌面端：
 
-![image-20260128152355636](assets/image-20260128152355636.png)
+![image-20260128152355636](./assets/image-20260128152355636.png)
 
 images 是下载的镜像列表。
 
@@ -70,13 +70,13 @@ containers 是镜像跑起来的容器列表。
 
 创建一个目录用来放 milvus 的 docker 配置文件和数据：
 
-![image-20260128152401006](assets/image-20260128152401006.png)
+![image-20260128152401006](./assets/image-20260128152401006.png)
 
 从这里下载 milvus 的 docker compose 配置文件：
 
 https://github.com/milvus-io/milvus/releases
 
-![image-20260128152409169](assets/image-20260128152409169.png)
+![image-20260128152409169](./assets/image-20260128152409169.png)
 
 把配置文件拿到刚才这个目录，跑一下 docker compose
 
@@ -92,11 +92,11 @@ docker compose -f ./milvus-standalone-docker-compose.yml up -d
 
 下载的镜像：
 
-![image-20260128152421169](assets/image-20260128152421169.png)
+![image-20260128152421169](./assets/image-20260128152421169.png)
 
 跑起来的容器：
 
-![image-20260128152427654](assets/image-20260128152427654.png)
+![image-20260128152427654](./assets/image-20260128152427654.png)
 
 milvus 数据库是跑在 19530 这个端口。
 
@@ -104,7 +104,7 @@ milvus 数据库是跑在 19530 这个端口。
 
 http://localhost:9091/healthz
 
-![image-20260128152433384](assets/image-20260128152433384.png)
+![image-20260128152433384](./assets/image-20260128152433384.png)
 
 然后我们用 node 来连接 milvus 服务做增删改查。
 
@@ -116,7 +116,7 @@ cd milvus-test
 npm init -y
 ```
 
-![image-20260128152440209](assets/image-20260128152440209.png)
+![image-20260128152440209](./assets/image-20260128152440209.png)
 
 安装 milvus 的 node sdk：
 
@@ -271,7 +271,7 @@ main();
 
 在 milvus 里是这样存储数据的：
 
-![image-20260128152449055](assets/image-20260128152449055.png)
+![image-20260128152449055](./assets/image-20260128152449055.png)
 
 可以分为多个 database，每个 database 下有多个 collection
 
@@ -283,7 +283,7 @@ main();
 
 也就是这样：
 
-![image-20260128152455049](assets/image-20260128152455049.png)
+![image-20260128152455049](./assets/image-20260128152455049.png)
 
 这就是 schema，创建 collection 集合的时候需要指定。
 
@@ -293,25 +293,25 @@ main();
 
 这样我们后面插入数据，也要把嵌入模型指定为 1024 的维度。
 
-![image-20260128152502993](assets/image-20260128152502993.png)
+![image-20260128152502993](./assets/image-20260128152502993.png)
 
 这个集合名是 ai\_diary，用来放日记数据的。
 
 向量字段需要建立索引：
 
-![image-20260128152509662](assets/image-20260128152509662.png)
+![image-20260128152509662](./assets/image-20260128152509662.png)
 
 metric\_type 指定用余弦相似度作为距离度量
 
 余弦相似度的原理前面讲过：
 
-![image-20260128152515871](assets/image-20260128152515871.png)
+![image-20260128152515871](./assets/image-20260128152515871.png)
 
 之后就可以插入数据了：
 
-![image-20260128152523045](assets/image-20260128152523045.png)
+![image-20260128152523045](./assets/image-20260128152523045.png)
 
-![image-20260128152529264](assets/image-20260128152529264.png)
+![image-20260128152529264](./assets/image-20260128152529264.png)
 
 插入数据比较简单，就是调用 insert 方法，指定 collection name 和 data
 
@@ -331,15 +331,15 @@ Attu 是 Milvus 生态最好的 GUI 工具。
 
 https://github.com/zilliztech/attu/releases
 
-![image-20260128152535985](assets/image-20260128152535985.png)
+![image-20260128152535985](./assets/image-20260128152535985.png)
 
 下载后安装下：
 
-![image-20260128152541115](assets/image-20260128152541115.png)
+![image-20260128152541115](./assets/image-20260128152541115.png)
 
 用默认配置连接就行：
 
-![image-20260128152547118](assets/image-20260128152547118.png)
+![image-20260128152547118](./assets/image-20260128152547118.png)
 
 和 node.js 那边一样。
 
@@ -347,7 +347,7 @@ https://github.com/zilliztech/attu/releases
 
 可以看到所有的集合，集合下所有的 Entity
 
-![image-20260128152620158](assets/image-20260128152620158.png)
+![image-20260128152620158](./assets/image-20260128152620158.png)
 
 可以看到我们刚创建的 ai\_diary 的 collection，以及下面的 5 条数据
 
@@ -425,7 +425,7 @@ main();
 
 是把 query 向量化，做余弦相似度的检索：
 
-![image-20260128152627671](assets/image-20260128152627671.png)
+![image-20260128152627671](./assets/image-20260128152627671.png)
 
 跑一下：
 
@@ -599,15 +599,15 @@ main();
 
 这次把温度调高点，让 AI 可以发挥创造性回答：
 
-![image-20260128152638852](assets/image-20260128152638852.png)
+![image-20260128152638852](./assets/image-20260128152638852.png)
 
 我们先把 query 向量化，去 Milvus 里查出相关数据：
 
-![image-20260128152647119](assets/image-20260128152647119.png)
+![image-20260128152647119](./assets/image-20260128152647119.png)
 
 然后把这些加到 prompt 里让大模型回答：
 
-![image-20260128152654322](assets/image-20260128152654322.png)
+![image-20260128152654322](./assets/image-20260128152654322.png)
 
 跑一下：
 
@@ -690,7 +690,7 @@ main();
 
 因为要向量化，所以也要嵌入模型。
 
-![image-20260128152702586](assets/image-20260128152702586.png)
+![image-20260128152702586](./assets/image-20260128152702586.png)
 
 调用 upsert 方法，数据里带上 id 即可。
 

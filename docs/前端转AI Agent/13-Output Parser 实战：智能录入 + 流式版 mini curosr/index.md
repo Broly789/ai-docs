@@ -303,7 +303,7 @@ main();
 
 <video src="./assets/5.mp4"  controls />
 
-![image-20260204143159906](assets/image-20260204143159906.png)
+![image-20260204143159906](./assets/image-20260204143159906.png)
 
 这样，我们就实现了智能录入的功能，它需要大模型的结构化输出控制，用了 withStructuredOutput。
 
@@ -431,9 +431,9 @@ json schema 就和 tool 的 args 一样，都是大模型层面支持的，会�
 
 改一下上节代码，打印下看看：
 
-![image-20260204143606328](assets/image-20260204143606328.png)
+![image-20260204143606328](./assets/image-20260204143606328.png)
 
-![image-20260204143616523](assets/image-20260204143616523.png)
+![image-20260204143616523](./assets/image-20260204143616523.png)
 
 
 

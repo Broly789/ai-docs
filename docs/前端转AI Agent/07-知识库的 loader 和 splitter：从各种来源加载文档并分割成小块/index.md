@@ -7,13 +7,13 @@
 
 解决方案 RAG 就是根据用户的 prompt，去知识库查询相关文档，加到 prompt 里给到大模型作为背景知识来回答。
 
-![image-20260128150820285](assets/image-20260128150820285.png)
+![image-20260128150820285](./assets/image-20260128150820285.png)
 
 这种相关文档的检索，要根据 prompt 的语义来搜，所以一般要结合向量来实现：
 
 基于嵌入模型把文档向量化，存入向量数据&#x5E93;*()*，查询的时候把 prompt 向量化，根据余弦相似度，来检索最相近的向量，然后把相关文档放到 prompt 里。
 
-![image-20260128150826468](assets/image-20260128150826468.png)
+![image-20260128150826468](./assets/image-20260128150826468.png)
 
 上节我们跑通了这个流程：
 
@@ -23,7 +23,7 @@
 
 但上节我们是直接创建的 Document 对象，然后用嵌入模型存入了向量数据库：
 
-![image-20260128150834844](assets/image-20260128150834844.png)
+![image-20260128150834844](./assets/image-20260128150834844.png)
 
 实际上知识的来源可能有很多：
 
@@ -31,7 +31,7 @@
 
 这种显然就不是直接创建 Document 对象了，而是要用各种 loader 来转换：
 
-![image-20260128150841857](assets/image-20260128150841857.png)
+![image-20260128150841857](./assets/image-20260128150841857.png)
 
 经过对应的 loader 处理后，变成 Document，之后再由嵌入模型向量化后存入知识库。
 
@@ -51,7 +51,7 @@ https://docs.langchain.com/oss/python/integrations/document_loaders
 
 也就是需要 Splitter
 
-![image-20260128150848941](assets/image-20260128150848941.png)
+![image-20260128150848941](./assets/image-20260128150848941.png)
 
 大的文档经过 TextSplitter 分割后，变成一个个小文档，再给到嵌入模型做向量化。
 
@@ -59,7 +59,7 @@ https://docs.langchain.com/oss/python/integrations/document_loaders
 
 但并不是每一行一个 Document，而是要设置一个 chunk size，按照换行符分割好的内容加入到这个 Chunk，当达到 chunk size 后，再继续生成下个 Chunk。
 
-![image-20260128150855163](assets/image-20260128150855163.png)
+![image-20260128150855163](./assets/image-20260128150855163.png)
 
 这个 Chunk 也是 Document 对象，只是文档内容是分割好的一个个大小合适的块。
 
@@ -108,7 +108,7 @@ pnpm install cheerio @langchain/community
 
 现在的 Document 太大了，我们分割下：
 
-![image-20260128150903468](assets/image-20260128150903468.png)
+![image-20260128150903468](./assets/image-20260128150903468.png)
 
 splitter 在 @langchain/textsplitters 这个包下，安装下：
 

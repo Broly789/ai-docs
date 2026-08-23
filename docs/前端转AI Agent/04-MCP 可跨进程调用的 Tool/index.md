@@ -1,13 +1,12 @@
 # 04-MCP 可跨进程调用的 Tool
 
-
 我们已经写了一些 tool 了：读写文件和目录、执行命令
 
-![image-20260128134320013](assets/image-20260128134320013.png)
+![image-20260128134320013](./assets/image-20260128134320013.png)
 
 只要声明 tool 的名字、描述、参数格式，模型会在发现需要用 tool 的时候自动解析出参数传入来调用，然后把执行结果封装成 ToolMessage 传入 chat。
 
-![image-20260128134326513](assets/image-20260128134326513.png)
+![image-20260128134326513](./assets/image-20260128134326513.png)
 
 比如上节我们实现了简易的 cursor，就是声明了读写文件和目录、执行命令的 tool，这样你让大模型创建 react + vite 项目，它就会自动判断什么时候调用哪个 tool，自动实现目录、文件的创建，以及 pnpm install 和 pnpn run dev 的执行。
 
@@ -29,7 +28,7 @@ node 写的 ai agent 的代码，你的 tool 也得是 node 写。
 
 确实，也就是这样：
 
-![image-20260128134333766](assets/image-20260128134333766.png)
+![image-20260128134333766](./assets/image-20260128134333766.png)
 
 这里的 stdio 就是标准输入输出流，也就是键盘输入、控制台输出。当你进程跑一个子进程，就可以用这种方式通信。
 
@@ -37,7 +36,7 @@ node 写的 ai agent 的代码，你的 tool 也得是 node 写。
 
 也就是这样：
 
-![image-20260128134341530](assets/image-20260128134341530.png)
+![image-20260128134341530](./assets/image-20260128134341530.png)
 
 现在是解决了跨语言调用工具的问题。
 
@@ -47,7 +46,7 @@ node 写的 ai agent 的代码，你的 tool 也得是 node 写。
 
 也就是这样：
 
-![image-20260128134349593](assets/image-20260128134349593.png)
+![image-20260128134349593](./assets/image-20260128134349593.png)
 
 想跨进程调用某个工具，通过这个协议通信就行。
 
@@ -63,7 +62,7 @@ node 写的 ai agent 的代码，你的 tool 也得是 node 写。
 
 恭喜你，你发明了 MCP！
 
-![image-20260128134358629](assets/image-20260128134358629.png)
+![image-20260128134358629](./assets/image-20260128134358629.png)
 
 MCP 最大的特点就是可以**跨进程调用工具**。
 
@@ -73,13 +72,13 @@ MCP 最大的特点就是可以**跨进程调用工具**。
 
 提到 MCP 都会提到这张图：
 
-![image-20260128134407575](assets/image-20260128134407575.png)
+![image-20260128134407575](./assets/image-20260128134407575.png)
 
 你的 ai agent 就是 MCP 客户端，可以通过 MCP 协议调用各种 MCP Server，实现跨进程的工具调用。
 
 当然，在 langchain 里，它也是 tool ，只不过是 tool 的一种而已：
 
-![image-20260128134415806](assets/image-20260128134415806.png)
+![image-20260128134415806](./assets/image-20260128134415806.png)
 
 你在 tool 的函数里，调用下 MCP Client，访问下远程 Mcp Server，它本质上还是 tool，但是却集成了 MCP 工具。
 
@@ -93,7 +92,7 @@ MCP 是由 AI 巨头 Anthropic 公司发起并开发，但是 2025 年 12 月交
 
 安装 mcp 的包：
 
-```plain&#x20;text
+```plain text
 pnpm install @modelcontextprotocol/sdk
 ```
 
@@ -101,7 +100,7 @@ pnpm install @modelcontextprotocol/sdk
 
 创建 src/my-mcp-server.mjs
 
-```plain&#x20;text
+```plain text
 import { McpServer } from'@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from'@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from'zod';
@@ -173,16 +172,16 @@ return {
 
 
 const transport = new StdioServerTransport();
-await server.connect(transport);    
+await server.connect(transport);
 ```
 
 代码很容易看懂：
 
-* new McpServer 创建了 mcp server 实例
+- new McpServer 创建了 mcp server 实例
 
-* server.registerTool 注册了一个工具，声明 name、description、schema
+- server.registerTool 注册了一个工具，声明 name、description、schema
 
-* server.registerResource 注册了一个资源，就是静态数据
+- server.registerResource 注册了一个资源，就是静态数据
 
 和我们写 tool 的时候差不多，只不过这里分了 resource 和 tool，resouce 一般返回静态数据，tool 来做一些事情。
 
@@ -190,7 +189,7 @@ await server.connect(transport);
 
 这里是 stdio 的传输方式（Transport）
 
-![image-20260128134423804](assets/image-20260128134423804.png)
+![image-20260128134423804](./assets/image-20260128134423804.png)
 
 这样，我们的 MCP 服务就创建好了！
 
@@ -232,26 +231,26 @@ resource 主要是查询信息用的（read）， 而 tool 是执行功能用的
 
 当然，因为有了 mcp，除了 cursor，别的软件同样可以调用这个服务：
 
-![image-20260128134431031](assets/image-20260128134431031.png)
+![image-20260128134431031](./assets/image-20260128134431031.png)
 
 我们在 langchain 代码里调用下 mcp server：
 
 用这个包：
 
-```plain&#x20;text
+```plain text
 pnpm install @langchain/mcp-adapters
 ```
 
 创建 src/langchain-mcp-test.mjs
 
-```plain&#x20;text
+```plain text
 import 'dotenv/config';
 import { MultiServerMCPClient } from'@langchain/mcp-adapters';
 import { ChatOpenAI } from'@langchain/openai';
 import chalk from'chalk';
 import { HumanMessage, ToolMessage } from'@langchain/core/messages';
 
-const model = new ChatOpenAI({ 
+const model = new ChatOpenAI({
     modelName: "qwen-plus",
     apiKey: process.env.OPENAI_API_KEY,
     configuration: {
@@ -314,7 +313,7 @@ await runAgentWithTools("查一下用户 002 的信息");
 
 写法和 cursor 里配置一样：
 
-![image-20260128134439435](assets/image-20260128134439435.png)
+![image-20260128134439435](./assets/image-20260128134439435.png)
 
 就是用命令行启动这个进程，之后用 stdio 的方式做通信。
 
@@ -330,9 +329,9 @@ await runAgentWithTools("查一下用户 002 的信息");
 
 这里进程没退出，因为你跑了一个子进程作为 mcp server，需要把那个关掉才可以：
 
-![image-20260128134445925](assets/image-20260128134445925.png)
+![image-20260128134445925](./assets/image-20260128134445925.png)
 
-```plain&#x20;text
+```plain text
 await mcpClient.close();
 ```
 
@@ -342,18 +341,18 @@ await mcpClient.close();
 
 我们先查一下 resource：
 
-![image-20260128134453713](assets/image-20260128134453713.png)
+![image-20260128134453713](./assets/image-20260128134453713.png)
 
-```plain&#x20;text
+```plain text
 const res = await mcpClient.listResources();
 console.log(res);
 ```
 
 遍历依次读取 uri 内容
 
-![image-20260128134500893](assets/image-20260128134500893.png)
+![image-20260128134500893](./assets/image-20260128134500893.png)
 
-```plain&#x20;text
+```plain text
 const res = await mcpClient.listResources();
 
 for (const [serverName, resources] of Object.entries(res)) {
@@ -366,9 +365,9 @@ for (const [serverName, resources] of Object.entries(res)) {
 
 然后只要把它放到 system message 里作为上下文就好了：
 
-![image-20260128134508658](assets/image-20260128134508658.png)
+![image-20260128134508658](./assets/image-20260128134508658.png)
 
-```plain&#x20;text
+```plain text
 const res = await mcpClient.listResources();
 
 let resourceContent = '';
@@ -380,7 +379,7 @@ for (const [serverName, resources] of Object.entries(res)) {
 }
 ```
 
-```plain&#x20;text
+```plain text
 const messages = [
     new SystemMessage(resourceContent),
     new HumanMessage(query)
@@ -389,9 +388,9 @@ const messages = [
 
 调用下：
 
-![image-20260128134518118](assets/image-20260128134518118.png)
+![image-20260128134518118](./assets/image-20260128134518118.png)
 
-```plain&#x20;text
+```plain text
 await runAgentWithTools("MCP Server 的使用指南是什么");
 ```
 
@@ -401,13 +400,13 @@ resource 可以用在 system message 里，也可以用在 human message 里，�
 
 我们主要还是用 mcp 的 tools。
 
-![image-20260128134525471](assets/image-20260128134525471.png)
+![image-20260128134525471](./assets/image-20260128134525471.png)
 
 这样，我们就写了一个 mcp server，并分别在 cursor、langchain 里用了这个 mcp server。
 
 mcp 本质上还是 tool，和之前的 tool 的区别只不过是可以跨进程调用：
 
-![image-20260128134532905](assets/image-20260128134532905.png)
+![image-20260128134532905](./assets/image-20260128134532905.png)
 
 当你不需要跨进程用的时候，还是之前那样写更好，还少了进程通信的成本。
 

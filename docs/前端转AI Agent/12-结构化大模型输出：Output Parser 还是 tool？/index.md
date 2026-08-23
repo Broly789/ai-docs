@@ -19,7 +19,7 @@ cd output-parser-test
 npm init -y
 ```
 
-![image-20260128155246132](assets/image-20260128155246132.png)
+![image-20260128155246132](./assets/image-20260128155246132.png)
 
 创建项目，安装用到的包：
 
@@ -82,7 +82,7 @@ try {
 
 跑一下：
 
-![image-20260128155254037](assets/image-20260128155254037.png)
+![image-20260128155254037](./assets/image-20260128155254037.png)
 
 返回的内容带了额外的 markdown 语法，解析失败了。
 
@@ -145,7 +145,7 @@ try {
 
 分别对应 parser.getFormatInstructions 和 parser.parse 方法
 
-![image-20260128155300878](assets/image-20260128155300878.png)
+![image-20260128155300878](./assets/image-20260128155300878.png)
 
 我们跑一下：
 
@@ -155,7 +155,7 @@ try {
 
 因为它做了这种常见情况的处理。
 
-![image-20260128155317656](assets/image-20260128155317656.png)
+![image-20260128155317656](./assets/image-20260128155317656.png)
 
 有的同学说，getFormatInstructions 好像没内容啊。
 
@@ -228,11 +228,11 @@ try {
 
 解析出的对象依然是正确的。
 
-![image-20260128155329412](assets/image-20260128155329412.png)
+![image-20260128155329412](./assets/image-20260128155329412.png)
 
 但现在多了一大段提示词：
 
-![image-20260128155335143](assets/image-20260128155335143.png)
+![image-20260128155335143](./assets/image-20260128155335143.png)
 
 这就是 output parser 的原理：
 
@@ -240,7 +240,7 @@ try {
 
 当然，就像我们之前用 zod 来描述 tool 的参数格式一样：
 
-![image-20260128155340993](assets/image-20260128155340993.png)
+![image-20260128155340993](./assets/image-20260128155340993.png)
 
 StructuredOutputParser 也可以用 zod 来描述复杂的对象格式。
 
@@ -425,7 +425,7 @@ console.log(`研究领域: ${result.fields.join(', ')}`);
 
 这里没定义 tool 的实现逻辑，因为我们只是告诉大模型有这个 tool、参数是什么格式，不需要执行
 
-![image-20260128155351640](assets/image-20260128155351640.png)
+![image-20260128155351640](./assets/image-20260128155351640.png)
 
 跑一下：
 
@@ -715,7 +715,7 @@ try {
 
 其实流式输出的情况下，如果你用了 tool call，是这样返回的：
 
-![image-20260128155401447](assets/image-20260128155401447.png)
+![image-20260128155401447](./assets/image-20260128155401447.png)
 
 tool\_call\_chunks 里保存了 tool 参数的部分内容，我们可以用这个来实现流式打印效果
 
@@ -789,7 +789,7 @@ try {
 
 基于这个可以实现流式打印效果，但是看下 chunk 内容：
 
-![image-20260128155408092](assets/image-20260128155408092.png)
+![image-20260128155408092](./assets/image-20260128155408092.png)
 
 这时候是不能调用 tool 的，因为参数还不完整，没有 tool\_calls 信息。
 
@@ -885,7 +885,7 @@ JsonOutputToolsParser 会试试解析 tool\_call\_chunks 生成完整的 tool\_c
 
 可以看到，就算是流式返回的 tool\_call\_chunks 还不完整，也会拼成正确格式的 tool\_calls
 
-![image-20260128155414574](assets/image-20260128155414574.png)
+![image-20260128155414574](./assets/image-20260128155414574.png)
 
 这样你可以实时调用工具，传入部分参数了。
 
@@ -942,9 +942,9 @@ try {
 
 跑一下：
 
-![image-20260128155423074](assets/image-20260128155423074.png)
+![image-20260128155423074](./assets/image-20260128155423074.png)
 
-![image-20260128155429626](assets/image-20260128155429626.png)
+![image-20260128155429626](./assets/image-20260128155429626.png)
 
 可以看到提示词里加入了一些格式信息，返回的也是 xml 格式，并且正确 parse 了出来。
 

@@ -18,7 +18,7 @@ Retrieval 检索 - Augmented 增强 - Generation 生成
 
 去知识库里**检索**用户问的知识的相关文档片段，作为背景知识加到 prompt 里**增强**它，让大模型根据这些来**生成**回答。
 
-![image-20260128150556122](assets/image-20260128150556122.png)
+![image-20260128150556122](./assets/image-20260128150556122.png)
 
 这个是很容易想到的思路，也是很贴切的名字。
 
@@ -54,13 +54,13 @@ Retrieval 检索 - Augmented 增强 - Generation 生成
 
 可视化一下是这样：
 
-![image-20260128150604827](assets/image-20260128150604827.png)
+![image-20260128150604827](./assets/image-20260128150604827.png)
 
 明显可以看出来，苹果、水果、香蕉，这三个概念相关性很大，而水果和石头相关性就不大。
 
 计算的话，可以通过夹角判断相似度，夹角越小相似度越高：
 
-![image-20260128150611878](assets/image-20260128150611878.png)
+![image-20260128150611878](./assets/image-20260128150611878.png)
 
 也就是**余弦相似度**（两个向量夹角的余弦值）。
 
@@ -84,13 +84,13 @@ Retrieval 检索 - Augmented 增强 - Generation 生成
 
 这个知识可以是文本、图片、语音等，向量化之后，就都可以实现语义搜索了！
 
-![image-20260128150618894](assets/image-20260128150618894.png)
+![image-20260128150618894](./assets/image-20260128150618894.png)
 
 我们写代码会用专门的嵌入模型，收费比大模型便宜很多很多。
 
 那加上向量化之后的 RAG 流程是什么样的呢？
 
-![image-20260128150626169](assets/image-20260128150626169.png)
+![image-20260128150626169](./assets/image-20260128150626169.png)
 
 用户的 prompt 会通过嵌入模型转成向量，然后 retriever 基于这个向量去向量数据库中检索，找到相似的向量，把对应的文档块返回，加到 prompt 里作为背景知识，给大模型。
 
@@ -110,7 +110,7 @@ cd rag-test
 npm init -y
 ```
 
-![image-20260128150633424](assets/image-20260128150633424.png)
+![image-20260128150633424](./assets/image-20260128150633424.png)
 
 进入项目，安装下依赖：
 
@@ -275,11 +275,11 @@ pnpm install @langchain/classic
 
 这里我们用到了大语言模型 LLM，还有嵌入模型 OpenAIEmbeddings
 
-![image-20260128150646759](assets/image-20260128150646759.png)
+![image-20260128150646759](./assets/image-20260128150646759.png)
 
 具体的 model name 在 .env 里配置下：
 
-![image-20260128150655073](assets/image-20260128150655073.png)
+![image-20260128150655073](./assets/image-20260128150655073.png)
 
 ```plain&#x20;text
 # OpenAI API 配置
@@ -291,21 +291,21 @@ EMBEDDINGS_MODEL_NAME=text-embedding-v3
 
 这几个 Document 比较容易理解。这个故事直接问大模型，显然它是不知道的：
 
-![image-20260128150703251](assets/image-20260128150703251.png)
+![image-20260128150703251](./assets/image-20260128150703251.png)
 
 知识库里存的就是这些文档，可以加一些元数据。
 
-![image-20260128150711603](assets/image-20260128150711603.png)
+![image-20260128150711603](./assets/image-20260128150711603.png)
 
 用嵌入模型把这些文档向量化之后存入向量数据库。
 
 并且返回一个 retriever，k 是 3 就是返回余弦相似度最大的 3 个 Document。
 
-![image-20260128150720443](assets/image-20260128150720443.png)
+![image-20260128150720443](./assets/image-20260128150720443.png)
 
 用 retriever 把 query 传入，通过向量的余弦相似度，找到语义最相关的 3 个文档片段，传入 prompt：
 
-![image-20260128150728604](assets/image-20260128150728604.png)
+![image-20260128150728604](./assets/image-20260128150728604.png)
 
 这就是增强后的 Prompt 了，之后问大模型问题的时候，它就有背景知识了。
 
@@ -317,7 +317,7 @@ EMBEDDINGS_MODEL_NAME=text-embedding-v3
 
 回过头来再看下这张图：
 
-![image-20260128150734609](assets/image-20260128150734609.png)
+![image-20260128150734609](./assets/image-20260128150734609.png)
 
 是不是就很清楚了！
 

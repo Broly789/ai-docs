@@ -3,19 +3,19 @@
 
 我们学了 loader、splitter、向量数据库 Milvus，这样我们 RAG 流程就完整跑通了：
 
-![image-20260128153611867](assets/image-20260128153611867.png)
+![image-20260128153611867](./assets/image-20260128153611867.png)
 
 用 loader 从各种来源加载文档，用 splitter 分块，然后用嵌入模型向量化后存到向量数据库 Milvus。
 
-![image-20260128153618609](assets/image-20260128153618609.png)
+![image-20260128153618609](./assets/image-20260128153618609.png)
 
 查询的时候，把 query 也用嵌入模型向量化，根据余弦相似度，匹配最相近的文档返回
 
-![image-20260128153625742](assets/image-20260128153625742.png)
+![image-20260128153625742](./assets/image-20260128153625742.png)
 
 也就是这样：
 
-![image-20260128153632023](assets/image-20260128153632023.png)
+![image-20260128153632023](./assets/image-20260128153632023.png)
 
 这个流程涉及到的技术我们已经详细了一遍。
 
@@ -45,7 +45,7 @@
 
 先看下代码：
 
-![image-20260128153654165](assets/image-20260128153654165.png)
+![image-20260128153654165](./assets/image-20260128153654165.png)
 
 整体分为 3 步：
 
@@ -57,7 +57,7 @@
 
 集合的 schema 是这样的：
 
-![image-20260128153701440](assets/image-20260128153701440.png)
+![image-20260128153701440](./assets/image-20260128153701440.png)
 
 首先我们 hasCollection 判断集合是否存在，不存在就 createCollection
 
@@ -71,23 +71,23 @@ book\_id 这个是用来和 mysql 里 book 表关联的，这里暂时不用。
 
 最后要 loadCollection 把这个集合加载到内存才能做快速语义检索。
 
-![image-20260128153709457](assets/image-20260128153709457.png)
+![image-20260128153709457](./assets/image-20260128153709457.png)
 
 hasCollection、createCollection、createIndex、loadCollection 这些都很容易理解，后面经常写。
 
 然后是 loader 加载 epub 的文件，并 splitter 分块：
 
-![image-20260128153716098](assets/image-20260128153716098.png)
+![image-20260128153716098](./assets/image-20260128153716098.png)
 
 首先用 EPubLoader 加载 epub 文件，并对每一章做下分割。
 
 但每一章内容还是太多了，再用 RecursiveCharacterTextSplitter 对每章内容以每 500 个字符分下块：
 
-![image-20260128153722539](assets/image-20260128153722539.png)
+![image-20260128153722539](./assets/image-20260128153722539.png)
 
 分块之后调用插入方法。
 
-![image-20260128153732937](assets/image-20260128153732937.png)
+![image-20260128153732937](./assets/image-20260128153732937.png)
 
 插入逻辑就是对 content 用嵌入模型向量化，然后调用 insert 方法插入到 Milvus 的集合中。
 
@@ -339,9 +339,9 @@ splitter 都在 @langchain/textsplitters  这个包
 
 一共 3000 多条记录：
 
-![image-20260128153744147](assets/image-20260128153744147.png)
+![image-20260128153744147](./assets/image-20260128153744147.png)
 
-![image-20260128153749236](assets/image-20260128153749236.png)
+![image-20260128153749236](./assets/image-20260128153749236.png)
 
 每条都记录了元信息，比如章节数、每章的第几个分块。
 
@@ -429,7 +429,7 @@ main();
 
 把 query 用嵌入模型向量化，然后用余弦相似度做下匹配：
 
-![image-20260128153757472](assets/image-20260128153757472.png)
+![image-20260128153757472](./assets/image-20260128153757472.png)
 
 我们问一下鸠摩智会什么武功，匹配最相似的 5 条记录：
 
@@ -610,7 +610,7 @@ main();
 
 根据 query 查询出文档后，放到 prompt 里：
 
-![image-20260128153805941](assets/image-20260128153805941.png)
+![image-20260128153805941](./assets/image-20260128153805941.png)
 
 让大模型根据文档回答，并且引用原文片段。
 

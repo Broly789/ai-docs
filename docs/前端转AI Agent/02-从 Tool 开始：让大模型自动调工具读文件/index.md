@@ -25,13 +25,13 @@
 
 这节我们来学下 tool：
 
-![image-20260128122211209](assets/image-20260128122211209.png)
+![image-20260128122211209](./assets/image-20260128122211209.png)
 
 首先，我们找个大模型来用：
 
 这里我们用阿里的千问，因为每个用户登录都有 100 万免费 token
 
-![image-20260128122218945](assets/image-20260128122218945.png)
+![image-20260128122218945](./assets/image-20260128122218945.png)
 
 够我们学习用了。
 
@@ -45,7 +45,7 @@ https://bailian.console.aliyun.com/?tab=api#/api
 
 点这里获取 api key：
 
-![image-20260128122230840](assets/image-20260128122230840.png)
+![image-20260128122230840](./assets/image-20260128122230840.png)
 
 视频演示：
 
@@ -71,7 +71,7 @@ cd tool-test
 npm init -y
 ```
 
-![image-20260128122240425](assets/image-20260128122240425.png)
+![image-20260128122240425](./assets/image-20260128122240425.png)
 
 用编辑器打开，然后创建一个文件：
 
@@ -96,7 +96,7 @@ console.log(response.content);
 
 这里的 api key 换成你刚才复制的，然后 base url 是这个：
 
-![image-20260128122248224](assets/image-20260128122248224.png)
+![image-20260128122248224](./assets/image-20260128122248224.png)
 
 安装依赖：
 
@@ -120,7 +120,7 @@ pnpm install dotenv
 
 用 dotenv 来读取环境变量：
 
-![image-20260128122256779](assets/image-20260128122256779.png)
+![image-20260128122256779](./assets/image-20260128122256779.png)
 
 dotenv 的作用就是读取 .env 文件，设置到环境变量里
 
@@ -233,11 +233,11 @@ temperature 是温度，也就是 ai 的创造性，设置为 0，让它严格�
 
 我们没有调用 dotenv.configure，引入了这个模块就行
 
-![image-20260128122307297](assets/image-20260128122307297.png)
+![image-20260128122307297](./assets/image-20260128122307297.png)
 
 然后创建一个 tool，调用 tool 的 api
 
-![image-20260128122314811](assets/image-20260128122314811.png)
+![image-20260128122314811](./assets/image-20260128122314811.png)
 
 这个很容易看懂，就是函数以及它的名字、描述、参数格式。
 
@@ -257,11 +257,11 @@ temperature 是温度，也就是 ai 的创造性，设置为 0，让它严格�
 
 之后把这个 tool 传给大模型：
 
-![image-20260128122323851](assets/image-20260128122323851.png)
+![image-20260128122323851](./assets/image-20260128122323851.png)
 
 调用下：
 
-![image-20260128122332634](assets/image-20260128122332634.png)
+![image-20260128122332634](./assets/image-20260128122332634.png)
 
 具体的消息有四种：SystemMessage、HumanMessage、AIMessage、ToolMessage
 
@@ -287,19 +287,19 @@ node ./src/tool-file-read.mjs
 
 它返回了这个信息：
 
-![image-20260128122342586](assets/image-20260128122342586.png)
+![image-20260128122342586](./assets/image-20260128122342586.png)
 
 就是解析出来我们给的路径，拼接了调用工具的参数。
 
 接下来我们基于这个参数调用下工具不就行了？
 
-![image-20260128122350630](assets/image-20260128122350630.png)
+![image-20260128122350630](./assets/image-20260128122350630.png)
 
 根据 tool\_calls 的数组，分别从 tools 数组里找到对应的工具，取出来 invoke，传入大模型解析出的参数
 
 最后把工具调用结果作为 ToolMessage 传给大模型，让它继续回答：
 
-![image-20260128122400777](assets/image-20260128122400777.png)
+![image-20260128122400777](./assets/image-20260128122400777.png)
 
 注意，这里要用 toolCall 对应的 id 来关联执行结果，也就是告诉大模型，你让我调用的哪个工具，返回的结果是什么
 
@@ -354,7 +354,7 @@ console.log(response.content);
 
 <video src="./assets/7.mp4"  controls />
 
-![image-20260128122409640](assets/image-20260128122409640.png)
+![image-20260128122409640](./assets/image-20260128122409640.png)
 
 可以看到，检测到了 tool\_calls 工具调用，用 read\_file 这个工具读取了文件，然后让大模型分析了文件内容，给出了代码解释。
 

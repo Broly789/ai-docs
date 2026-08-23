@@ -16,7 +16,7 @@
 
 是不是现在就可以实现了！
 
-![image-20260128133203513](assets/image-20260128133203513.png)
+![image-20260128133203513](./assets/image-20260128133203513.png)
 
 虽然我们不会做那么完善，但是简易版确实可以写了。
 
@@ -223,15 +223,15 @@ export { readFileTool, writeFileTool, executeCommandTool, listDirectoryTool };
 
 * 执行命令
 
-![image-20260128133214495](assets/image-20260128133214495.png)
+![image-20260128133214495](./assets/image-20260128133214495.png)
 
-![image-20260128133223519](assets/image-20260128133223519.png)
+![image-20260128133223519](./assets/image-20260128133223519.png)
 
-![image-20260128133259868](assets/image-20260128133259868.png)
+![image-20260128133259868](./assets/image-20260128133259868.png)
 
 这里的工具调用返回结果，我额外加了 cwd 的信息，避免之后命令胡乱 cd
 
-![image-20260128133308509](assets/image-20260128133308509.png)
+![image-20260128133308509](./assets/image-20260128133308509.png)
 
 ```plain&#x20;text
 重要提示：命令在目录 "${workingDirectory}" 中执行成功。
@@ -240,7 +240,7 @@ export { readFileTool, writeFileTool, executeCommandTool, listDirectoryTool };
 不要使用 cd 命令。
 ```
 
-![image-20260128133318660](assets/image-20260128133318660.png)
+![image-20260128133318660](./assets/image-20260128133318660.png)
 
 每个 tool 都是 name、description 以及基于 zod 声明的参数格式。
 
@@ -331,7 +331,7 @@ asyncfunction runAgentWithTools(query, maxIterations = 30) {
 
 首先创建大模型对象：
 
-![image-20260128133523596](assets/image-20260128133523596.png)
+![image-20260128133523596](./assets/image-20260128133523596.png)
 
 temperature 温度指定为 0，不让 AI 随意发挥。
 
@@ -339,7 +339,7 @@ temperature 温度指定为 0，不让 AI 随意发挥。
 
 然后把 tools 绑定到模型：
 
-![image-20260128133531874](assets/image-20260128133531874.png)
+![image-20260128133531874](./assets/image-20260128133531874.png)
 
 后面就是返回的对话了，因为可能会反复对话、返回调用 tools 很多次，这里加了个最大限制。
 
@@ -347,17 +347,17 @@ temperature 温度指定为 0，不让 AI 随意发挥。
 
 用 System message 指定 AI 可以做什么，回答的规范：
 
-![image-20260128133540533](assets/image-20260128133540533.png)
+![image-20260128133540533](./assets/image-20260128133540533.png)
 
 告诉它有哪些工具：
 
-![image-20260128133548650](assets/image-20260128133548650.png)
+![image-20260128133548650](./assets/image-20260128133548650.png)
 
 我还特意说明了下 cd 的问题，有了 cwd 之后，就不用 cd 了。
 
 之后把调用 tool 返回的内容封装成 ToolMessage：
 
-![image-20260128133557120](assets/image-20260128133557120.png)
+![image-20260128133557120](./assets/image-20260128133557120.png)
 
 这样，模型、工具、调用流程就搭建完了。
 
@@ -371,7 +371,7 @@ pnpm install chalk
 
 这行背景变绿：
 
-![image-20260128133605597](assets/image-20260128133605597.png)
+![image-20260128133605597](./assets/image-20260128133605597.png)
 
 ```plain&#x20;text
 import chalk from 'chalk';
@@ -381,7 +381,7 @@ console.log(chalk.bgGreen(`⏳ 正在等待 AI 思考...`));
 
 接下来写个 case：
 
-![image-20260128133613624](assets/image-20260128133613624.png)
+![image-20260128133613624](./assets/image-20260128133613624.png)
 
 ```plain&#x20;text
 const case1 = `创建一个功能丰富的 React TodoList 应用：
@@ -427,11 +427,11 @@ node ./src/mini-cursor.mjs
 
 可以看到，过程中调用了各种工具：
 
-![image-20260128133625381](assets/image-20260128133625381.png)
+![image-20260128133625381](./assets/image-20260128133625381.png)
 
-![image-20260128133633969](assets/image-20260128133633969.png)
+![image-20260128133633969](./assets/image-20260128133633969.png)
 
-![image-20260128133640928](assets/image-20260128133640928.png)
+![image-20260128133640928](./assets/image-20260128133640928.png)
 
 我们写的 tool 都用上了。
 

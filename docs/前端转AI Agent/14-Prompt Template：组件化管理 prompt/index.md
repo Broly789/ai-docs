@@ -261,7 +261,7 @@ console.log(pipelineFormatted);
 
 <video src="./assets/2.mp4"  controls />
 
-![image-20260211112105271](assets/image-20260211112105271.png)
+![image-20260211112105271](./assets/image-20260211112105271.png)
 
 有同学说，这样组合有什么好处呢？
 
@@ -407,11 +407,11 @@ console.log(partialFormatted2);
 
 <video src="./assets/4.mp4"  controls />
 
-![image-20260211112129946](assets/image-20260211112129946.png)
+![image-20260211112129946](./assets/image-20260211112129946.png)
 
 PromptTemplate 产出的就是一个字符串，实际上我们更多是用 SystemMesage、HumanMessage、AIMessage、ToolMessage 的 messages 数组来调大模型：
 
-![image-20260211112142587](assets/image-20260211112142587.png)
+![image-20260211112142587](./assets/image-20260211112142587.png)
 
 这种就需要 `ChatPromptTemplate` 了。
 
@@ -489,7 +489,7 @@ console.log(response.content);
 
 参数是一个二维数组，数组第一个元素是 message 类型：
 
-![image-20260211112156242](assets/image-20260211112156242.png)
+![image-20260211112156242](./assets/image-20260211112156242.png)
 
 <video src="./assets/5.mp4"  controls />
 

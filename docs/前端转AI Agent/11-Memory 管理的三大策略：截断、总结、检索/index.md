@@ -11,7 +11,7 @@
 
 记得我们之前写的这个循环么：
 
-![image-20260128154150142](assets/image-20260128154150142.png)
+![image-20260128154150142](./assets/image-20260128154150142.png)
 
 我们在 messages 数组放入了 SystemMessage，告诉大模型它的角色、功能，然后放入了 HumanMessage，也就是用户问的问题。
 
@@ -19,7 +19,7 @@
 
 大模型返回了 AIMessage 和 tool\_calls 信息。
 
-![image-20260128154157169](assets/image-20260128154157169.png)
+![image-20260128154157169](./assets/image-20260128154157169.png)
 
 我们基于 tool\_calls 去调用工具，然后把结果封装成 ToolMessage 也放入 messages 数组。
 
@@ -27,11 +27,11 @@
 
 循环继续调用大模型，这是第二次调用。
 
-![image-20260128154203113](assets/image-20260128154203113.png)
+![image-20260128154203113](./assets/image-20260128154203113.png)
 
 直到不再有 tool\_calls，就把那个 AIMessage 返回，这就是最终回复。
 
-![image-20260128154209865](assets/image-20260128154209865.png)
+![image-20260128154209865](./assets/image-20260128154209865.png)
 
 这个过程我们循环调用了多次大模型。
 
@@ -65,17 +65,17 @@
 
 cursor：
 
-![image-20260128154217611](assets/image-20260128154217611.png)
+![image-20260128154217611](./assets/image-20260128154217611.png)
 
-![image-20260128154224089](assets/image-20260128154224089.png)
+![image-20260128154224089](./assets/image-20260128154224089.png)
 
 达到上下文限制，会自动触发总结。
 
 claude code：
 
-![image-20260128154230399](assets/image-20260128154230399.png)
+![image-20260128154230399](./assets/image-20260128154230399.png)
 
-![image-20260128154238402](assets/image-20260128154238402.png)
+![image-20260128154238402](./assets/image-20260128154238402.png)
 
 达到限制自动触发总结，或者也可以 /compact 手动总结（compact 是压实压紧的意思）
 
@@ -85,13 +85,13 @@ claude code：
 
 一个是 ChatMessageHistory 相关的：
 
-![image-20260128154244201](assets/image-20260128154244201.png)
+![image-20260128154244201](./assets/image-20260128154244201.png)
 
 它是存储层，也就是 messages 存在哪，可以是内存、文件、数据库等。
 
 然后是逻辑层，也就是截断、总结、向量数据库这些：
 
-![image-20260128154251936](assets/image-20260128154251936.png)
+![image-20260128154251936](./assets/image-20260128154251936.png)
 
 每个 xxMemory 类都有一个 chatHistory 属性，关联着存储层。
 
@@ -103,7 +103,7 @@ claude code：
 
 可以看到，刚才提到的所有 Memory api 都被废弃了：
 
-![image-20260128154257303](assets/image-20260128154257303.png)
+![image-20260128154257303](./assets/image-20260128154257303.png)
 
 因为它们不够灵活，像之前提到的截断、总结、检索（向量数据库）完全可以自己实现：
 
@@ -127,7 +127,7 @@ cd memory-test
 npm init -y
 ```
 
-![image-20260128154303279](assets/image-20260128154303279.png)
+![image-20260128154303279](./assets/image-20260128154303279.png)
 
 安装下用到的包：
 
@@ -218,7 +218,7 @@ MODEL_NAME=qwen-plus
 
 <video src="./assets/2.mp4"  controls />
 
-![image-20260128154311843](assets/image-20260128154311843.png)
+![image-20260128154311843](./assets/image-20260128154311843.png)
 
 可以看到，第一次调用大模型，它回答了红烧肉、冬阴功汤
 
@@ -517,9 +517,9 @@ pnpm install js-tiktoken
 
 跑一下：
 
-![image-20260128154350742](assets/image-20260128154350742.png)
+![image-20260128154350742](./assets/image-20260128154350742.png)
 
-![image-20260128154358737](assets/image-20260128154358737.png)
+![image-20260128154358737](./assets/image-20260128154358737.png)
 
 可以看到，第一次是根据数量截取了 4 条最近的 message
 
@@ -641,7 +641,7 @@ ${conversationText}
 
 可以看到，之前的 8 条内容做了总结，然后最近的 2 条保留。
 
-![image-20260128154405601](assets/image-20260128154405601.png)
+![image-20260128154405601](./assets/image-20260128154405601.png)
 
 这样，总结后再继续聊，token 消耗就少了。
 
@@ -786,25 +786,25 @@ ${conversationText}
 
 cursor：
 
-![image-20260128154415236](assets/image-20260128154415236.png)
+![image-20260128154415236](./assets/image-20260128154415236.png)
 
-![image-20260128154421408](assets/image-20260128154421408.png)
+![image-20260128154421408](./assets/image-20260128154421408.png)
 
 达到上下文限制，会自动触发总结。
 
 claude code：
 
-![image-20260128154429074](assets/image-20260128154429074.png)
+![image-20260128154429074](./assets/image-20260128154429074.png)
 
-![image-20260128154436016](assets/image-20260128154436016.png)
+![image-20260128154436016](./assets/image-20260128154436016.png)
 
 最后再来试下检索向量数据库的思路：
 
 先把 milvus 跑起来：
 
-![image-20260128154441935](assets/image-20260128154441935.png)
+![image-20260128154441935](./assets/image-20260128154441935.png)
 
-![image-20260128154446895](assets/image-20260128154446895.png)
+![image-20260128154446895](./assets/image-20260128154446895.png)
 
 我们用代码创建集合，插入数据：
 
@@ -1120,7 +1120,7 @@ retrievalMemoryDemo().catch(console.error);
 
 我们调用大模型，问了一些问题：
 
-![image-20260128154456248](assets/image-20260128154456248.png)
+![image-20260128154456248](./assets/image-20260128154456248.png)
 
 通过 rag 流程来检索之前的对话，来生成回答：
 
@@ -1130,7 +1130,7 @@ retrievalMemoryDemo().catch(console.error);
 
 聊完之后我们把最新的聊天也存入了向量数据库：
 
-![image-20260128154501915](assets/image-20260128154501915.png)
+![image-20260128154501915](./assets/image-20260128154501915.png)
 
 <video src="./assets/9.mp4"  controls />
 
