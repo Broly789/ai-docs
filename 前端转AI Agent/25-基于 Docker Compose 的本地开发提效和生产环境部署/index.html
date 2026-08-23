@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/ai-docs/assets/style.BCY4Bg7A.css" as="style">
+    <link rel="preload stylesheet" href="/ai-docs/vp-icons.css" as="style">
+    
+    <script type="module" src="/ai-docs/assets/app.DtHfIqAr.js"></script>
+    <link rel="preload" href="/ai-docs/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/theme.DA4Qk7BY.js">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/framework.lghGfHnE.js">
+    <link rel="modulepreload" href="/ai-docs/assets/前端转AI Agent_25-基于 Docker Compose 的本地开发提效和生产环境部署_index.md.COKhwZcQ.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/ai-docs/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-6aa21345 data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bb2aa2f0><div class="item social-links" data-v-bb2aa2f0><div class="VPSocialLinks social-links-list" data-v-bb2aa2f0 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible has-active" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>23-图编排引擎：LangGraph 和多 Agent 架构</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>25-基于 Docker Compose 的本地开发提效和生产环境部署</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>27-Neo4j 知识图谱和 Graph RAG</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>30-DeepAgents 实战：多 Agent 架构的深度调研助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>31-PostgreSQL：AI 时代最适合的数据库</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>32-Redis：实现 Agent 短期记忆存储的最佳方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>33-Mem0：分层记忆 + 三路召回的长期记忆方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>34-Nest 进阶：企业级 Node.js 后端最主流框架</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>36-多模态与 OSS 前端直传实战：AI 画板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>37-RabbitMQ：Agent 中异步处理的标配方案</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _ai-docs_%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_25-%E5%9F%BA%E4%BA%8E%20Docker%20Compose%20%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E6%8F%90%E6%95%88%E5%92%8C%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2_" data-v-39a288b8><div><p>业务项目的 Agent 都是在后端跑的。</p><p>比如业务数据存在 MySQL，知识存在向量数据库 Milvus、短期记忆存 Redis、需要关键词检索的放在 ElasticSearch 等。</p><p>而且你在招聘软件上搜 Agent 岗位，基本都是后端岗，所以做 Agent 开发，必须得学后端技术。</p><p>这节开始，我们集中把后端的数据库与中间件过一遍。</p><p>数据库是业务的“压舱石”，负责持久化存储原始业务数据，比如 MySQL 存用户信息。核心要求是稳健、不丢失。</p><p>而中间件则是各类独立的辅助基础软件。如果说数据库是全能但笨重的“仓库”，中间件就是各怀绝技的“特种兵”，用来补足数据库和业务逻辑的短板：</p><ul><li>检索补足：MySQL 不擅长全文模糊搜索，我们就引入 Elasticsearch 专门做高性能检索</li><li>性能补足：核心数据库读写磁盘太慢，我们就用 Redis 这种内存级中间件来做高速缓存</li><li>异步补足：业务逻辑处理太耗时，我们就用 RabbitMQ 或 BullMQ 这类消息队列中间件来做任务缓冲和解耦。</li></ul><p>简单区分：</p><p>数据库：核心是持久化，存的是业务的“资产”，追求数据的绝对可靠。</p><p>中间件：核心是专项能力，它不负责通用的持久存储，而是提供单一的强力支持（如检索、缓存、消息调度）。</p><p>在全栈开发中，你的代码就像是“指挥官”。懂业务逻辑只是及格，能根据场景精准调度这些中间件去解决性能、并发和搜索痛点，才是真正迈向“后端架构师”的标志。</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcL2cKvlZgGZTibI207VLdDrN2A7f1x9UcibpciaAkk72WIibvbGXZibzzXTjWEKrI6EtDNGRF2s7TmHnKwjITYzcaoibqvsjfJiceTDw/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0" alt="图片" referrerpolicy="no-referrer"></p><p><strong>数据库是根，中间件是特种兵。</strong></p><p>如图，mysql存的是业务原始数据，是根，不能丢。</p><p>而 redis 专门做缓存、es 做全文检索、milvus 做语义检索、、bullmq 做消息队列，是用于专门的用途，各司其职、专精专用，它们不是原始数据，丢了也不影响数据完整性。</p><p>而<strong>业务代码是数据库和中间件的调度者，整合所有底层组件，最终实现完整的业务功能，对外提供服务。</strong></p><p>理解了业务代码、中间件、数据库这三者的区别和联系，我们这些先把 docker 学一下。</p><p>因为数据库、中间件、业务代码，我们都会通过 docker 来跑。</p><p>Docker 将应用及其依赖环境统一封装为镜像，镜像运行后就成为容器。</p><p>一台服务器可以同时运行多个容器，容器之间相互隔离，拥有独立的文件系统、网络、端口等环境，互不干扰，专门用来运行各类服务。</p><p>这样整个环境都保存在这个镜像里，部署多个实例只要通过这个镜像跑多个容器就行。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffYXj4f3BL2ketgTIzuZnhdL2Kr3YBHyZl8ialcPAniaCwc1D9lraIgLAB18rKG4LyLeSmCaY5dIka9NfaKcfmnzaOz21XxUcsy8/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=1" alt="图片" referrerpolicy="no-referrer"></p><p>这也是为什么它的 logo 是这样的：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfee3FuSSTJ7k5d0VvMHPO5XxcUvNnPbX4HzdMVusUOzoS39c8qTDw69gt4NRXT62e1Ol7fVhGvksyibzEmRKPK0ARJoPDwria4M4/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=2" alt="图片" referrerpolicy="no-referrer"></p><p>Docker 提供了 Docker Hub 镜像仓库，可以把本地镜像 push 到仓库或者从仓库 pull 镜像到本地。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfesxqTiaWaTXEN6iaHOkFFxN08ZfgGfZJDvzwJY15UxHVBj0qZuad9cvicWOo1JiadaRdrfeKoaVhzNUyd11Ioks2yOHLVJicaONxQU/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=3" alt="图片" referrerpolicy="no-referrer"></p><p>我们之前在 docker desktop 里下载的镜像，就是从 docker hub 搜的。</p><p>当然，通过命令行执行 docker pull 也可以。</p><p>这些就是我们前面下载的镜像（image）</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfelGYcEvOIKLDxibVMpZia9TEaQ7Mm7K8eibDIlicB8HYUD541HqYEjUumSicVt48RUTWwEfJ6rT14gMccNUcrSAqePZDSeRhpFswAE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=4" alt="图片" referrerpolicy="no-referrer"></p><p>这些是镜像跑起来的容器（container）实例：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfd4cHC151Hft8YH7UpHrjpbDB2NK2DWkPUkRSIwmJpJMUUok0xPWHMbqDMEPibv3donOzLvSHNejMaWTtRYcPCLPv8mb3OibFYyE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=5" alt="图片" referrerpolicy="no-referrer"></p><p>跑容器时的参数，基本都讲过：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdBUUOW5W7otXuMnvwj857xSB5JfVlhWMInpn5I4830iabibOyIGhwvayKZHgDiaHnRnJhEO7YpMlob2qCAN3k3ibsKSrFJn4mDeWo/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=6" alt="图片" referrerpolicy="no-referrer"></p><p>port 是映射宿主机的端口到容器内的端口。</p><p>下面是环境变量。</p><p>这个 volume 数据卷是挂载本地某个目录到容器内的。</p><p>虽然在容器内跑数据库，但我们希望数据能持久化保存到宿主机，这样下次跑其他容器，也能用这个目录下的数据。</p><p>这就是数据卷 volume 的作用，把它挂载到容器就好了。</p><p>上面这些用命令行就是这样：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docker run -d \</span></span>
+<span class="line"><span>  --name mysql-container2 \</span></span>
+<span class="line"><span>  -p 3306:3306 \</span></span>
+<span class="line"><span>  -e MYSQL_ROOT_PASSWORD=admin \</span></span>
+<span class="line"><span>  -v /Users/guang/mysql:/var/lib/mysql \</span></span>
+<span class="line"><span>  mysql:latest</span></span></code></pre></div><p>在界面上填的参数本质上就是这行命令。</p><p>前面是跑的 mysql、milvus 这种镜像，那如果我们想自己创建一个 docker 镜像呢？</p><p>比如把之前的 Nest 项目打包成镜像。</p><p>这种就要写 Dockerfile 了。</p><p>比如这样：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 指定基础镜像（必须第一行）</span></span>
+<span class="line"><span>FROM node:24.15-alpine</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 设置容器内工作目录</span></span>
+<span class="line"><span>WORKDIR /app</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 先复制 package.json 利用缓存加速</span></span>
+<span class="line"><span>COPY package*.json ./</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 构建时执行：安装依赖</span></span>
+<span class="line"><span>RUN npm config set registry https://registry.npmmirror.com/</span></span>
+<span class="line"><span>RUN npm install</span></span>
+<span class="line"><span>RUN npm install -g @nestjs/cli</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 复制项目所有代码到容器内</span></span>
+<span class="line"><span>COPY . .</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 构建 Nest 项目（编译成 JS）</span></span>
+<span class="line"><span>RUN npm run build</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 声明暴露端口（仅声明）</span></span>
+<span class="line"><span>EXPOSE3000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 容器启动时执行的命令（启动 Nest 服务）</span></span>
+<span class="line"><span>CMD [&quot;node&quot;, &quot;dist/main.js&quot;]</span></span></code></pre></div><p>这些指令的含义如下：</p><ul><li>FROM：指定基础镜像，一切从这个镜像开始构建</li><li>WORKDIR：指定容器内的工作目录，后续命令都在这个目录执行</li><li>COPY：将宿主机的文件 / 目录复制到容器内部</li><li>RUN：在构建镜像时执行命令，比如安装依赖、编译项目</li><li>EXPOSE：声明容器要暴露的端口，仅作声明，方便阅读</li><li>CMD：容器启动时执行的默认命令，一个 Dockerfile 只能有一个 CMD</li></ul><p>我们创建个 nest 项目，打包成镜像试试：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest new nest-dockerfile-test</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdibFooibpFkRvjSXrQOoSic87mGjdMkFBVxcpiaxjZxfial2kZKCA6LTKU2eQeOcj7yp4NicHo7B8lXmcUZ2ouVpWsjtXUUj1cr2ibJU/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=7" alt="图片" referrerpolicy="no-referrer"></p><p>创建一个增删改查模块：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest g res book --no-spec</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcmYP4ESUBZyaxdhxo8yPJQ7jsy8HgnER7HibeMXCKA449Ymuia0U5bGTe5dpwsZnGGfQw8CG9ib6eSVTRXBtueiaicLa3S0RlxTQ4o/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=8" alt="图片" referrerpolicy="no-referrer"></p><p>然后根目录创建 Dockerfile（刚才那个复制过来）</p><p>加一个 .dockerignore</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>node_modules/</span></span>
+<span class="line"><span>.vscode/</span></span>
+<span class="line"><span>.git/</span></span></code></pre></div><p>这些是复制的时候忽略的文件</p><p>打包成镜像：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docker build -t nest-app .</span></span></code></pre></div><p>-t 是指定镜像名字</p><p>然后跑一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docker run -d \</span></span>
+<span class="line"><span>  --name nest-container \</span></span>
+<span class="line"><span>  -p 3006:3000 \</span></span>
+<span class="line"><span>  nest-app</span></span></code></pre></div><p>现在这样是可以的，但是镜像里会多了一些无关代码</p><p>比如源码、非生产环境的依赖等</p><p>会导致镜像体积更大</p><p>所以我们一般用多阶段构建来写 Dockerfile：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 构建阶段：需要 devDependencies（含 @nestjs/cli、typescript）才能 nest build</span></span>
+<span class="line"><span>FROM node:24.15-alpine AS builder</span></span>
+<span class="line"><span>WORKDIR /app</span></span>
+<span class="line"><span>COPY package*.json ./</span></span>
+<span class="line"><span>RUN npm config set registry https://registry.npmmirror.com/</span></span>
+<span class="line"><span>RUN npm install</span></span>
+<span class="line"><span>COPY . .</span></span>
+<span class="line"><span>RUN npm run build</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 运行阶段：仅生产依赖 + 编译产物，镜像更小</span></span>
+<span class="line"><span>FROM node:24.15-alpine</span></span>
+<span class="line"><span>ENV NODE_ENV=production</span></span>
+<span class="line"><span>WORKDIR /app</span></span>
+<span class="line"><span>COPY package*.json ./</span></span>
+<span class="line"><span>RUN npm config set registry https://registry.npmmirror.com/</span></span>
+<span class="line"><span>RUN npm install --production</span></span>
+<span class="line"><span>COPY --from=builder /app/dist ./dist</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>EXPOSE3000</span></span>
+<span class="line"><span>CMD [&quot;node&quot;, &quot;dist/main.js&quot;]</span></span></code></pre></div><p>就是第一个阶段镜像只用于构建</p><p>之后再创建一个镜像，把前一个镜像构建出来的代码复制过去，跑起来</p><p>这样只保留最后一个镜像的文件，显然体积会更小</p><p>这就是多阶段构建</p><p>镜像体积小了 400M</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeo6NGUdJBOdkIxwXLyHOja8dpYicPIuTff5oZqPc6xXQYNu0owzG8CYFBMsoj4AWCeA8m7dPB9VhPic9afb1VmAvEiazrMDn1uW4/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=9" alt="图片" referrerpolicy="no-referrer"></p><p>现在有了 mysql、milvus 等镜像，有了 nest 服务的镜像</p><p>如果想让它们一起跑呢？</p><p>这就需要 Docker Compose 了</p><p>其实之前我们跑 Milvus，就是用 docker compose：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcfHHejlyS5Qu3VkCwCg9O9q9CQtN335wYnWCVb8ZDCOcfOtTOMt1EU8wXX7ibsibiayr73y7sQ4qY19bmbeIj6K1vtmSTW3u5Xu8/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=10" alt="图片" referrerpolicy="no-referrer"></p><p>它基于 3 个 docker 镜像来跑的。</p><p>当时我们就是基于一个 docker compose 的配置文件跑起来的：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcbga8AGyMiaEV8jUmBXxBaXp7vgR52kwdM0OUCK8Ut1JkxMGoIElF5a178enTu7PxXmuicTDZ22EgMFzvGlvT0vfnia1ztfVvtlQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=11" alt="图片" referrerpolicy="no-referrer"></p><p><strong>Docker Compose 用于编排多个容器，统一管理启动参数、依赖顺序与网络环境。</strong></p><p><strong>所有容器默认处于同一内网，天然互通，可直接用容器名互相调用。</strong></p><p>milvus 是这么跑的，我们自己的项目也是用这种方式来跑。</p><p>首先，本地开发我们要跑 mysql、milvus 等，之前都是手动在 docker desktop 里跑，其实可以用 docker compose 文件统一跑：</p><p>创建 docker-compose.dev.yml</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>version: &#39;3.8&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>services:</span></span>
+<span class="line"><span># MySQL</span></span>
+<span class="line"><span>mysql:</span></span>
+<span class="line"><span>    image:mysql:latest</span></span>
+<span class="line"><span>    container_name:mysql-dev</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;3306:3306&quot;</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      MYSQL_ROOT_PASSWORD:admin</span></span>
+<span class="line"><span>    command:mysqld--character-set-server=utf8mb4--collation-server=utf8mb4_general_ci# 设置默认字符集</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mysql:/var/lib/mysql</span></span>
+<span class="line"><span>    restart:always</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Milvus</span></span>
+<span class="line"><span>etcd:</span></span>
+<span class="line"><span>    container_name:milvus-etcd</span></span>
+<span class="line"><span>    image:quay.io/coreos/etcd:v3.5.18</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      -ETCD_AUTO_COMPACTION_MODE=revision</span></span>
+<span class="line"><span>      -ETCD_AUTO_COMPACTION_RETENTION=1000</span></span>
+<span class="line"><span>      -ETCD_QUOTA_BACKEND_BYTES=4294967296</span></span>
+<span class="line"><span>      -ETCD_SNAPSHOT_COUNT=50000</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd</span></span>
+<span class="line"><span>    command:etcd-advertise-client-urls=http://etcd:2379-listen-client-urlshttp://0.0.0.0:2379--data-dir/etcd</span></span>
+<span class="line"><span>    healthcheck:</span></span>
+<span class="line"><span>      test:[&quot;CMD&quot;,&quot;etcdctl&quot;,&quot;endpoint&quot;,&quot;health&quot;]</span></span>
+<span class="line"><span>      interval:30s</span></span>
+<span class="line"><span>      timeout:20s</span></span>
+<span class="line"><span>      retries:3</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>minio:</span></span>
+<span class="line"><span>    container_name:milvus-minio</span></span>
+<span class="line"><span>    image:minio/minio:RELEASE.2024-05-28T17-19-04Z</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      MINIO_ACCESS_KEY:minioadmin</span></span>
+<span class="line"><span>      MINIO_SECRET_KEY:minioadmin</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;9001:9001&quot;</span></span>
+<span class="line"><span>      -&quot;9000:9000&quot;</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data</span></span>
+<span class="line"><span>    command:minioserver/minio_data--console-address&quot;:9001&quot;</span></span>
+<span class="line"><span>    healthcheck:</span></span>
+<span class="line"><span>      test:[&quot;CMD&quot;,&quot;curl&quot;,&quot;-f&quot;,&quot;http://localhost:9000/minio/health/live&quot;]</span></span>
+<span class="line"><span>      interval:30s</span></span>
+<span class="line"><span>      timeout:20s</span></span>
+<span class="line"><span>      retries:3</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>standalone:</span></span>
+<span class="line"><span>    container_name:milvus-standalone</span></span>
+<span class="line"><span>    image:milvusdb/milvus:v2.5.25</span></span>
+<span class="line"><span>    command:[&quot;milvus&quot;,&quot;run&quot;,&quot;standalone&quot;]</span></span>
+<span class="line"><span>    security_opt:</span></span>
+<span class="line"><span>      -seccomp:unconfined</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      MINIO_REGION:us-east-1</span></span>
+<span class="line"><span>      ETCD_ENDPOINTS:etcd:2379</span></span>
+<span class="line"><span>      MINIO_ADDRESS:minio:9000</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus:/var/lib/milvus</span></span>
+<span class="line"><span>    healthcheck:</span></span>
+<span class="line"><span>      test:[&quot;CMD&quot;,&quot;curl&quot;,&quot;-f&quot;,&quot;http://localhost:9091/healthz&quot;]</span></span>
+<span class="line"><span>      interval:30s</span></span>
+<span class="line"><span>      start_period:90s</span></span>
+<span class="line"><span>      timeout:20s</span></span>
+<span class="line"><span>      retries:3</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;19530:19530&quot;</span></span>
+<span class="line"><span>      -&quot;9091:9091&quot;</span></span>
+<span class="line"><span>    depends_on:</span></span>
+<span class="line"><span>      -&quot;etcd&quot;</span></span>
+<span class="line"><span>      -&quot;minio&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>networks:</span></span>
+<span class="line"><span>default:</span></span>
+<span class="line"><span>    name:common-network</span></span></code></pre></div><p>milvus 的部分复制之前那个 docker compose 配置文件的，我们加上了 mysql 的容器</p><p>重点是这里：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdV8DyUdiaKhZNTID80vbJiaWia3Pv00bfORLIF03kib9ztcBogCvXa37oC0PRGf4FV3yEEDhpXlprrOwWybKt6NNWypWIxvoklvj0/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=12" alt="图片" referrerpolicy="no-referrer"></p><p>这个 ${DOCKER_VOLUME_DIRECTORY:-.} 的意思是，如果我们指定了环境变量 DOCKER_VOLUME_DIRECTORY 是 /abc</p><p>那路径拼接起来就是：</p><p>/abc/volumes/mysql</p><p>没有指定就是：</p><p>./volumes/mysql</p><p>这样指定默认值，还支持环境变量来修改的方式更灵活。</p><p>在 package.json 里添加两个命令：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffA9LXGjfbMYwibUkZk9ibP9N712tbSXBYlnpeRJrujXvkWj0aN66Ha1J9B2nic3pOPbYxn9OWDc40Ixwljia40j9ImGKQQaNQc7eQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=13" alt="图片" referrerpolicy="no-referrer"></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&quot;docker:up&quot;: &quot;DOCKER_VOLUME_DIRECTORY=/Users/guang/ docker compose -f docker-compose.dev.yml up -d&quot;,</span></span>
+<span class="line"><span>&quot;docker:down&quot;: &quot;docker compose -f docker-compose.dev.yml down&quot;,</span></span></code></pre></div><p>指定数据卷目录的环境变量，然后跑 docker compose up</p><p>以及停掉这些容器的 docker compose down</p><p>这样，本地环境就可以一键启动了，不用一个个跑 docker 容器。</p><p>接下来再写一下生产环境的 docker-compose.yml</p><p>首先，我们代码里用一下 mysql 做增删改查</p><p>安装 TypeORM 和 mysql 驱动包：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install --save @nestjs/typeorm typeorm mysql2</span></span></code></pre></div><p>在 AppModule 引入：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdicTyZoHVQhr8N2N9AKELPn9AsY1icRsRaSAUCiaQI5XibnmzStQDtdrGpoVbmgwws8DO02zY8x1FgUSNRndwcJvn1BtSSIgWibcWE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=14" alt="图片" referrerpolicy="no-referrer"></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>TypeOrmModule.forRoot({</span></span>
+<span class="line"><span>  type: &#39;mysql&#39;,</span></span>
+<span class="line"><span>host: &#39;localhost&#39;,</span></span>
+<span class="line"><span>port: 3306,</span></span>
+<span class="line"><span>username: &#39;root&#39;,</span></span>
+<span class="line"><span>password: &#39;admin&#39;,</span></span>
+<span class="line"><span>database: &#39;book&#39;,</span></span>
+<span class="line"><span>synchronize: true,</span></span>
+<span class="line"><span>connectorPackage: &#39;mysql2&#39;,</span></span>
+<span class="line"><span>logging: true,</span></span>
+<span class="line"><span>entities: []</span></span>
+<span class="line"><span>}),</span></span></code></pre></div><p>改一下 book/entities/book.entity.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  Column,</span></span>
+<span class="line"><span>  CreateDateColumn,</span></span>
+<span class="line"><span>  Entity,</span></span>
+<span class="line"><span>  PrimaryGeneratedColumn,</span></span>
+<span class="line"><span>  UpdateDateColumn,</span></span>
+<span class="line"><span>} from&#39;typeorm&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Entity({ name: &#39;books&#39; })</span></span>
+<span class="line"><span>exportclass Book {</span></span>
+<span class="line"><span>  @PrimaryGeneratedColumn()</span></span>
+<span class="line"><span>id: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ length: 255 })</span></span>
+<span class="line"><span>title: string;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ length: 255 })</span></span>
+<span class="line"><span>author: string;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;text&#39; })</span></span>
+<span class="line"><span>description: string;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;decimal&#39;, precision: 10, scale: 2 })</span></span>
+<span class="line"><span>price: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;int&#39;, default: 0 })</span></span>
+<span class="line"><span>stock: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;datetime&#39; })</span></span>
+<span class="line"><span>publishedAt: Date;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @CreateDateColumn({ type: &#39;datetime&#39; })</span></span>
+<span class="line"><span>createdAt: Date;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @UpdateDateColumn({ type: &#39;datetime&#39; })</span></span>
+<span class="line"><span>updatedAt: Date;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>创建 book 的 entity，用 typeorm 做好和数据库表的映射。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfe1KqsvJJNsdCwUR3gcRF0KaCzKjzKteXVoyQtjlq9OxpABDBbXnUSdfwxZfcxrLVRokG1pTuy1KYzrKtlIQ46icQ3kHBRJoqpE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=15" alt="图片" referrerpolicy="no-referrer"></p><p>引入这个 Entity。</p><p>然后改下 BookService：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Inject, Injectable, NotFoundException } from&#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { EntityManager } from&#39;typeorm&#39;;</span></span>
+<span class="line"><span>import { CreateBookDto } from&#39;./dto/create-book.dto&#39;;</span></span>
+<span class="line"><span>import { UpdateBookDto } from&#39;./dto/update-book.dto&#39;;</span></span>
+<span class="line"><span>import { Book } from&#39;./entities/book.entity&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Injectable()</span></span>
+<span class="line"><span>exportclass BookService {</span></span>
+<span class="line"><span>  @Inject(EntityManager)</span></span>
+<span class="line"><span>  private readonly entityManager: EntityManager;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async create(createBookDto: CreateBookDto) {</span></span>
+<span class="line"><span>    const book = this.entityManager.create(Book, {</span></span>
+<span class="line"><span>      ...createBookDto,</span></span>
+<span class="line"><span>      publishedAt: newDate(createBookDto.publishedAt),</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>    returnthis.entityManager.save(Book, book);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async findAll() {</span></span>
+<span class="line"><span>    returnthis.entityManager.find(Book, {</span></span>
+<span class="line"><span>      order: { id: &#39;DESC&#39; },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async findOne(id: number) {</span></span>
+<span class="line"><span>    const book = awaitthis.entityManager.findOneBy(Book, { id });</span></span>
+<span class="line"><span>    if (!book) {</span></span>
+<span class="line"><span>      thrownew NotFoundException(`Book #${id} not found`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    return book;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async update(id: number, updateBookDto: UpdateBookDto) {</span></span>
+<span class="line"><span>    const book = awaitthis.findOne(id);</span></span>
+<span class="line"><span>    const { publishedAt, ...restPayload } = updateBookDto;</span></span>
+<span class="line"><span>    const updatePayload: Partial&lt;Book&gt; = { ...restPayload };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (publishedAt !== undefined) {</span></span>
+<span class="line"><span>      updatePayload.publishedAt = newDate(publishedAt);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const mergedBook = this.entityManager.merge(Book, book, updatePayload);</span></span>
+<span class="line"><span>    returnthis.entityManager.save(Book, mergedBook);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async remove(id: number) {</span></span>
+<span class="line"><span>    const book = awaitthis.findOne(id);</span></span>
+<span class="line"><span>    awaitthis.entityManager.remove(Book, book);</span></span>
+<span class="line"><span>    return { deleted: true };</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>就是增删改查逻辑，不用细看。</p><p>对了，跑 docker 容器的时候，要让它自动创建 book 这个 database，然后 typeorm 才能在下面自动建表</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffLmEjcF97E9fnFudmwpibnfprLZMOkGOppHAJ8xiaTmNAYbNeyliaMjxHT7PjSjrhkIyvjQk9WwfKVAoTn3t6hg6DT1evhZe9bLY/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=16" alt="图片" referrerpolicy="no-referrer"></p><p>用 MYSQL_DATABASE 这个环境变量指定。</p><p>你可以用这个 curl 来测试：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 1) 新增（Create）</span></span>
+<span class="line"><span>curl -X POST &quot;http://localhost:3000/book&quot; \</span></span>
+<span class="line"><span>  -H &quot;Content-Type: application/json&quot; \</span></span>
+<span class="line"><span>  -d &#39;{</span></span>
+<span class="line"><span>    &quot;title&quot;: &quot;Clean Code&quot;,</span></span>
+<span class="line"><span>    &quot;author&quot;: &quot;Robert C. Martin&quot;,</span></span>
+<span class="line"><span>    &quot;description&quot;: &quot;A handbook of agile software craftsmanship&quot;,</span></span>
+<span class="line"><span>    &quot;price&quot;: 99.9,</span></span>
+<span class="line"><span>    &quot;stock&quot;: 50,</span></span>
+<span class="line"><span>    &quot;publishedAt&quot;: &quot;2008-08-01&quot;</span></span>
+<span class="line"><span>  }&#39;</span></span>
+<span class="line"><span># 2) 查询全部（Read All）</span></span>
+<span class="line"><span>curl -X GET &quot;http://localhost:3000/book&quot;</span></span></code></pre></div><p>我们加一个静态页面来测试：</p><p>安装依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @nestjs/serve-static</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdOicDAUicLCrLpQhMnSOtHzIe3VXmkubpibT2ZAIK3YtqrDqwTljMNZbo3XFqicuiaOJRgULIwkbRB4MtGhfsxo2rMVXZ4yelglJH0/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=17" alt="图片" referrerpolicy="no-referrer"></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>ServeStaticModule.forRoot({</span></span>
+<span class="line"><span>  rootPath: join(__dirname, &#39;public&#39;),</span></span>
+<span class="line"><span>  serveRoot: &#39;/books&#39;,</span></span>
+<span class="line"><span>}),</span></span></code></pre></div><p>添加 public/index.html（ai 生成的，不用细看）</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&lt;!doctype html&gt;</span></span>
+<span class="line"><span>&lt;html lang=&quot;zh-CN&quot;&gt;</span></span>
+<span class="line"><span>&lt;head&gt;</span></span>
+<span class="line"><span>    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;title&gt;书籍管理&lt;/title&gt;</span></span>
+<span class="line"><span>    &lt;style&gt;</span></span>
+<span class="line"><span>      :root {</span></span>
+<span class="line"><span>        font-family:</span></span>
+<span class="line"><span>          Inter,</span></span>
+<span class="line"><span>          -apple-system,</span></span>
+<span class="line"><span>          BlinkMacSystemFont,</span></span>
+<span class="line"><span>          &#39;Segoe UI&#39;,</span></span>
+<span class="line"><span>          sans-serif;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      body {</span></span>
+<span class="line"><span>        margin: 0;</span></span>
+<span class="line"><span>        background: #f7f8fa;</span></span>
+<span class="line"><span>        color: #222;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .container {</span></span>
+<span class="line"><span>        max-width: 980px;</span></span>
+<span class="line"><span>        margin: 32px auto;</span></span>
+<span class="line"><span>        padding: 016px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      h1 {</span></span>
+<span class="line"><span>        margin-bottom: 16px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .panel {</span></span>
+<span class="line"><span>        background: #fff;</span></span>
+<span class="line"><span>        border-radius: 12px;</span></span>
+<span class="line"><span>        padding: 16px;</span></span>
+<span class="line"><span>        box-shadow: 06px18pxrgba(0, 0, 0, 0.08);</span></span>
+<span class="line"><span>        margin-bottom: 16px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      form {</span></span>
+<span class="line"><span>        display: grid;</span></span>
+<span class="line"><span>        grid-template-columns: repeat(2, minmax(0, 1fr));</span></span>
+<span class="line"><span>        gap: 12px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      label {</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>        display: flex;</span></span>
+<span class="line"><span>        flex-direction: column;</span></span>
+<span class="line"><span>        gap: 4px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .full {</span></span>
+<span class="line"><span>        grid-column: 1 / -1;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      input,</span></span>
+<span class="line"><span>      textarea {</span></span>
+<span class="line"><span>        border: 1px solid #d0d4dc;</span></span>
+<span class="line"><span>        border-radius: 8px;</span></span>
+<span class="line"><span>        padding: 8px10px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      textarea {</span></span>
+<span class="line"><span>        min-height: 70px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .actions {</span></span>
+<span class="line"><span>        display: flex;</span></span>
+<span class="line"><span>        gap: 8px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      button {</span></span>
+<span class="line"><span>        border: 0;</span></span>
+<span class="line"><span>        border-radius: 8px;</span></span>
+<span class="line"><span>        padding: 9px12px;</span></span>
+<span class="line"><span>        font-weight: 600;</span></span>
+<span class="line"><span>        cursor: pointer;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .primary {</span></span>
+<span class="line"><span>        background: #2563eb;</span></span>
+<span class="line"><span>        color: #fff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .muted {</span></span>
+<span class="line"><span>        background: #e5e7eb;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      table {</span></span>
+<span class="line"><span>        width: 100%;</span></span>
+<span class="line"><span>        border-collapse: collapse;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      th,</span></span>
+<span class="line"><span>      td {</span></span>
+<span class="line"><span>        border-bottom: 1px solid #eceff3;</span></span>
+<span class="line"><span>        text-align: left;</span></span>
+<span class="line"><span>        padding: 10px8px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>        vertical-align: top;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .danger {</span></span>
+<span class="line"><span>        background: #ef4444;</span></span>
+<span class="line"><span>        color: #fff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      #status {</span></span>
+<span class="line"><span>        min-height: 20px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      @media (max-width:700px) {</span></span>
+<span class="line"><span>        form {</span></span>
+<span class="line"><span>          grid-template-columns: 1fr;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    &lt;/style&gt;</span></span>
+<span class="line"><span>&lt;/head&gt;</span></span>
+<span class="line"><span>&lt;body&gt;</span></span>
+<span class="line"><span>    &lt;div class=&quot;container&quot;&gt;</span></span>
+<span class="line"><span>      &lt;h1&gt;书籍管理&lt;/h1&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      &lt;div class=&quot;panel&quot;&gt;</span></span>
+<span class="line"><span>        &lt;form id=&quot;book-form&quot;&gt;</span></span>
+<span class="line"><span>          &lt;input id=&quot;book-id&quot; type=&quot;hidden&quot; /&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label&gt;</span></span>
+<span class="line"><span>            书名</span></span>
+<span class="line"><span>            &lt;input id=&quot;title&quot; required /&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label&gt;</span></span>
+<span class="line"><span>            作者</span></span>
+<span class="line"><span>            &lt;input id=&quot;author&quot; required /&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label class=&quot;full&quot;&gt;</span></span>
+<span class="line"><span>            简介</span></span>
+<span class="line"><span>            &lt;textarea id=&quot;description&quot; required&gt;&lt;/textarea&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label&gt;</span></span>
+<span class="line"><span>            价格</span></span>
+<span class="line"><span>            &lt;input id=&quot;price&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;0.01&quot; required /&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label&gt;</span></span>
+<span class="line"><span>            库存</span></span>
+<span class="line"><span>            &lt;input id=&quot;stock&quot; type=&quot;number&quot; min=&quot;0&quot; required /&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;label class=&quot;full&quot;&gt;</span></span>
+<span class="line"><span>            出版日期</span></span>
+<span class="line"><span>            &lt;input id=&quot;publishedAt&quot; type=&quot;date&quot; required /&gt;</span></span>
+<span class="line"><span>          &lt;/label&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          &lt;div class=&quot;actions full&quot;&gt;</span></span>
+<span class="line"><span>            &lt;button type=&quot;submit&quot; class=&quot;primary&quot;&gt;保存&lt;/button&gt;</span></span>
+<span class="line"><span>            &lt;button type=&quot;button&quot; class=&quot;muted&quot; id=&quot;reset-btn&quot;&gt;清空&lt;/button&gt;</span></span>
+<span class="line"><span>          &lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;/form&gt;</span></span>
+<span class="line"><span>      &lt;/div&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      &lt;div class=&quot;panel&quot;&gt;</span></span>
+<span class="line"><span>        &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;table&gt;</span></span>
+<span class="line"><span>          &lt;thead&gt;</span></span>
+<span class="line"><span>            &lt;tr&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;ID&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;书名&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;作者&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;价格&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;库存&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;出版日期&lt;/th&gt;</span></span>
+<span class="line"><span>              &lt;th&gt;操作&lt;/th&gt;</span></span>
+<span class="line"><span>            &lt;/tr&gt;</span></span>
+<span class="line"><span>          &lt;/thead&gt;</span></span>
+<span class="line"><span>          &lt;tbody id=&quot;book-rows&quot;&gt;&lt;/tbody&gt;</span></span>
+<span class="line"><span>        &lt;/table&gt;</span></span>
+<span class="line"><span>      &lt;/div&gt;</span></span>
+<span class="line"><span>    &lt;/div&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &lt;script&gt;</span></span>
+<span class="line"><span>      const form = document.getElementById(&#39;book-form&#39;);</span></span>
+<span class="line"><span>      const rows = document.getElementById(&#39;book-rows&#39;);</span></span>
+<span class="line"><span>      const statusNode = document.getElementById(&#39;status&#39;);</span></span>
+<span class="line"><span>      const resetBtn = document.getElementById(&#39;reset-btn&#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const inputs = {</span></span>
+<span class="line"><span>        id: document.getElementById(&#39;book-id&#39;),</span></span>
+<span class="line"><span>        title: document.getElementById(&#39;title&#39;),</span></span>
+<span class="line"><span>        author: document.getElementById(&#39;author&#39;),</span></span>
+<span class="line"><span>        description: document.getElementById(&#39;description&#39;),</span></span>
+<span class="line"><span>        price: document.getElementById(&#39;price&#39;),</span></span>
+<span class="line"><span>        stock: document.getElementById(&#39;stock&#39;),</span></span>
+<span class="line"><span>        publishedAt: document.getElementById(&#39;publishedAt&#39;),</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const setStatus = (text, isError = false) =&gt; {</span></span>
+<span class="line"><span>        statusNode.textContent = text;</span></span>
+<span class="line"><span>        statusNode.style.color = isError ? &#39;#b91c1c&#39; : &#39;#2563eb&#39;;</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const resetForm = () =&gt; {</span></span>
+<span class="line"><span>        form.reset();</span></span>
+<span class="line"><span>        inputs.id.value = &#39;&#39;;</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const mapFormData = () =&gt; ({</span></span>
+<span class="line"><span>        title: inputs.title.value.trim(),</span></span>
+<span class="line"><span>        author: inputs.author.value.trim(),</span></span>
+<span class="line"><span>        description: inputs.description.value.trim(),</span></span>
+<span class="line"><span>        price: Number(inputs.price.value),</span></span>
+<span class="line"><span>        stock: Number(inputs.stock.value),</span></span>
+<span class="line"><span>        publishedAt: inputs.publishedAt.value,</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const createActionButton = (label, className, onClick) =&gt; {</span></span>
+<span class="line"><span>        const button = document.createElement(&#39;button&#39;);</span></span>
+<span class="line"><span>        button.textContent = label;</span></span>
+<span class="line"><span>        button.className = className;</span></span>
+<span class="line"><span>        button.type = &#39;button&#39;;</span></span>
+<span class="line"><span>        button.addEventListener(&#39;click&#39;, onClick);</span></span>
+<span class="line"><span>        return button;</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const editBook = (book) =&gt; {</span></span>
+<span class="line"><span>        inputs.id.value = book.id;</span></span>
+<span class="line"><span>        inputs.title.value = book.title;</span></span>
+<span class="line"><span>        inputs.author.value = book.author;</span></span>
+<span class="line"><span>        inputs.description.value = book.description;</span></span>
+<span class="line"><span>        inputs.price.value = book.price;</span></span>
+<span class="line"><span>        inputs.stock.value = book.stock;</span></span>
+<span class="line"><span>        inputs.publishedAt.value = newDate(book.publishedAt)</span></span>
+<span class="line"><span>          .toISOString()</span></span>
+<span class="line"><span>          .split(&#39;T&#39;)[0];</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const deleteBook = async (id) =&gt; {</span></span>
+<span class="line"><span>        if (!confirm(`确认删除书籍 #${id} 吗？`)) return;</span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          const response = await fetch(`/book/${id}`, { method: &#39;DELETE&#39; });</span></span>
+<span class="line"><span>          if (!response.ok) thrownewError(&#39;删除失败&#39;);</span></span>
+<span class="line"><span>          setStatus(`已删除书籍 #${id}`);</span></span>
+<span class="line"><span>          await loadBooks();</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          setStatus(error.message, true);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const renderRows = (books) =&gt; {</span></span>
+<span class="line"><span>        rows.innerHTML = &#39;&#39;;</span></span>
+<span class="line"><span>        if (!books.length) {</span></span>
+<span class="line"><span>          rows.innerHTML = &#39;&lt;tr&gt;&lt;td colspan=&quot;7&quot;&gt;暂无数据&lt;/td&gt;&lt;/tr&gt;&#39;;</span></span>
+<span class="line"><span>          return;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        for (const book of books) {</span></span>
+<span class="line"><span>          const tr = document.createElement(&#39;tr&#39;);</span></span>
+<span class="line"><span>          tr.innerHTML = `</span></span>
+<span class="line"><span>            &lt;td&gt;${book.id}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;${book.title}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;${book.author}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;${book.price}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;${book.stock}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;${new Date(book.publishedAt).toLocaleDateString()}&lt;/td&gt;</span></span>
+<span class="line"><span>            &lt;td&gt;&lt;/td&gt;</span></span>
+<span class="line"><span>          `;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          const actionCell = tr.lastElementChild;</span></span>
+<span class="line"><span>          actionCell.appendChild(</span></span>
+<span class="line"><span>            createActionButton(&#39;编辑&#39;, &#39;muted&#39;, () =&gt; editBook(book)),</span></span>
+<span class="line"><span>          );</span></span>
+<span class="line"><span>          actionCell.appendChild(</span></span>
+<span class="line"><span>            createActionButton(&#39;删除&#39;, &#39;danger&#39;, () =&gt; deleteBook(book.id)),</span></span>
+<span class="line"><span>          );</span></span>
+<span class="line"><span>          rows.appendChild(tr);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const loadBooks = async () =&gt; {</span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          const response = await fetch(&#39;/book&#39;);</span></span>
+<span class="line"><span>          if (!response.ok) thrownewError(&#39;加载书籍失败&#39;);</span></span>
+<span class="line"><span>          const books = await response.json();</span></span>
+<span class="line"><span>          renderRows(books);</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          setStatus(error.message, true);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      form.addEventListener(&#39;submit&#39;, async (event) =&gt; {</span></span>
+<span class="line"><span>        event.preventDefault();</span></span>
+<span class="line"><span>        const id = inputs.id.value.trim();</span></span>
+<span class="line"><span>        const payload = mapFormData();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        const method = id ? &#39;PATCH&#39; : &#39;POST&#39;;</span></span>
+<span class="line"><span>        const url = id ? `/book/${id}` : &#39;/book&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          const response = await fetch(url, {</span></span>
+<span class="line"><span>            method,</span></span>
+<span class="line"><span>            headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },</span></span>
+<span class="line"><span>            body: JSON.stringify(payload),</span></span>
+<span class="line"><span>          });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          if (!response.ok) {</span></span>
+<span class="line"><span>            thrownewError(id ? &#39;更新失败&#39; : &#39;创建失败&#39;);</span></span>
+<span class="line"><span>          }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          setStatus(id ? `已更新书籍 #${id}` : &#39;已创建书籍&#39;);</span></span>
+<span class="line"><span>          resetForm();</span></span>
+<span class="line"><span>          await loadBooks();</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          setStatus(error.message, true);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      resetBtn.addEventListener(&#39;click&#39;, resetForm);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      loadBooks();</span></span>
+<span class="line"><span>    &lt;/script&gt;</span></span>
+<span class="line"><span>&lt;/body&gt;</span></span>
+<span class="line"><span>&lt;/html&gt;</span></span></code></pre></div><p>本地跑通之后，生产环境的 docker-compose.yml 怎么写呢？</p><p>创建 docker-compose.prod.yml</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>services:</span></span>
+<span class="line"><span>  mysql-prod:</span></span>
+<span class="line"><span>    image: mysql:latest</span></span>
+<span class="line"><span>    container_name: mysql-prod</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      MYSQL_ROOT_PASSWORD: admin</span></span>
+<span class="line"><span>      MYSQL_DATABASE: book</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      - &quot;3306:3306&quot;</span></span>
+<span class="line"><span>    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mysql-prod:/var/lib/mysql</span></span>
+<span class="line"><span>    restart: always</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  nest-app:</span></span>
+<span class="line"><span>    container_name: nest-app</span></span>
+<span class="line"><span>    build:</span></span>
+<span class="line"><span>      context: .</span></span>
+<span class="line"><span>      dockerfile: Dockerfile</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      - &quot;3000:3000&quot;</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      NODE_ENV: production</span></span>
+<span class="line"><span>    depends_on:</span></span>
+<span class="line"><span>      - mysql-prod</span></span>
+<span class="line"><span>    restart: always</span></span></code></pre></div><p>这里 nest-app 的 docker 容器是从 Dockerfile 构建出来的</p><p>生成环境连接 mysql 是用容器名，也就是 mysql-prod</p><p>所以要改一下：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcm8885mZCYFGW3fRlsqc9Fztt0Yhwx0J6iam8F61nWPTg6gAZh1wFoLAURpRCpRep2ljwdZM3FC42rTGfLQQJY6CqMaPoqibnrs/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=18" alt="图片" referrerpolicy="no-referrer"></p><p>此外，静态文件默认不会输出到 dist 目录，我们要配置下</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeZdZoUXWdgRDWPHceZM0naN16fXVad9eunDDIU9stmuiaXoetgCRVuicblCgo2yRZZdLkLCbcKVMleIxn2FiapWnTLrcnL98ic25s/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=19" alt="图片" referrerpolicy="no-referrer"></p><p>改下 nest-cli.json</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&quot;compilerOptions&quot;: {</span></span>
+<span class="line"><span>    &quot;deleteOutDir&quot;: true,</span></span>
+<span class="line"><span>    &quot;assets&quot;: [</span></span>
+<span class="line"><span>      {</span></span>
+<span class="line"><span>        &quot;include&quot;: &quot;../public/**/*&quot;,</span></span>
+<span class="line"><span>        &quot;outDir&quot;: &quot;dist/public&quot;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    ]</span></span>
+<span class="line"><span>  }</span></span></code></pre></div><p>加一个生产环境用的命令：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfckb2ZwX0j7SL1f3RmZ2vjpqQueR9vXfed4NtCgbZIkWiacmHsUEw1t3ibicO68Vibc9lm7cia4rTl6HHs2kgkticAr6QYtiaQlv11jds/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=20" alt="图片" referrerpolicy="no-referrer"></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&quot;docker:prod:up&quot;: &quot;docker compose -f docker-compose.prod.yml up -d --build&quot;,</span></span></code></pre></div><p>这样，我们就用 docker compose 实现了生产环境的部署。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>Agent 开发离不开后端生态，这节我们开始学后端的技术。</p><p>首先我们明确了数据库、中间件、业务代码的区分。</p><p>数据库是根，存的是原始数据，中间件是特种兵，是完成特定用途的组件，比如缓存、全文检索、消息队列等。</p><p>业务代码调度数据库和中间件，实现完整的业务功能，对外提供服务</p><p>我们学了 docker 容器怎么跑，volume 数据卷的作用。</p><p>然后写了 Dockerfile，构建出了自己的 docker 镜像，并且基于多阶段构建实现了镜像大小的优化。</p><p>学了本地如何用 docker compose 一键启动多个容器</p><p>生产环境如何用 docker compose 来部署</p><p>后面我们本地开发、生产环境部署，都是基于 Docker Compose 的。</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2026 Broly</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"9in8dfBd\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"vRBR51V1\",\"前端转ai agent_00-使用前必看_index.md\":\"CbTYS_Eb\",\"前端转ai agent_00-使用前必看_readme.md\":\"CCl9lush\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"K1bvlp7D\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"r280E0HR\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BR8y3Rx-\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"CPS19Jds\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"uevMc9jJ\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"fv_PJpcc\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"CQFwjUY4\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"Dauq-g01\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"Dlv8XNVU\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"CbSTEnTT\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"DDTGNKby\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DNdEFKT6\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"d3Ff9pnH\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"vM0Tv4bo\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"-nnHYLJJ\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"-P7BvoH7\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"DoCV-mZ1\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"DNpP_NKJ\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"NF6swDka\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"g5ORvcwt\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"C6owZzsL\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"9LaNiTPL\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"CDhwzkpk\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"CBIRaqqG\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"3a4M612j\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"B93sSY-q\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"rn4q-WuQ\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"B2P5Ib1W\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"98EDEZn4\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"CsxP2wpi\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cw6wTwvm\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"4TGYH26M\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"Dnx8hJX1\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"B6f3zgYP\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"dsYJoRzd\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"CYJef_cl\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"Wb8snKbo\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"CwCIxuKO\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"DAvbttsE\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"CGyuW48n\",\"前端转ai agent_21-豆包同款语音功能：语音识别 asr _ 流式语音合成 tts_index.md\":\"BvzkAkZE\",\"前端转ai agent_22-agui 协议：vercel ai sdk _ langchain 实现流式组件渲染_index.md\":\"C9l5yQ0r\",\"前端转ai agent_23-图编排引擎：langgraph 和多 agent 架构_index.md\":\"JFycbGth\",\"前端转ai agent_24-agentic rag：基于 langgraph 实现大模型自主决策的 rag 闭环系统_index.md\":\"CNMTWNm2\",\"前端转ai agent_25-基于 docker compose 的本地开发提效和生产环境部署_index.md\":\"COKhwZcQ\",\"前端转ai agent_26-elasticsearch 全文检索：倒排索引表 _ ik 分词器 _ bm25 算法_index.md\":\"F6c4YINg\",\"前端转ai agent_27-neo4j 知识图谱和 graph rag_index.md\":\"CLhPw4y6\",\"前端转ai agent_28-langsmith 全链路观测：从 agent 调试到 rag 量化评估_index.md\":\"Cn4inZdB\",\"前端转ai agent_29-deepagents：开箱即用的 skill、上下文压缩等 middleware_index.md\":\"DbbKdg4N\",\"前端转ai agent_30-deepagents 实战：多 agent 架构的深度调研助手_index.md\":\"C3RLogEt\",\"前端转ai agent_31-postgresql：ai 时代最适合的数据库_index.md\":\"C_yU6PnR\",\"前端转ai agent_32-redis：实现 agent 短期记忆存储的最佳方案_index.md\":\"zdAhZc5S\",\"前端转ai agent_33-mem0：分层记忆 _ 三路召回的长期记忆方案_index.md\":\"D6wI3o4G\",\"前端转ai agent_34-nest 进阶：企业级 node.js 后端最主流框架_index.md\":\"DqZPfK77\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_index.md\":\"K740KrRB\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_135707.md\":\"BowQcI5P\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_index.md\":\"Cqu_ck56\",\"前端转ai agent_36-多模态与 oss 前端直传实战：ai 画板_index.md\":\"BtkIvueB\",\"前端转ai agent_37-rabbitmq：agent 中异步处理的标配方案_index.md\":\"DCN6ixuu\",\"前端转ai agent_index.md\":\"ClSoPTDr\",\"前端转ai agent_语雀答疑资料.md\":\"CQGtr2ih\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/ai-docs/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"},{\"text\":\"21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS\",\"link\":\"/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/\"},{\"text\":\"22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染\",\"link\":\"/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/\"},{\"text\":\"23-图编排引擎：LangGraph 和多 Agent 架构\",\"link\":\"/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/\"},{\"text\":\"24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统\",\"link\":\"/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/\"},{\"text\":\"25-基于 Docker Compose 的本地开发提效和生产环境部署\",\"link\":\"/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/\"},{\"text\":\"26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法\",\"link\":\"/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/\"},{\"text\":\"27-Neo4j 知识图谱和 Graph RAG\",\"link\":\"/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/\"},{\"text\":\"28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估\",\"link\":\"/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/\"},{\"text\":\"29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware\",\"link\":\"/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/\"},{\"text\":\"30-DeepAgents 实战：多 Agent 架构的深度调研助手\",\"link\":\"/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/\"},{\"text\":\"31-PostgreSQL：AI 时代最适合的数据库\",\"link\":\"/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/\"},{\"text\":\"32-Redis：实现 Agent 短期记忆存储的最佳方案\",\"link\":\"/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/\"},{\"text\":\"33-Mem0：分层记忆 + 三路召回的长期记忆方案\",\"link\":\"/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/\"},{\"text\":\"34-Nest 进阶：企业级 Node.js 后端最主流框架\",\"link\":\"/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/\"},{\"text\":\"36-多模态与 OSS 前端直传实战：AI 画板\",\"link\":\"/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/\"},{\"text\":\"37-RabbitMQ：Agent 中异步处理的标配方案\",\"link\":\"/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/\"}]}]},\"search\":{\"provider\":\"local\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/Broly789/ai-docs\"}],\"footer\":{\"copyright\":\"Copyright © 2026 Broly\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>

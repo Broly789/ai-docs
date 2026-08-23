@@ -1,0 +1,1245 @@
+import{_ as n,o as a,c as p,ag as e}from"./chunks/framework.lghGfHnE.js";const l="/ai-docs/assets/1.B-HkO0Uh.mp4",i="/ai-docs/assets/2.COgSImCJ.mp4",t="/ai-docs/assets/3.BaE03_6j.mp4",c="/ai-docs/assets/4.mg-wzgmF.mp4",o="/ai-docs/assets/5.zAGiYfJI.mp4",r="/ai-docs/assets/6.OIFfsUT_.mp4",m="/ai-docs/assets/7.BfCYSnrV.mp4",d="/ai-docs/assets/8.B8YmvO2x.mp4",S=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/index.md","filePath":"前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/index.md"}'),u={name:"前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/index.md"};function g(f,s,h,b,q,v){return a(),p("div",null,[...s[0]||(s[0]=[e(`<p>我们常用的 Agent 都有语音功能。</p><p>语音输入会转成文字，大模型的回答会通过语音朗读。可以切换音色。</p><p>这种 STT（Speech To Text）语音转文字，TTS（Text To Speech）文字转语音基本是 Agent 开发必备技术了。</p><p>这节我们就来学一下语音相关技术，实现豆包同款功能。</p><p>创建项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir tts-stt-test</span></span>
+<span class="line"><span>cd tts-stt-test</span></span>
+<span class="line"><span>npm init -y</span></span></code></pre></div><p>我们用腾讯云的语音（各家用法都差不多）。</p><p><a href="https://console.cloud.tencent.com/tts" target="_blank" rel="noreferrer">https://console.cloud.tencent.com/tts</a></p><video src="`+l+`"></video><p>拿到 secretId、secretKey 之后，就可以调用 api 了。</p><p>创建 src/tts-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import tencentcloud from &quot;tencentcloud-sdk-nodejs-tts&quot;;</span></span>
+<span class="line"><span>import fs from &quot;node:fs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const secretId = process.env.SECRET_ID;</span></span>
+<span class="line"><span>const secretKey = process.env.SECRET_KEY;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const TtsClient = tencentcloud.tts.v20190823.Client;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const client = new TtsClient({</span></span>
+<span class="line"><span>  credential: {</span></span>
+<span class="line"><span>    secretId,</span></span>
+<span class="line"><span>    secretKey,</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  region: &quot;ap-beijing&quot;,</span></span>
+<span class="line"><span>  profile: {</span></span>
+<span class="line"><span>    httpProfile: {</span></span>
+<span class="line"><span>      endpoint: &quot;tts.tencentcloudapi.com&quot;,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const params = {</span></span>
+<span class="line"><span>  Text: &quot;下班路上，我还在为晚霞开心。突然电话响起：系统崩了。我的心一下揪紧，冲进办公室时几乎要绝望。可当大家一起排查、重启，屏幕终于恢复正常，我长长松了口气，笑着说：还好，我们没放弃。&quot;,  // 要合成的文本</span></span>
+<span class="line"><span>  SessionId: &quot;session-001&quot;,</span></span>
+<span class="line"><span>  VoiceType: 502006,               // 101007：智瑜（女声）</span></span>
+<span class="line"><span>  Codec: &quot;mp3&quot;,                    // 指定输出格式为 mp3</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>client.TextToVoice(params).then(</span></span>
+<span class="line"><span>  (data) =&gt; {</span></span>
+<span class="line"><span>    // 返回的 Audio 字段是 Base64 编码的音频数据</span></span>
+<span class="line"><span>    const audioBuffer = Buffer.from(data.Audio, &quot;base64&quot;);</span></span>
+<span class="line"><span>    const outputPath = &quot;./output.mp3&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    fs.writeFile(outputPath, audioBuffer, (err) =&gt; {</span></span>
+<span class="line"><span>      if (err) {</span></span>
+<span class="line"><span>        console.error(&quot;保存文件失败：&quot;, err);</span></span>
+<span class="line"><span>      } else {</span></span>
+<span class="line"><span>        console.log(&quot;MP3 已保存至：&quot;, outputPath);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  (err) =&gt; {</span></span>
+<span class="line"><span>    console.error(&quot;合成失败：&quot;, err);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>);</span></span></code></pre></div><p>调用文字转语音 tts 功能，传入参数，返回的 base64 字符串转为 buffer 写入文件。</p><p>这个音色 id 从这里找：</p><p><a href="https://cloud.tencent.com/document/product/1073/92668" target="_blank" rel="noreferrer">https://cloud.tencent.com/document/product/1073/92668</a></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffGrXzUog1e1lUJ6oOg9bkDF1Jiak6iaPbLZvOjbN50Xd6YFSFTLdYaWu1Iy4rSJDjAEhPghN9tmxFf4X1pSCFq3VSytNQNDkSJQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0" alt="图片" referrerpolicy="no-referrer"></p><p>安装用到的包：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install dotenv tencentcloud-sdk-nodejs-tts</span></span></code></pre></div><p>创建 .env 配置文件：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>SECRET_ID=替换成你的</span></span>
+<span class="line"><span>SECRET_KEY=替换成你的</span></span></code></pre></div><p>跑一下：</p><video src="`+i+`"></video><p>但这种直接传入全部文本生成语音的方式，显然不太适合我们的场景。</p><p>比如豆包流式返回回答，语音也是流式播放的。</p><p>这种就需要用流式语音合成接口了，它是 websocket 的</p><p><a href="https://cloud.tencent.com/document/product/1073/108595" target="_blank" rel="noreferrer">https://cloud.tencent.com/document/product/1073/108595</a></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfftMdQ8GFFeUv08WRw7OleCmzY7Y8khSnshB95ozrWNAria2oF3EXrqupibqM0nTBicib393Rzg8jUiaQykKsIHXPWHEqu9gZnmOpVs/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=1" alt="图片" referrerpolicy="no-referrer"></p><p>创建 src/streaming-tts-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import WebSocket from &quot;ws&quot;;</span></span>
+<span class="line"><span>import crypto from &quot;node:crypto&quot;;</span></span>
+<span class="line"><span>import fs from &quot;node:fs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const SECRET_ID = process.env.SECRET_ID;</span></span>
+<span class="line"><span>const SECRET_KEY = process.env.SECRET_KEY;</span></span>
+<span class="line"><span>const APP_ID = process.env.APP_ID;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const VOICE_TYPE = 101001;</span></span>
+<span class="line"><span>const OUTPUT_FILE = &quot;output3.mp3&quot;;</span></span>
+<span class="line"><span>const TEXT_INTERVAL_MS = 3000;</span></span>
+<span class="line"><span>const TEXTS = [</span></span>
+<span class="line"><span>  &quot;傍晚我还在为晚霞开心，&quot;,</span></span>
+<span class="line"><span>  &quot;突然接到电话说系统崩了，&quot;,</span></span>
+<span class="line"><span>  &quot;我心里一沉冲回办公室，&quot;,</span></span>
+<span class="line"><span>  &quot;好在大家一起排查后终于恢复，&quot;,</span></span>
+<span class="line"><span>  &quot;我长长松了口气。&quot;,</span></span>
+<span class="line"><span>];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const sleep = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function buildWsUrl() {</span></span>
+<span class="line"><span>  const now = Math.floor(Date.now() / 1000);</span></span>
+<span class="line"><span>  const sessionId = \`session_\${now}_\${Math.random().toString(36).slice(2)}\`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  const params = {</span></span>
+<span class="line"><span>    Action: &quot;TextToStreamAudioWSv2&quot;,</span></span>
+<span class="line"><span>    AppId: parseInt(APP_ID),</span></span>
+<span class="line"><span>    Codec: &quot;mp3&quot;,</span></span>
+<span class="line"><span>    Expired: now + 3600,</span></span>
+<span class="line"><span>    SampleRate: 16000,</span></span>
+<span class="line"><span>    SecretId: SECRET_ID,</span></span>
+<span class="line"><span>    SessionId: sessionId,</span></span>
+<span class="line"><span>    Speed: 0,</span></span>
+<span class="line"><span>    Timestamp: now,</span></span>
+<span class="line"><span>    VoiceType: VOICE_TYPE,</span></span>
+<span class="line"><span>    Volume: 5,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  const sortedKeys = Object.keys(params).sort();</span></span>
+<span class="line"><span>  const signStr = sortedKeys.map((k) =&gt; \`\${k}=\${params[k]}\`).join(&quot;&amp;&quot;);</span></span>
+<span class="line"><span>  const rawStr = \`GETtts.cloud.tencent.com/stream_wsv2?\${signStr}\`;</span></span>
+<span class="line"><span>  const signature = crypto</span></span>
+<span class="line"><span>    .createHmac(&quot;sha1&quot;, SECRET_KEY)</span></span>
+<span class="line"><span>    .update(rawStr)</span></span>
+<span class="line"><span>    .digest(&quot;base64&quot;);</span></span>
+<span class="line"><span>  const searchParams = new URLSearchParams({</span></span>
+<span class="line"><span>    ...params,</span></span>
+<span class="line"><span>    Signature: signature,</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  return {</span></span>
+<span class="line"><span>    sessionId,</span></span>
+<span class="line"><span>    url: \`wss://tts.cloud.tencent.com/stream_wsv2?\${searchParams.toString()}\`,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async function sendTexts(ws, sessionId) {</span></span>
+<span class="line"><span>  for (let i = 0; i &lt; TEXTS.length; i++) {</span></span>
+<span class="line"><span>    ws.send(JSON.stringify({ session_id: sessionId, message_id: \`msg_\${i}\`, action: &quot;ACTION_SYNTHESIS&quot;, data: TEXTS[i] }));</span></span>
+<span class="line"><span>    console.log(\`[文本] 已发送: \${TEXTS[i]}\`);</span></span>
+<span class="line"><span>    if (i &lt; TEXTS.length - 1) await sleep(TEXT_INTERVAL_MS);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  ws.send(JSON.stringify({ session_id: sessionId, action: &quot;ACTION_COMPLETE&quot; }));</span></span>
+<span class="line"><span>  console.log(&quot;[文本] 已发送 ACTION_COMPLETE&quot;);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function streamTTS() {</span></span>
+<span class="line"><span>  if (!SECRET_ID || !SECRET_KEY || !APP_ID) {</span></span>
+<span class="line"><span>    throw new Error(&quot;请先在 .env 配置 SECRET_ID、SECRET_KEY、APP_ID&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  const { url, sessionId } = buildWsUrl();</span></span>
+<span class="line"><span>  const ws = new WebSocket(url);</span></span>
+<span class="line"><span>  const writeStream = fs.createWriteStream(OUTPUT_FILE, { flags: &quot;w&quot; });</span></span>
+<span class="line"><span>  let totalBytes = 0;</span></span>
+<span class="line"><span>  let closed = false;</span></span>
+<span class="line"><span>  let sent = false;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  const closeAll = () =&gt; {</span></span>
+<span class="line"><span>    if (closed) return;</span></span>
+<span class="line"><span>    closed = true;</span></span>
+<span class="line"><span>    writeStream.end(() =&gt; {</span></span>
+<span class="line"><span>      console.log(\`[保存] 音频已保存至 \${OUTPUT_FILE}，共 \${totalBytes} 字节\`);</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>    if (ws.readyState &lt; WebSocket.CLOSING) ws.close();</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ws.on(&quot;open&quot;, () =&gt; {</span></span>
+<span class="line"><span>    console.log(&quot;[连接] WebSocket 已建立，等待服务端就绪...&quot;);</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ws.on(&quot;message&quot;, async (data, isBinary) =&gt; {</span></span>
+<span class="line"><span>    if (isBinary) {</span></span>
+<span class="line"><span>      writeStream.write(data);</span></span>
+<span class="line"><span>      totalBytes += data.length;</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      const msg = JSON.parse(data.toString());</span></span>
+<span class="line"><span>      console.log(&quot;[消息]&quot;, JSON.stringify(msg));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      if (msg.ready === 1 &amp;&amp; !sent) {</span></span>
+<span class="line"><span>        sent = true;</span></span>
+<span class="line"><span>        await sendTexts(ws, sessionId);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      if (msg.code &amp;&amp; msg.code !== 0) {</span></span>
+<span class="line"><span>        console.error(\`[错误] code=\${msg.code}, message=\${msg.message}\`);</span></span>
+<span class="line"><span>        closeAll();</span></span>
+<span class="line"><span>      } else if (msg.final === 1) {</span></span>
+<span class="line"><span>        console.log(&quot;[完成] 合成结束。&quot;);</span></span>
+<span class="line"><span>        closeAll();</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    } catch (e) {</span></span>
+<span class="line"><span>      console.error(&quot;[解析错误]&quot;, e.message);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ws.on(&quot;error&quot;, (err) =&gt; {</span></span>
+<span class="line"><span>    console.error(&quot;[WebSocket 错误]&quot;, err.message);</span></span>
+<span class="line"><span>    closeAll();</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ws.on(&quot;close&quot;, (code, reason) =&gt; {</span></span>
+<span class="line"><span>    console.log(\`[断开] 连接已关闭，code=\${code}, reason=\${reason}\`);</span></span>
+<span class="line"><span>    closeAll();</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>streamTTS();</span></span></code></pre></div><p>我们先构造了 url，用 WebSocket 连上</p><p>每 3s 发送一次消息</p><p>然后用 fs.createWriteStream 异步写入文件</p><p>appid 从这里拿：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfe5yJsU9oaapFITePhxYSVD0rIkaP1vnTLIabawIgHGsaiakRbHBykpnbaDR9l1rMyicTxibXiaKJ3keeDOiavp9edprRUIFGPRjb54/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=2" alt="图片" referrerpolicy="no-referrer"></p><p>加到 .env 里：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfctHRThCmQr9WhkcqW2pdEYPIXapeX1dAkOxsgeEGEjFWM56rISNjWLeCjwboFM3smv3bt05zjXURyCUHDpRSic0HPbqFG2dVGc/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=3" alt="图片" referrerpolicy="no-referrer"></p><p>跑一下：</p><video src="`+t+`"></video><p>因为文本是流式返回的，所以语音一般也要流式生成，用 streaming tts 的接口。</p><p>接下来试一下语音识别 ASR（Automatic Speech Recognition），叫 STT （Speech To Text） 也可以，但 ASR 用的多一些。</p><p>这个就不用流式了。你平时用豆包的时候，都是说完一段话才转成的文本</p><p>创建 src/asr-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import tencentcloud from &quot;tencentcloud-sdk-nodejs&quot;;</span></span>
+<span class="line"><span>import fs from &quot;node:fs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const SECRET_ID = process.env.SECRET_ID;</span></span>
+<span class="line"><span>const SECRET_KEY = process.env.SECRET_KEY;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const AsrClient = tencentcloud.asr.v20190614.Client;</span></span>
+<span class="line"><span>const AUDIO_FILE = &#39;./output.mp3&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const client = new AsrClient({</span></span>
+<span class="line"><span>  credential: {</span></span>
+<span class="line"><span>    secretId: SECRET_ID,</span></span>
+<span class="line"><span>    secretKey: SECRET_KEY,</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  region: &quot;ap-shanghai&quot;,</span></span>
+<span class="line"><span>  profile: {</span></span>
+<span class="line"><span>    httpProfile: {</span></span>
+<span class="line"><span>      reqMethod: &quot;POST&quot;,</span></span>
+<span class="line"><span>      reqTimeout: 30,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async function run() {</span></span>
+<span class="line"><span>  const audioBase64 = fs.readFileSync(AUDIO_FILE).toString(&quot;base64&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  const params = {</span></span>
+<span class="line"><span>    EngSerViceType: &quot;16k_zh&quot;,</span></span>
+<span class="line"><span>    SourceType: 1,</span></span>
+<span class="line"><span>    Data: audioBase64,</span></span>
+<span class="line"><span>    DataLen: Buffer.byteLength(audioBase64),</span></span>
+<span class="line"><span>    VoiceFormat: &quot;mp3&quot;,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  try {</span></span>
+<span class="line"><span>    const data = await client.SentenceRecognition(params);</span></span>
+<span class="line"><span>    console.log(&quot;识别结果：&quot;, data.Result);</span></span>
+<span class="line"><span>  } catch (err) {</span></span>
+<span class="line"><span>    console.error(&quot;识别失败：&quot;, err);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>run();</span></span></code></pre></div><p>传入音频 mp3 文件，调用接口来识别，返回文本</p><p>安装下依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install tencentcloud-sdk-nodejs</span></span></code></pre></div><p>跑一下：</p><video src="`+c+`"></video><p>这样，我们就可以来实现豆包同款的语音交互了：</p><p>点击录音，输入一段语音，服务端提供接口来转文字，之后用大模型生成回答。</p><p>流式 SSE 返回文字，同时用 WebSocket 返回流式语音。</p><p>这样就可以实现语音输入，流式的文字、语音输出。</p><p>为啥不直接用 SSE 返回音频数据呢？</p><p>因为 SSE 是基于 http 的文本协议，需要转 Base64 才行，传这种二进制数据还是 WebSocket 更合适。</p><p>思路理清了，接下来按照这个实现下豆包同款交互：</p><p>先创建后端项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest new asr-and-tts-nest-service</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcmGdDFuIuibzHOAPABQxBrV3Ey4oFoFWAYticFLpKFD8SZNu6dUfwzHRfAu2VknIkrSFInGXuuQed4Jk3ESCdK9MRB7oPn6IsOE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=4" alt="图片" referrerpolicy="no-referrer"></p><p>先写一下调用大模型回答的 SSE 接口</p><p>创建 ai 模块：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest g module ai</span></span>
+<span class="line"><span>nest g controller ai --no-spec</span></span>
+<span class="line"><span>nest g service ai --no-spec</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdVDERyzfAaDIqNJwpTx2Ugia3ktWQfvP3kxJcFYxp5t22C62T9gW7UhBMqXPJmouJZPonSbEgLVs7cW6ia3dYmcTuicOf6XvPaIg/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=5" alt="图片" referrerpolicy="no-referrer"></p><p>改下 AiService：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Inject, Injectable } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from &#39;@langchain/openai&#39;;</span></span>
+<span class="line"><span>import { PromptTemplate } from &#39;@langchain/core/prompts&#39;;</span></span>
+<span class="line"><span>import type { Runnable } from &#39;@langchain/core/runnables&#39;;</span></span>
+<span class="line"><span>import { StringOutputParser } from &#39;@langchain/core/output_parsers&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Injectable()</span></span>
+<span class="line"><span>export class AiService {</span></span>
+<span class="line"><span>  private readonly chain: Runnable;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  constructor(</span></span>
+<span class="line"><span>    @Inject(&#39;CHAT_MODEL&#39;) model: ChatOpenAI</span></span>
+<span class="line"><span>  ) {</span></span>
+<span class="line"><span>    const prompt = PromptTemplate.fromTemplate(</span></span>
+<span class="line"><span>      &#39;请回答以下问题：\\n\\n{query}&#39;,</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>    this.chain = prompt.pipe(model).pipe(new StringOutputParser());</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  async *streamChain(query: string): AsyncGenerator&lt;string&gt; {</span></span>
+<span class="line"><span>    const stream = await this.chain.stream({ query });</span></span>
+<span class="line"><span>    for await (const chunk of stream) {</span></span>
+<span class="line"><span>      yield chunk;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>还有 AiController：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Controller, Get, Query, Sse } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { from, map, Observable } from &#39;rxjs&#39;;</span></span>
+<span class="line"><span>import { AiService } from &#39;./ai.service&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Controller(&#39;ai&#39;)</span></span>
+<span class="line"><span>export class AiController {</span></span>
+<span class="line"><span>  constructor(private readonly aiService: AiService) {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Sse(&#39;chat/stream&#39;)</span></span>
+<span class="line"><span>  chatStream(@Query(&#39;query&#39;) query: string): Observable&lt;{ data: string }&gt; {</span></span>
+<span class="line"><span>    return from(this.aiService.streamChain(query)).pipe(</span></span>
+<span class="line"><span>      map((chunk) =&gt; ({ data: chunk }))</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>和 AiModule：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Module } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { AiService } from &#39;./ai.service&#39;;</span></span>
+<span class="line"><span>import { AiController } from &#39;./ai.controller&#39;;</span></span>
+<span class="line"><span>import { ConfigService } from &#39;@nestjs/config&#39;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from &#39;@langchain/openai&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Module({</span></span>
+<span class="line"><span>  controllers: [AiController],</span></span>
+<span class="line"><span>  providers: [AiService,</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      provide: &#39;CHAT_MODEL&#39;,</span></span>
+<span class="line"><span>      useFactory: (configService: ConfigService) =&gt; {</span></span>
+<span class="line"><span>        return new ChatOpenAI({</span></span>
+<span class="line"><span>          model: configService.get(&#39;MODEL_NAME&#39;),</span></span>
+<span class="line"><span>          apiKey: configService.get(&#39;OPENAI_API_KEY&#39;),</span></span>
+<span class="line"><span>          configuration: {</span></span>
+<span class="line"><span>            baseURL: configService.get(&#39;OPENAI_BASE_URL&#39;),</span></span>
+<span class="line"><span>          },</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>      },</span></span>
+<span class="line"><span>      inject: [ConfigService],</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  ],</span></span>
+<span class="line"><span>})</span></span>
+<span class="line"><span>export class AiModule {}</span></span></code></pre></div><p>就是基于用 langchain 创建一个 chain 来回答用户的问题，流式返回</p><p>安装用到的包：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @nestjs/config @langchain/openai @langchain/core</span></span></code></pre></div><p>创建配置文件 .env</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>OPENAI_API_KEY=sk-xxx</span></span>
+<span class="line"><span>OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1</span></span>
+<span class="line"><span>MODEL_NAME=qwen-plus</span></span></code></pre></div><p>在 AppModule 里引入下：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdwtK9L9SCwiaLeN2l9icyACb5hr8nIYJ621gggCOHzUYcJv7YuJ2vs3gIWupIYu7iaTp0iaU5icGRMxO9zeYHDdsIibuXR3HzmDRJYI/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=6" alt="图片" referrerpolicy="no-referrer"></p><p>这些前面写过，就是再熟悉一遍。</p><p>跑一下：</p><video src="`+o+`"></video><p>我们先接入语音转文字，实现一个接口：</p><p>创建 speech 模块：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest g module speech</span></span>
+<span class="line"><span>nest g service speech --no-spec</span></span>
+<span class="line"><span>nest g controller speech --no-spec</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdicUTMaVWZaHG023FX8Jb3DafNUYG7yjc0BPeSf3PpjIJjcM8jNOxMSDicJIGaRQQpMnanzfHDIUzeTI13hGeY45esA68LJ0Iiac/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=7" alt="图片" referrerpolicy="no-referrer"></p><p>把之前 asr 的逻辑拿过来，放到 service 里：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Inject, Injectable } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import type * as tencentcloud from &#39;tencentcloud-sdk-nodejs&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type UploadedAudio = {</span></span>
+<span class="line"><span>  buffer: Buffer;</span></span>
+<span class="line"><span>  originalname: string;</span></span>
+<span class="line"><span>  mimetype: string;</span></span>
+<span class="line"><span>  size: number;</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type AsrClient = InstanceType&lt;typeof tencentcloud.asr.v20190614.Client&gt;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Injectable()</span></span>
+<span class="line"><span>export class SpeechService {</span></span>
+<span class="line"><span>  constructor(@Inject(&#39;ASR_CLIENT&#39;) private readonly asrClient: AsrClient) {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  async recognizeBySentence(file: UploadedAudio): Promise&lt;string&gt; {</span></span>
+<span class="line"><span>    const audioBase64 = file.buffer.toString(&#39;base64&#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const result = await this.asrClient.SentenceRecognition({</span></span>
+<span class="line"><span>      EngSerViceType: &#39;16k_zh&#39;,</span></span>
+<span class="line"><span>      SourceType: 1,</span></span>
+<span class="line"><span>      Data: audioBase64,</span></span>
+<span class="line"><span>      DataLen: file.buffer.length,</span></span>
+<span class="line"><span>      VoiceFormat: &#39;ogg-opus&#39;,</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return result.Result ?? &#39;&#39;;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>把传过来的 buffer 转成 base64 字符串，用 asrClient 的 SentenceRecognition 方法来识别成文字返回。</p><p>SpeechModule 里创建 AsrClient：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Module } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { ConfigService } from &#39;@nestjs/config&#39;;</span></span>
+<span class="line"><span>import { SpeechService } from &#39;./speech.service&#39;;</span></span>
+<span class="line"><span>import { SpeechController } from &#39;./speech.controller&#39;;</span></span>
+<span class="line"><span>import * as tencentcloud from &#39;tencentcloud-sdk-nodejs&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const AsrClient = tencentcloud.asr.v20190614.Client;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Module({</span></span>
+<span class="line"><span>  providers: [</span></span>
+<span class="line"><span>    SpeechService,</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      provide: &#39;ASR_CLIENT&#39;,</span></span>
+<span class="line"><span>      useFactory: (configService: ConfigService) =&gt; {</span></span>
+<span class="line"><span>        return new AsrClient({</span></span>
+<span class="line"><span>          credential: {</span></span>
+<span class="line"><span>            secretId: configService.get&lt;string&gt;(&#39;SECRET_ID&#39;),</span></span>
+<span class="line"><span>            secretKey: configService.get&lt;string&gt;(&#39;SECRET_KEY&#39;),</span></span>
+<span class="line"><span>          },</span></span>
+<span class="line"><span>          region: &#39;ap-shanghai&#39;,</span></span>
+<span class="line"><span>          profile: {</span></span>
+<span class="line"><span>            httpProfile: {</span></span>
+<span class="line"><span>              reqMethod: &#39;POST&#39;,</span></span>
+<span class="line"><span>              reqTimeout: 30,</span></span>
+<span class="line"><span>            },</span></span>
+<span class="line"><span>          },</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>      },</span></span>
+<span class="line"><span>      inject: [ConfigService],</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  ],</span></span>
+<span class="line"><span>  controllers: [SpeechController],</span></span>
+<span class="line"><span>})</span></span>
+<span class="line"><span>export class SpeechModule {}</span></span></code></pre></div><p>然后在 SpeechController 里加一个接口：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  BadRequestException,</span></span>
+<span class="line"><span>  Controller,</span></span>
+<span class="line"><span>  Post,</span></span>
+<span class="line"><span>  UploadedFile,</span></span>
+<span class="line"><span>  UseInterceptors,</span></span>
+<span class="line"><span>} from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { FileInterceptor } from &#39;@nestjs/platform-express&#39;;</span></span>
+<span class="line"><span>import { SpeechService } from &#39;./speech.service&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Controller(&#39;speech&#39;)</span></span>
+<span class="line"><span>export class SpeechController {</span></span>
+<span class="line"><span>  constructor(private readonly speechService: SpeechService) {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Post(&#39;asr&#39;)</span></span>
+<span class="line"><span>  @UseInterceptors(FileInterceptor(&#39;audio&#39;))</span></span>
+<span class="line"><span>  async recognize(</span></span>
+<span class="line"><span>    @UploadedFile()</span></span>
+<span class="line"><span>    file?: {</span></span>
+<span class="line"><span>      buffer: Buffer;</span></span>
+<span class="line"><span>      originalname: string;</span></span>
+<span class="line"><span>      mimetype: string;</span></span>
+<span class="line"><span>      size: number;</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  ) {</span></span>
+<span class="line"><span>    if (!file?.buffer?.length) {</span></span>
+<span class="line"><span>      throw new BadRequestException(</span></span>
+<span class="line"><span>        &#39;请通过 FormData 的 audio 字段上传音频文件&#39;,</span></span>
+<span class="line"><span>      );</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const text = await this.speechService.recognizeBySentence(file);</span></span>
+<span class="line"><span>    return { text };</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这里 @UseInterceptors 装饰器是使用 FileInterceptor 这个拦截器取表单的 audio 字段。</p><p>然后通过 @UploadedFile 取出来作为参数传入 handler</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfe7vruibmcfUgVnTpyWTNhaxWFRuywdGbicgiaEibrLTYDumSkHfmxs2VCCzKdQTw0ib9I1rKPKzwYAKG66W7luSVpOs7HZxBN3KRxI/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=8" alt="图片" referrerpolicy="no-referrer"></p><p>Controller 里有很多 handler 方法</p><p>拦截器 interceptor 是可以动态的添加一些 handler 前后的处理逻辑。</p><p>比如这里 FileInterceptor 就是解析表单里的文件二进制数据，转成 File 对象</p><p>接口写完了，我们来测一下。</p><p>配置放到 .env 里<img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwffZGIYulmXZhNP6Jttn3xyorImZ4NdWnXHAdRAVRCNwh2ROicjdicssqMzMANCZUSwJUm7dG1qwia1UK1lMXVyKsicCiaGlVCPOojxk/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=9" alt="图片" referrerpolicy="no-referrer"></p><p>加个页面：</p><p>public/asr.html</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&lt;!doctype html&gt;</span></span>
+<span class="line"><span>&lt;html lang=&quot;zh-CN&quot;&gt;</span></span>
+<span class="line"><span>  &lt;head&gt;</span></span>
+<span class="line"><span>    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;title&gt;ASR 录音测试&lt;/title&gt;</span></span>
+<span class="line"><span>    &lt;style&gt;</span></span>
+<span class="line"><span>      body {</span></span>
+<span class="line"><span>        font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;</span></span>
+<span class="line"><span>        max-width: 720px;</span></span>
+<span class="line"><span>        margin: 40px auto;</span></span>
+<span class="line"><span>        padding: 0 16px;</span></span>
+<span class="line"><span>        line-height: 1.6;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      button {</span></span>
+<span class="line"><span>        margin-right: 8px;</span></span>
+<span class="line"><span>        margin-bottom: 8px;</span></span>
+<span class="line"><span>        padding: 8px 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      .status {</span></span>
+<span class="line"><span>        margin: 12px 0;</span></span>
+<span class="line"><span>        color: #444;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      pre {</span></span>
+<span class="line"><span>        background: #f6f8fa;</span></span>
+<span class="line"><span>        padding: 12px;</span></span>
+<span class="line"><span>        border-radius: 6px;</span></span>
+<span class="line"><span>        white-space: pre-wrap;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    &lt;/style&gt;</span></span>
+<span class="line"><span>  &lt;/head&gt;</span></span>
+<span class="line"><span>  &lt;body&gt;</span></span>
+<span class="line"><span>    &lt;h1&gt;ASR 录音上传测试&lt;/h1&gt;</span></span>
+<span class="line"><span>    &lt;p&gt;点击开始录音，结束后自动上传到 &lt;code&gt;/speech/asr&lt;/code&gt;。&lt;/p&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &lt;button id=&quot;startBtn&quot;&gt;开始录音&lt;/button&gt;</span></span>
+<span class="line"><span>    &lt;button id=&quot;stopBtn&quot; disabled&gt;停止并上传&lt;/button&gt;</span></span>
+<span class="line"><span>    &lt;div class=&quot;status&quot; id=&quot;status&quot;&gt;状态：未开始&lt;/div&gt;</span></span>
+<span class="line"><span>    &lt;h3&gt;识别结果&lt;/h3&gt;</span></span>
+<span class="line"><span>    &lt;pre id=&quot;result&quot;&gt;（暂无）&lt;/pre&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &lt;script&gt;</span></span>
+<span class="line"><span>      const startBtn = document.getElementById(&quot;startBtn&quot;);</span></span>
+<span class="line"><span>      const stopBtn = document.getElementById(&quot;stopBtn&quot;);</span></span>
+<span class="line"><span>      const statusEl = document.getElementById(&quot;status&quot;);</span></span>
+<span class="line"><span>      const resultEl = document.getElementById(&quot;result&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      let mediaRecorder = null;</span></span>
+<span class="line"><span>      let chunks = [];</span></span>
+<span class="line"><span>      const recordFilename = &quot;record.ogg&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function setStatus(text) {</span></span>
+<span class="line"><span>        statusEl.textContent = &quot;状态：&quot; + text;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      startBtn.addEventListener(&quot;click&quot;, async () =&gt; {</span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });</span></span>
+<span class="line"><span>          chunks = [];</span></span>
+<span class="line"><span>          const preferredMimeType = &quot;audio/ogg;codecs=opus&quot;;</span></span>
+<span class="line"><span>          mediaRecorder = MediaRecorder.isTypeSupported(preferredMimeType)</span></span>
+<span class="line"><span>            ? new MediaRecorder(stream, { mimeType: preferredMimeType })</span></span>
+<span class="line"><span>            : new MediaRecorder(stream);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.ondataavailable = (event) =&gt; {</span></span>
+<span class="line"><span>            if (event.data &amp;&amp; event.data.size &gt; 0) {</span></span>
+<span class="line"><span>              chunks.push(event.data);</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.onstop = async () =&gt; {</span></span>
+<span class="line"><span>            setStatus(&quot;录音结束，正在上传...&quot;);</span></span>
+<span class="line"><span>            try {</span></span>
+<span class="line"><span>              const blob = new Blob(chunks, {</span></span>
+<span class="line"><span>                type: mediaRecorder.mimeType || &quot;audio/webm&quot;,</span></span>
+<span class="line"><span>              });</span></span>
+<span class="line"><span>              if (!blob.size) {</span></span>
+<span class="line"><span>                throw new Error(&quot;录音数据为空，请至少录制 1 秒再上传&quot;);</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span>              const formData = new FormData();</span></span>
+<span class="line"><span>              formData.append(&quot;audio&quot;, blob, recordFilename);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              const response = await fetch(&quot;/speech/asr&quot;, {</span></span>
+<span class="line"><span>                method: &quot;POST&quot;,</span></span>
+<span class="line"><span>                body: formData,</span></span>
+<span class="line"><span>              });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              if (!response.ok) {</span></span>
+<span class="line"><span>                const text = await response.text();</span></span>
+<span class="line"><span>                throw new Error(text || &quot;请求失败&quot;);</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              const data = await response.json();</span></span>
+<span class="line"><span>              resultEl.textContent = data.text || &quot;（空结果）&quot;;</span></span>
+<span class="line"><span>              setStatus(&quot;上传完成&quot;);</span></span>
+<span class="line"><span>            } catch (error) {</span></span>
+<span class="line"><span>              setStatus(&quot;上传失败&quot;);</span></span>
+<span class="line"><span>              resultEl.textContent = &quot;错误：&quot; + (error.message || String(error));</span></span>
+<span class="line"><span>            } finally {</span></span>
+<span class="line"><span>              stream.getTracks().forEach((t) =&gt; t.stop());</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.start(250);</span></span>
+<span class="line"><span>          setStatus(&quot;录音中...&quot;);</span></span>
+<span class="line"><span>          startBtn.disabled = true;</span></span>
+<span class="line"><span>          stopBtn.disabled = false;</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          setStatus(&quot;无法开始录音&quot;);</span></span>
+<span class="line"><span>          resultEl.textContent = &quot;错误：&quot; + (error.message || String(error));</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      stopBtn.addEventListener(&quot;click&quot;, () =&gt; {</span></span>
+<span class="line"><span>        if (!mediaRecorder) return;</span></span>
+<span class="line"><span>        mediaRecorder.stop();</span></span>
+<span class="line"><span>        startBtn.disabled = false;</span></span>
+<span class="line"><span>        stopBtn.disabled = true;</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    &lt;/script&gt;</span></span>
+<span class="line"><span>  &lt;/body&gt;</span></span>
+<span class="line"><span>&lt;/html&gt;</span></span></code></pre></div><p>这里就是用 MediaRecorder 录音</p><p>把 chunks 数组转成 Blob 对象，作为 FormData 的表单项发送。</p><p>在 AppModule 里支持下静态文件访问：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfddSkRYtJibjTt9yVSAVrsSKoWXFqrorhtCustcicdDsq5TAOYJtjNQ9MibVCr0WtcUFmgLCLf0y00HibibzN2oaTXSiakRb9vEwiaUFw/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=10" alt="图片" referrerpolicy="no-referrer"></p><p>安装用到的依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install tencentcloud-sdk-nodejs @nestjs/serve-static</span></span></code></pre></div><p>跑一下：</p><video src="`+r+`"></video><p>语音识别出文字，之后可以自动调用 /ai/chat/stream 接口拿到回答。</p><p>创建一个新的 html，这里用 ai 生成和豆包类似的界面。</p><p>（不用看样式，就是录音 + 调用 SSE 接口）</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&lt;!doctype html&gt;</span></span>
+<span class="line"><span>&lt;html lang=&quot;zh-CN&quot;&gt;</span></span>
+<span class="line"><span>  &lt;head&gt;</span></span>
+<span class="line"><span>    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span></span>
+<span class="line"><span>    &lt;title&gt;AI 助手&lt;/title&gt;</span></span>
+<span class="line"><span>    &lt;style&gt;</span></span>
+<span class="line"><span>      :root {</span></span>
+<span class="line"><span>        --bg: #f3f4f7;</span></span>
+<span class="line"><span>        --card: #ffffff;</span></span>
+<span class="line"><span>        --text: #1f2329;</span></span>
+<span class="line"><span>        --muted: #6b7280;</span></span>
+<span class="line"><span>        --primary: #3b82f6;</span></span>
+<span class="line"><span>        --primary-soft: #e8f1ff;</span></span>
+<span class="line"><span>        --assistant: #f8fafc;</span></span>
+<span class="line"><span>        --border: #e5e7eb;</span></span>
+<span class="line"><span>        --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      * {</span></span>
+<span class="line"><span>        box-sizing: border-box;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      body {</span></span>
+<span class="line"><span>        margin: 0;</span></span>
+<span class="line"><span>        min-height: 100vh;</span></span>
+<span class="line"><span>        font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;PingFang SC&quot;,</span></span>
+<span class="line"><span>          &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, sans-serif;</span></span>
+<span class="line"><span>        color: var(--text);</span></span>
+<span class="line"><span>        background: radial-gradient(circle at top, #ffffff 0%, var(--bg) 45%);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .page {</span></span>
+<span class="line"><span>        max-width: 920px;</span></span>
+<span class="line"><span>        margin: 28px auto;</span></span>
+<span class="line"><span>        padding: 0 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .chat-shell {</span></span>
+<span class="line"><span>        border: 1px solid var(--border);</span></span>
+<span class="line"><span>        border-radius: 22px;</span></span>
+<span class="line"><span>        background: var(--card);</span></span>
+<span class="line"><span>        box-shadow: var(--shadow);</span></span>
+<span class="line"><span>        overflow: hidden;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .header {</span></span>
+<span class="line"><span>        padding: 18px 20px 14px;</span></span>
+<span class="line"><span>        border-bottom: 1px solid var(--border);</span></span>
+<span class="line"><span>        background: linear-gradient(180deg, #ffffff 0%, #fafbfd 100%);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .title {</span></span>
+<span class="line"><span>        margin: 0;</span></span>
+<span class="line"><span>        font-size: 20px;</span></span>
+<span class="line"><span>        font-weight: 700;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .subtitle {</span></span>
+<span class="line"><span>        margin-top: 6px;</span></span>
+<span class="line"><span>        color: var(--muted);</span></span>
+<span class="line"><span>        font-size: 13px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .status-pill {</span></span>
+<span class="line"><span>        display: inline-flex;</span></span>
+<span class="line"><span>        margin-top: 10px;</span></span>
+<span class="line"><span>        padding: 5px 10px;</span></span>
+<span class="line"><span>        border-radius: 999px;</span></span>
+<span class="line"><span>        background: #f5f7fb;</span></span>
+<span class="line"><span>        color: #4b5563;</span></span>
+<span class="line"><span>        font-size: 12px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .messages {</span></span>
+<span class="line"><span>        padding: 22px 16px;</span></span>
+<span class="line"><span>        min-height: 430px;</span></span>
+<span class="line"><span>        max-height: 62vh;</span></span>
+<span class="line"><span>        overflow-y: auto;</span></span>
+<span class="line"><span>        background:</span></span>
+<span class="line"><span>          linear-gradient(transparent 95%, rgba(0, 0, 0, 0.02) 100%),</span></span>
+<span class="line"><span>          #fcfdff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .empty {</span></span>
+<span class="line"><span>        text-align: center;</span></span>
+<span class="line"><span>        color: var(--muted);</span></span>
+<span class="line"><span>        margin-top: 38px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .msg-row {</span></span>
+<span class="line"><span>        display: flex;</span></span>
+<span class="line"><span>        margin-bottom: 14px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .msg-row.user {</span></span>
+<span class="line"><span>        justify-content: flex-end;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .msg-row.assistant {</span></span>
+<span class="line"><span>        justify-content: flex-start;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .bubble {</span></span>
+<span class="line"><span>        max-width: min(680px, 84%);</span></span>
+<span class="line"><span>        border-radius: 16px;</span></span>
+<span class="line"><span>        padding: 12px 14px;</span></span>
+<span class="line"><span>        white-space: pre-wrap;</span></span>
+<span class="line"><span>        line-height: 1.55;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>        border: 1px solid var(--border);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .msg-row.user .bubble {</span></span>
+<span class="line"><span>        background: var(--primary-soft);</span></span>
+<span class="line"><span>        border-color: #cfe2ff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .msg-row.assistant .bubble {</span></span>
+<span class="line"><span>        background: var(--assistant);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .meta {</span></span>
+<span class="line"><span>        margin-top: 5px;</span></span>
+<span class="line"><span>        font-size: 12px;</span></span>
+<span class="line"><span>        color: #8a93a1;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .composer {</span></span>
+<span class="line"><span>        border-top: 1px solid var(--border);</span></span>
+<span class="line"><span>        padding: 14px;</span></span>
+<span class="line"><span>        background: #ffffff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .toolbar {</span></span>
+<span class="line"><span>        display: flex;</span></span>
+<span class="line"><span>        gap: 10px;</span></span>
+<span class="line"><span>        align-items: flex-end;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .input-wrap {</span></span>
+<span class="line"><span>        flex: 1;</span></span>
+<span class="line"><span>        border: 1px solid var(--border);</span></span>
+<span class="line"><span>        border-radius: 14px;</span></span>
+<span class="line"><span>        padding: 10px 12px;</span></span>
+<span class="line"><span>        background: #fff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .prompt-input {</span></span>
+<span class="line"><span>        width: 100%;</span></span>
+<span class="line"><span>        border: none;</span></span>
+<span class="line"><span>        outline: none;</span></span>
+<span class="line"><span>        resize: none;</span></span>
+<span class="line"><span>        min-height: 44px;</span></span>
+<span class="line"><span>        max-height: 130px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>        line-height: 1.55;</span></span>
+<span class="line"><span>        font-family: inherit;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .btn {</span></span>
+<span class="line"><span>        border: 1px solid var(--border);</span></span>
+<span class="line"><span>        background: #fff;</span></span>
+<span class="line"><span>        color: var(--text);</span></span>
+<span class="line"><span>        padding: 10px 14px;</span></span>
+<span class="line"><span>        border-radius: 11px;</span></span>
+<span class="line"><span>        font-size: 14px;</span></span>
+<span class="line"><span>        cursor: pointer;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .btn:disabled {</span></span>
+<span class="line"><span>        opacity: 0.5;</span></span>
+<span class="line"><span>        cursor: not-allowed;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .btn-primary {</span></span>
+<span class="line"><span>        background: var(--primary);</span></span>
+<span class="line"><span>        border-color: var(--primary);</span></span>
+<span class="line"><span>        color: #fff;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .btn-voice {</span></span>
+<span class="line"><span>        min-width: 96px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .hint {</span></span>
+<span class="line"><span>        margin-top: 10px;</span></span>
+<span class="line"><span>        color: var(--muted);</span></span>
+<span class="line"><span>        font-size: 12px;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      .typing::after {</span></span>
+<span class="line"><span>        content: &quot;● ● ●&quot;;</span></span>
+<span class="line"><span>        margin-left: 8px;</span></span>
+<span class="line"><span>        letter-spacing: 2px;</span></span>
+<span class="line"><span>        font-size: 11px;</span></span>
+<span class="line"><span>        color: #94a3b8;</span></span>
+<span class="line"><span>        animation: pulse 1s ease-in-out infinite;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      @keyframes pulse {</span></span>
+<span class="line"><span>        0%, 100% { opacity: 0.3; }</span></span>
+<span class="line"><span>        50% { opacity: 1; }</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    &lt;/style&gt;</span></span>
+<span class="line"><span>  &lt;/head&gt;</span></span>
+<span class="line"><span>  &lt;body&gt;</span></span>
+<span class="line"><span>    &lt;main class=&quot;page&quot;&gt;</span></span>
+<span class="line"><span>      &lt;section class=&quot;chat-shell&quot;&gt;</span></span>
+<span class="line"><span>        &lt;header class=&quot;header&quot;&gt;</span></span>
+<span class="line"><span>          &lt;h1 class=&quot;title&quot;&gt;AI 助手&lt;/h1&gt;</span></span>
+<span class="line"><span>          &lt;div class=&quot;subtitle&quot;&gt;录音后自动识别，再调用 AI 流式回复&lt;/div&gt;</span></span>
+<span class="line"><span>          &lt;div class=&quot;status-pill&quot; id=&quot;status&quot;&gt;状态：未开始&lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;/header&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        &lt;section class=&quot;messages&quot; id=&quot;messages&quot;&gt;</span></span>
+<span class="line"><span>          &lt;div class=&quot;empty&quot; id=&quot;emptyTip&quot;&gt;点击下方开始录音，体验语音问答。&lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;/section&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        &lt;footer class=&quot;composer&quot;&gt;</span></span>
+<span class="line"><span>          &lt;div class=&quot;toolbar&quot;&gt;</span></span>
+<span class="line"><span>            &lt;div class=&quot;input-wrap&quot;&gt;</span></span>
+<span class="line"><span>              &lt;textarea</span></span>
+<span class="line"><span>                class=&quot;prompt-input&quot;</span></span>
+<span class="line"><span>                id=&quot;promptInput&quot;</span></span>
+<span class="line"><span>                placeholder=&quot;输入问题，回车发送（Shift+Enter 换行）；也可以用语音按钮说话&quot;</span></span>
+<span class="line"><span>              &gt;&lt;/textarea&gt;</span></span>
+<span class="line"><span>            &lt;/div&gt;</span></span>
+<span class="line"><span>            &lt;button class=&quot;btn btn-voice&quot; id=&quot;recordBtn&quot;&gt;语音输入&lt;/button&gt;</span></span>
+<span class="line"><span>            &lt;button class=&quot;btn btn-primary&quot; id=&quot;sendBtn&quot;&gt;发送&lt;/button&gt;</span></span>
+<span class="line"><span>          &lt;/div&gt;</span></span>
+<span class="line"><span>          &lt;div class=&quot;hint&quot;&gt;文字直问：/ai/chat/stream；语音链路：/speech/asr -&gt; /ai/chat/stream&lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;/footer&gt;</span></span>
+<span class="line"><span>      &lt;/section&gt;</span></span>
+<span class="line"><span>    &lt;/main&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &lt;script&gt;</span></span>
+<span class="line"><span>      const promptInput = document.getElementById(&quot;promptInput&quot;);</span></span>
+<span class="line"><span>      const sendBtn = document.getElementById(&quot;sendBtn&quot;);</span></span>
+<span class="line"><span>      const recordBtn = document.getElementById(&quot;recordBtn&quot;);</span></span>
+<span class="line"><span>      const statusEl = document.getElementById(&quot;status&quot;);</span></span>
+<span class="line"><span>      const messagesEl = document.getElementById(&quot;messages&quot;);</span></span>
+<span class="line"><span>      const emptyTipEl = document.getElementById(&quot;emptyTip&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      let mediaRecorder = null;</span></span>
+<span class="line"><span>      let chunks = [];</span></span>
+<span class="line"><span>      let activeStream = null;</span></span>
+<span class="line"><span>      let activeAssistantContentEl = null;</span></span>
+<span class="line"><span>      let activeAssistantMetaEl = null;</span></span>
+<span class="line"><span>      let activeRecordStream = null;</span></span>
+<span class="line"><span>      let isRecording = false;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function setStatus(text, isTyping = false) {</span></span>
+<span class="line"><span>        statusEl.textContent = &quot;状态：&quot; + text;</span></span>
+<span class="line"><span>        statusEl.classList.toggle(&quot;typing&quot;, isTyping);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function nowTime() {</span></span>
+<span class="line"><span>        return new Date().toLocaleTimeString(&quot;zh-CN&quot;, { hour12: false });</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function scrollToBottom() {</span></span>
+<span class="line"><span>        messagesEl.scrollTop = messagesEl.scrollHeight;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function hideEmptyTip() {</span></span>
+<span class="line"><span>        if (emptyTipEl) {</span></span>
+<span class="line"><span>          emptyTipEl.style.display = &quot;none&quot;;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function appendMessage(role, text, metaText) {</span></span>
+<span class="line"><span>        hideEmptyTip();</span></span>
+<span class="line"><span>        const row = document.createElement(&quot;div&quot;);</span></span>
+<span class="line"><span>        row.className = &quot;msg-row &quot; + role;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        const bubble = document.createElement(&quot;div&quot;);</span></span>
+<span class="line"><span>        bubble.className = &quot;bubble&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        const content = document.createElement(&quot;div&quot;);</span></span>
+<span class="line"><span>        content.textContent = text;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        const meta = document.createElement(&quot;div&quot;);</span></span>
+<span class="line"><span>        meta.className = &quot;meta&quot;;</span></span>
+<span class="line"><span>        meta.textContent = metaText || nowTime();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        bubble.appendChild(content);</span></span>
+<span class="line"><span>        bubble.appendChild(meta);</span></span>
+<span class="line"><span>        row.appendChild(bubble);</span></span>
+<span class="line"><span>        messagesEl.appendChild(row);</span></span>
+<span class="line"><span>        scrollToBottom();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return { row, bubble, content, meta };</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function closeActiveStream() {</span></span>
+<span class="line"><span>        if (activeStream) {</span></span>
+<span class="line"><span>          activeStream.close();</span></span>
+<span class="line"><span>          activeStream = null;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function setRecordingUI(recording) {</span></span>
+<span class="line"><span>        isRecording = recording;</span></span>
+<span class="line"><span>        recordBtn.textContent = recording ? &quot;停止录音&quot; : &quot;语音输入&quot;;</span></span>
+<span class="line"><span>        recordBtn.classList.toggle(&quot;btn-primary&quot;, recording);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      async function uploadAndRecognize(blob) {</span></span>
+<span class="line"><span>        const formData = new FormData();</span></span>
+<span class="line"><span>        formData.append(&quot;audio&quot;, blob, &quot;record.ogg&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        const response = await fetch(&quot;/speech/asr&quot;, {</span></span>
+<span class="line"><span>          method: &quot;POST&quot;,</span></span>
+<span class="line"><span>          body: formData,</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>        if (!response.ok) {</span></span>
+<span class="line"><span>          const text = await response.text();</span></span>
+<span class="line"><span>          throw new Error(text || &quot;ASR 请求失败&quot;);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        const data = await response.json();</span></span>
+<span class="line"><span>        return data.text || &quot;&quot;;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      function streamAiReply(query) {</span></span>
+<span class="line"><span>        return new Promise((resolve) =&gt; {</span></span>
+<span class="line"><span>          closeActiveStream();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          const aiMsg = appendMessage(&quot;assistant&quot;, &quot;&quot;, &quot;AI 正在回答...&quot;);</span></span>
+<span class="line"><span>          activeAssistantContentEl = aiMsg.content;</span></span>
+<span class="line"><span>          activeAssistantMetaEl = aiMsg.meta;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          const url = &quot;/ai/chat/stream?query=&quot; + encodeURIComponent(query);</span></span>
+<span class="line"><span>          const es = new EventSource(url);</span></span>
+<span class="line"><span>          let aiResult = &quot;&quot;;</span></span>
+<span class="line"><span>          activeStream = es;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          es.onmessage = (event) =&gt; {</span></span>
+<span class="line"><span>            aiResult += event.data || &quot;&quot;;</span></span>
+<span class="line"><span>            activeAssistantContentEl.textContent = aiResult || &quot;（空结果）&quot;;</span></span>
+<span class="line"><span>            scrollToBottom();</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          es.onerror = () =&gt; {</span></span>
+<span class="line"><span>            es.close();</span></span>
+<span class="line"><span>            if (activeStream === es) {</span></span>
+<span class="line"><span>              activeStream = null;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            if (activeAssistantMetaEl) {</span></span>
+<span class="line"><span>              activeAssistantMetaEl.textContent = &quot;AI 回复完成 &quot; + nowTime();</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            resolve(aiResult);</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      async function askWithQuery(query, source) {</span></span>
+<span class="line"><span>        const trimmed = query.trim();</span></span>
+<span class="line"><span>        if (!trimmed) {</span></span>
+<span class="line"><span>          setStatus(&quot;请输入问题&quot;);</span></span>
+<span class="line"><span>          return;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        appendMessage(&quot;user&quot;, trimmed, source + &quot; &quot; + nowTime());</span></span>
+<span class="line"><span>        promptInput.value = &quot;&quot;;</span></span>
+<span class="line"><span>        sendBtn.disabled = true;</span></span>
+<span class="line"><span>        setStatus(&quot;AI 正在流式回答...&quot;, true);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          await streamAiReply(trimmed);</span></span>
+<span class="line"><span>          setStatus(&quot;对话完成&quot;);</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          appendMessage(</span></span>
+<span class="line"><span>            &quot;assistant&quot;,</span></span>
+<span class="line"><span>            &quot;处理失败：&quot; + (error.message || String(error)),</span></span>
+<span class="line"><span>            &quot;异常 &quot; + nowTime(),</span></span>
+<span class="line"><span>          );</span></span>
+<span class="line"><span>          setStatus(&quot;处理失败&quot;);</span></span>
+<span class="line"><span>        } finally {</span></span>
+<span class="line"><span>          sendBtn.disabled = false;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      sendBtn.addEventListener(&quot;click&quot;, async () =&gt; {</span></span>
+<span class="line"><span>        await askWithQuery(promptInput.value, &quot;文字提问&quot;);</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      promptInput.addEventListener(&quot;keydown&quot;, async (event) =&gt; {</span></span>
+<span class="line"><span>        if (event.key === &quot;Enter&quot; &amp;&amp; !event.shiftKey) {</span></span>
+<span class="line"><span>          event.preventDefault();</span></span>
+<span class="line"><span>          await askWithQuery(promptInput.value, &quot;文字提问&quot;);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      recordBtn.addEventListener(&quot;click&quot;, async () =&gt; {</span></span>
+<span class="line"><span>        if (isRecording) {</span></span>
+<span class="line"><span>          if (mediaRecorder) {</span></span>
+<span class="line"><span>            mediaRecorder.stop();</span></span>
+<span class="line"><span>            setStatus(&quot;已停止录音，正在识别...&quot;);</span></span>
+<span class="line"><span>          }</span></span>
+<span class="line"><span>          return;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>          closeActiveStream();</span></span>
+<span class="line"><span>          activeRecordStream = await navigator.mediaDevices.getUserMedia({ audio: true });</span></span>
+<span class="line"><span>          chunks = [];</span></span>
+<span class="line"><span>          const preferredMimeType = &quot;audio/ogg;codecs=opus&quot;;</span></span>
+<span class="line"><span>          mediaRecorder = MediaRecorder.isTypeSupported(preferredMimeType)</span></span>
+<span class="line"><span>            ? new MediaRecorder(activeRecordStream, { mimeType: preferredMimeType })</span></span>
+<span class="line"><span>            : new MediaRecorder(activeRecordStream);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.ondataavailable = (event) =&gt; {</span></span>
+<span class="line"><span>            if (event.data &amp;&amp; event.data.size &gt; 0) {</span></span>
+<span class="line"><span>              chunks.push(event.data);</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.onstop = async () =&gt; {</span></span>
+<span class="line"><span>            try {</span></span>
+<span class="line"><span>              const blob = new Blob(chunks, {</span></span>
+<span class="line"><span>                type: mediaRecorder.mimeType || &quot;audio/webm&quot;,</span></span>
+<span class="line"><span>              });</span></span>
+<span class="line"><span>              if (!blob.size) {</span></span>
+<span class="line"><span>                throw new Error(&quot;录音数据为空，请至少录制 1 秒再上传&quot;);</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              setStatus(&quot;语音识别中...&quot;);</span></span>
+<span class="line"><span>              const recognized = (await uploadAndRecognize(blob)).trim();</span></span>
+<span class="line"><span>              promptInput.value = recognized;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              if (!recognized) {</span></span>
+<span class="line"><span>                setStatus(&quot;识别为空，请重新录音&quot;);</span></span>
+<span class="line"><span>                return;</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>              await askWithQuery(recognized, &quot;语音提问&quot;);</span></span>
+<span class="line"><span>            } catch (error) {</span></span>
+<span class="line"><span>              appendMessage(</span></span>
+<span class="line"><span>                &quot;assistant&quot;,</span></span>
+<span class="line"><span>                &quot;语音处理失败：&quot; + (error.message || String(error)),</span></span>
+<span class="line"><span>                &quot;异常 &quot; + nowTime(),</span></span>
+<span class="line"><span>              );</span></span>
+<span class="line"><span>              setStatus(&quot;语音处理失败&quot;);</span></span>
+<span class="line"><span>            } finally {</span></span>
+<span class="line"><span>              if (activeRecordStream) {</span></span>
+<span class="line"><span>                activeRecordStream.getTracks().forEach((t) =&gt; t.stop());</span></span>
+<span class="line"><span>                activeRecordStream = null;</span></span>
+<span class="line"><span>              }</span></span>
+<span class="line"><span>              setRecordingUI(false);</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>          };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          mediaRecorder.start(250);</span></span>
+<span class="line"><span>          setRecordingUI(true);</span></span>
+<span class="line"><span>          setStatus(&quot;录音中，点击“停止录音”完成提问&quot;);</span></span>
+<span class="line"><span>        } catch (error) {</span></span>
+<span class="line"><span>          appendMessage(</span></span>
+<span class="line"><span>            &quot;assistant&quot;,</span></span>
+<span class="line"><span>            &quot;无法开始录音：&quot; + (error.message || String(error)),</span></span>
+<span class="line"><span>            &quot;异常 &quot; + nowTime(),</span></span>
+<span class="line"><span>          );</span></span>
+<span class="line"><span>          setStatus(&quot;无法开始录音&quot;);</span></span>
+<span class="line"><span>          setRecordingUI(false);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    &lt;/script&gt;</span></span>
+<span class="line"><span>  &lt;/body&gt;</span></span>
+<span class="line"><span>&lt;/html&gt;</span></span></code></pre></div><p>跑一下：</p><video src="`+m+`"></video><p>接下来做一下流式语音朗读就可以了。</p><p>大概是这样的思路：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwffFyibCI6HVSWQaSdgSib1mBsN7mzwNxl9E9dkQFCVucSuHe1LexEk0V6sWwUNOyU4iaiaphVpZbvhYZuicdjLSNh2BJN7KvwrCD0XA/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=11" alt="图片" referrerpolicy="no-referrer"></p><p>/ai/chat/stream 接口就是 SSE 流式返回文本的接口。</p><p>但是 SSE 是 http 的文本协议，二进制数据需要转成 base64 才行，但这样体积又会很大，所以不用 SSE 传二进制数据，我们单独一个 WebSocket 做语音的流式推送。</p><p>腾讯云的 streaming tts 接口是流式往那边推文本，流式返回语音数据。</p><p>我们在 SSE 接口生成流式文本的时候，通过事件的方式推送给 ws 接口，这里用腾讯云的流式语音接口生成语音数据后，推送给前端代码来播放语音。</p><p>总之，就是一个 SSE 通道，一个 WS 通道，SSE 返回流式文本，同时用 WS 流式返回语音。</p><p>事件通知用 @nestjs/event-emitter 这个包。</p><p>安装下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @nestjs/event-emitter</span></span></code></pre></div><p>用法是这样：</p><p>AppModule 引入这个模块：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeY4J2CXgwYITZ334nwEZiabtwXWlkL5ksYVor1y5m1uTLia0gDMKFg2y0PA2YVa2AJ2ibtwQaQEq4FE9FhA7Lb6LCSW6TQM8u5ME/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=12" alt="图片" referrerpolicy="no-referrer"></p><p>需要 emit 事件的地方这样：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfc169rDKtxuESNjlibvyEjYqjmp1aqhuEA6GQDlnzAhszr0cyg9kibRsHia4AWKcs3M5wkmjmZBZEXU506P324sA3xlNmzFr2Kvzs/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=13" alt="图片" referrerpolicy="no-referrer"></p><p>注入这个 EventEmitter2 的实例，emit 一个事件。</p><p>然后需要处理这个事件的地方，用 OnEvent 监听下这个事件名：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwff647A7lDHHV5ZOy9JTJUiclba2to1HhcVcr9MD84NF1FUp1G0hJMdrTJpIicAZicLb2XoCxsNgED7zGUHQicApjrIYDicbc8icBQ8r0/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=14" alt="图片" referrerpolicy="no-referrer"></p><p>那边 emit 这个事件的时候就会自动调用这个方法。</p><p>用起来超级简单。</p><p>然后我们来实现下流式语音的功能。</p><p>创建 src/speech/tts-relay.service.ts</p><p>这里主要是连接腾讯云的 streaming tts 接口来做语音合成。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfemqGQGwJSqsz4jBdMU0b6YbJ9SgFH5JBIibWy4152pgz6QgMT9lxyaERG0D43EvJjtz3YSPMX97FGyrTaGofMo7oEicKZtvkIqY/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=15" alt="图片" referrerpolicy="no-referrer"></p><p>这个构造 ws 的 url 的方法之前讲过，不用细看。</p><p>然后用这个 url 连接上腾讯云的 tts 的 ws 服务</p><p>如果那边传过来的是二进制，就直接通过 websocket 发送给前端</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdd2EhAcUA5AF44Z70twX8YvSf5M9I2r8NB4ibic6qlJ0t2eIQQv3f5tCH20GXZo20QCb8oFJfxNRvK8SJLmicGmwicIwZ3jhUpMw4/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=16" alt="图片" referrerpolicy="no-referrer"></p><p>当然非二进制就作为 json 来处理：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfed3MmshOILsHR9MePPoTGvAWZBeiakwyZY5uMsJR0W231PibhQcmBQCHMBOR5xxorZTC5ojtaOKdp2CT3nicngmTCP9iaXZ3e5PKs/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=17" alt="图片" referrerpolicy="no-referrer"></p><p>非二进制用 JSON.parse 处理下，根据不同的类型，给前端返回不同的 json，比如 tts_error、tts_final 等。</p><p>然后收到事件的时候，根据事件类型做不同处理：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcrW3jOA41zl23SXFUoBVGk59fAFp0Jt2Scrd7OfXNOzAASrSSicEPKicF9PPUw60DIIiaNE4k2VL3tbFFhQwcDhpr9OKkgqX4hhY/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=18" alt="图片" referrerpolicy="no-referrer"></p><p>如果收到的是 start 事件，就和腾讯云的 tts 服务建立连接。</p><p>如果收到的是 chunk 事件，就把这段文本发送给 tts 服务</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdgnx0cqM2IbUcKDPiaKQFDD4o2aIuHcb4RniaUJmUd2d67ZthyYhnop9cgEibdP3edkcpyefAwyZ9TiaIZWzZuSQP7AdY07PeqVGQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=19" alt="图片" referrerpolicy="no-referrer"></p><p>这样，流程就走通了。</p><p>完整代码如下（不用细看，理解思路就行）：</p><p>speech/tts-relay.service.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { Inject, Injectable, Logger, OnModuleDestroy } from &#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { ConfigService } from &#39;@nestjs/config&#39;;</span></span>
+<span class="line"><span>import { createHmac, randomUUID } from &#39;node:crypto&#39;;</span></span>
+<span class="line"><span>import { OnEvent } from &#39;@nestjs/event-emitter&#39;;</span></span>
+<span class="line"><span>import { AI_TTS_STREAM_EVENT, type AiTtsStreamEvent } from &#39;../common/stream-events&#39;;</span></span>
+<span class="line"><span>import WebSocket from &#39;ws&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type ClientSession = {</span></span>
+<span class="line"><span>  sessionId: string;</span></span>
+<span class="line"><span>  clientWs: WebSocket;</span></span>
+<span class="line"><span>  tencentWs?: WebSocket;</span></span>
+<span class="line"><span>  ready: boolean;</span></span>
+<span class="line"><span>  pendingChunks: string[];</span></span>
+<span class="line"><span>  closed: boolean;</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Injectable()</span></span>
+<span class="line"><span>export class TtsRelayService implements OnModuleDestroy {</span></span>
+<span class="line"><span>  private readonly logger = new Logger(TtsRelayService.name);</span></span>
+<span class="line"><span>  private readonly sessions = new Map&lt;string, ClientSession&gt;();</span></span>
+<span class="line"><span>  private readonly secretId: string;</span></span>
+<span class="line"><span>  private readonly secretKey: string;</span></span>
+<span class="line"><span>  private readonly appId: number;</span></span>
+<span class="line"><span>  private readonly voiceType: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  constructor(@Inject(ConfigService) configService: ConfigService) {</span></span>
+<span class="line"><span>    this.secretId = configService.get&lt;string&gt;(&#39;SECRET_ID&#39;) ?? &#39;&#39;;</span></span>
+<span class="line"><span>    this.secretKey = configService.get&lt;string&gt;(&#39;SECRET_KEY&#39;) ?? &#39;&#39;;</span></span>
+<span class="line"><span>    this.appId = Number(configService.get&lt;string&gt;(&#39;APP_ID&#39;) ?? 0);</span></span>
+<span class="line"><span>    this.voiceType = Number(configService.get&lt;string&gt;(&#39;TTS_VOICE_TYPE&#39;) ?? 101001);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  onModuleDestroy(): void {</span></span>
+<span class="line"><span>    for (const session of this.sessions.values()) {</span></span>
+<span class="line"><span>      this.closeSession(session.sessionId, &#39;module destroy&#39;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  registerClient(clientWs: WebSocket, wantedSessionId?: string): string {</span></span>
+<span class="line"><span>    const sessionId = wantedSessionId?.trim() || randomUUID();</span></span>
+<span class="line"><span>    const existing = this.sessions.get(sessionId);</span></span>
+<span class="line"><span>    if (existing) {</span></span>
+<span class="line"><span>      this.closeSession(sessionId, &#39;client reconnected&#39;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    this.sessions.set(sessionId, {</span></span>
+<span class="line"><span>      sessionId,</span></span>
+<span class="line"><span>      clientWs,</span></span>
+<span class="line"><span>      ready: false,</span></span>
+<span class="line"><span>      pendingChunks: [],</span></span>
+<span class="line"><span>      closed: false,</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>    this.sendClientJson(clientWs, { type: &#39;session&#39;, sessionId });</span></span>
+<span class="line"><span>    this.logger.log(\`TTS client connected: \${sessionId}\`);</span></span>
+<span class="line"><span>    return sessionId;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  unregisterClient(sessionId: string): void {</span></span>
+<span class="line"><span>    this.closeSession(sessionId, &#39;client disconnected&#39;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @OnEvent(AI_TTS_STREAM_EVENT)</span></span>
+<span class="line"><span>  handleAiStreamEvent(event: AiTtsStreamEvent): void {</span></span>
+<span class="line"><span>    const session = this.sessions.get(event.sessionId);</span></span>
+<span class="line"><span>    if (!session) return;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    switch (event.type) {</span></span>
+<span class="line"><span>      case &#39;start&#39;: {</span></span>
+<span class="line"><span>        this.ensureTencentConnection(session);</span></span>
+<span class="line"><span>        this.sendClientJson(session.clientWs, {</span></span>
+<span class="line"><span>          type: &#39;tts_started&#39;,</span></span>
+<span class="line"><span>          sessionId: session.sessionId,</span></span>
+<span class="line"><span>          query: event.query,</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      case &#39;chunk&#39;: {</span></span>
+<span class="line"><span>        const chunk = event.chunk?.trim();</span></span>
+<span class="line"><span>        if (!chunk) return;</span></span>
+<span class="line"><span>        if (!session.ready || !session.tencentWs || session.tencentWs.readyState !== WebSocket.OPEN) {</span></span>
+<span class="line"><span>          session.pendingChunks.push(chunk);</span></span>
+<span class="line"><span>          return;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        this.sendTencentChunk(session, chunk);</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      case &#39;end&#39;: {</span></span>
+<span class="line"><span>        this.flushPendingChunks(session);</span></span>
+<span class="line"><span>        if (session.tencentWs &amp;&amp; session.tencentWs.readyState === WebSocket.OPEN) {</span></span>
+<span class="line"><span>          session.tencentWs.send(</span></span>
+<span class="line"><span>            JSON.stringify({</span></span>
+<span class="line"><span>              session_id: session.sessionId,</span></span>
+<span class="line"><span>              action: &#39;ACTION_COMPLETE&#39;,</span></span>
+<span class="line"><span>            }),</span></span>
+<span class="line"><span>          );</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      case &#39;error&#39;: {</span></span>
+<span class="line"><span>        this.sendClientJson(session.clientWs, {</span></span>
+<span class="line"><span>          type: &#39;tts_error&#39;,</span></span>
+<span class="line"><span>          message: event.error,</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>        this.closeSession(session.sessionId, &#39;ai stream error&#39;);</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private ensureTencentConnection(session: ClientSession): void {</span></span>
+<span class="line"><span>    if (session.tencentWs &amp;&amp; session.tencentWs.readyState &lt;= WebSocket.OPEN) {</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    if (!this.secretId || !this.secretKey || !this.appId) {</span></span>
+<span class="line"><span>      this.sendClientJson(session.clientWs, {</span></span>
+<span class="line"><span>        type: &#39;tts_error&#39;,</span></span>
+<span class="line"><span>        message: &#39;TTS 凭证缺失，请检查 SECRET_ID/SECRET_KEY/APP_ID&#39;,</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const url = this.buildTencentTtsWsUrl(session.sessionId);</span></span>
+<span class="line"><span>    const tencentWs = new WebSocket(url);</span></span>
+<span class="line"><span>    session.tencentWs = tencentWs;</span></span>
+<span class="line"><span>    session.ready = false;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    tencentWs.on(&#39;open&#39;, () =&gt; {</span></span>
+<span class="line"><span>      this.logger.log(\`Tencent TTS ws opened: \${session.sessionId}\`);</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    tencentWs.on(&#39;message&#39;, (data, isBinary) =&gt; {</span></span>
+<span class="line"><span>      if (session.closed) return;</span></span>
+<span class="line"><span>      if (isBinary) {</span></span>
+<span class="line"><span>        if (session.clientWs.readyState === WebSocket.OPEN) {</span></span>
+<span class="line"><span>          session.clientWs.send(data, { binary: true });</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        return;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      const raw = data.toString();</span></span>
+<span class="line"><span>      let msg: Record&lt;string, unknown&gt; | undefined;</span></span>
+<span class="line"><span>      try {</span></span>
+<span class="line"><span>        msg = JSON.parse(raw) as Record&lt;string, unknown&gt;;</span></span>
+<span class="line"><span>      } catch {</span></span>
+<span class="line"><span>        return;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      if (Number(msg.ready) === 1) {</span></span>
+<span class="line"><span>        session.ready = true;</span></span>
+<span class="line"><span>        this.flushPendingChunks(session);</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      if (Number(msg.code) &amp;&amp; Number(msg.code) !== 0) {</span></span>
+<span class="line"><span>        this.sendClientJson(session.clientWs, {</span></span>
+<span class="line"><span>          type: &#39;tts_error&#39;,</span></span>
+<span class="line"><span>          message: String(msg.message ?? &#39;Tencent TTS error&#39;),</span></span>
+<span class="line"><span>          code: Number(msg.code),</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>        this.closeSession(session.sessionId, &#39;tencent error&#39;);</span></span>
+<span class="line"><span>        return;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      if (Number(msg.final) === 1) {</span></span>
+<span class="line"><span>        this.sendClientJson(session.clientWs, { type: &#39;tts_final&#39; });</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    tencentWs.on(&#39;error&#39;, (error) =&gt; {</span></span>
+<span class="line"><span>      this.sendClientJson(session.clientWs, {</span></span>
+<span class="line"><span>        type: &#39;tts_error&#39;,</span></span>
+<span class="line"><span>        message: \`Tencent ws error: \${error.message}\`,</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    tencentWs.on(&#39;close&#39;, () =&gt; {</span></span>
+<span class="line"><span>      session.tencentWs = undefined;</span></span>
+<span class="line"><span>      session.ready = false;</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private flushPendingChunks(session: ClientSession): void {</span></span>
+<span class="line"><span>    if (!session.ready || !session.tencentWs || session.tencentWs.readyState !== WebSocket.OPEN) {</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    while (session.pendingChunks.length &gt; 0) {</span></span>
+<span class="line"><span>      const chunk = session.pendingChunks.shift();</span></span>
+<span class="line"><span>      if (!chunk) continue;</span></span>
+<span class="line"><span>      this.sendTencentChunk(session, chunk);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private sendTencentChunk(session: ClientSession, text: string): void {</span></span>
+<span class="line"><span>    if (!session.tencentWs || session.tencentWs.readyState !== WebSocket.OPEN) {</span></span>
+<span class="line"><span>      session.pendingChunks.push(text);</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    session.tencentWs.send(</span></span>
+<span class="line"><span>      JSON.stringify({</span></span>
+<span class="line"><span>        session_id: session.sessionId,</span></span>
+<span class="line"><span>        message_id: \`msg_\${Date.now()}_\${Math.random().toString(36).slice(2, 8)}\`,</span></span>
+<span class="line"><span>        action: &#39;ACTION_SYNTHESIS&#39;,</span></span>
+<span class="line"><span>        data: text,</span></span>
+<span class="line"><span>      }),</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private closeSession(sessionId: string, reason: string): void {</span></span>
+<span class="line"><span>    const session = this.sessions.get(sessionId);</span></span>
+<span class="line"><span>    if (!session) return;</span></span>
+<span class="line"><span>    session.closed = true;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (session.tencentWs &amp;&amp; session.tencentWs.readyState &lt; WebSocket.CLOSING) {</span></span>
+<span class="line"><span>      session.tencentWs.close();</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    if (session.clientWs.readyState &lt; WebSocket.CLOSING) {</span></span>
+<span class="line"><span>      this.sendClientJson(session.clientWs, { type: &#39;tts_closed&#39;, reason });</span></span>
+<span class="line"><span>      session.clientWs.close();</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    this.sessions.delete(sessionId);</span></span>
+<span class="line"><span>    this.logger.log(\`TTS session closed: \${sessionId}, reason: \${reason}\`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private sendClientJson(clientWs: WebSocket, payload: Record&lt;string, unknown&gt;): void {</span></span>
+<span class="line"><span>    if (clientWs.readyState !== WebSocket.OPEN) return;</span></span>
+<span class="line"><span>    clientWs.send(JSON.stringify(payload));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private buildTencentTtsWsUrl(sessionId: string): string {</span></span>
+<span class="line"><span>    const now = Math.floor(Date.now() / 1000);</span></span>
+<span class="line"><span>    const params: Record&lt;string, string | number&gt; = {</span></span>
+<span class="line"><span>      Action: &#39;TextToStreamAudioWSv2&#39;,</span></span>
+<span class="line"><span>      AppId: this.appId,</span></span>
+<span class="line"><span>      Codec: &#39;mp3&#39;,</span></span>
+<span class="line"><span>      Expired: now + 3600,</span></span>
+<span class="line"><span>      SampleRate: 16000,</span></span>
+<span class="line"><span>      SecretId: this.secretId,</span></span>
+<span class="line"><span>      SessionId: sessionId,</span></span>
+<span class="line"><span>      Speed: 0,</span></span>
+<span class="line"><span>      Timestamp: now,</span></span>
+<span class="line"><span>      VoiceType: this.voiceType,</span></span>
+<span class="line"><span>      Volume: 5,</span></span>
+<span class="line"><span>    };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const signStr = Object.keys(params)</span></span>
+<span class="line"><span>      .sort()</span></span>
+<span class="line"><span>      .map((k) =&gt; \`\${k}=\${params[k]}\`)</span></span>
+<span class="line"><span>      .join(&#39;&amp;&#39;);</span></span>
+<span class="line"><span>    const rawStr = \`GETtts.cloud.tencent.com/stream_wsv2?\${signStr}\`;</span></span>
+<span class="line"><span>    const signature = createHmac(&#39;sha1&#39;, this.secretKey).update(rawStr).digest(&#39;base64&#39;);</span></span>
+<span class="line"><span>    const searchParams = new URLSearchParams({</span></span>
+<span class="line"><span>      ...Object.fromEntries(Object.entries(params).map(([k, v]) =&gt; [k, String(v)])),</span></span>
+<span class="line"><span>      Signature: signature,</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return \`wss://tts.cloud.tencent.com/stream_wsv2?\${searchParams.toString()}\`;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>在 SpeechModule 导出这个 service：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeibX98VtDmtoTUxNKjLFVWLhdSvnuI3f9icoU2GqkiazhwH6UPaZzdicUDvE5O3gZtajY8j18Eg3HvL9BgibmRMJLwzcXVPtncdiblc/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=20" alt="图片" referrerpolicy="no-referrer"></p><p>用到的一些常量、类型定义在 common/stream-events.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>export const AI_TTS_STREAM_EVENT = &#39;ai.tts.stream&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export type AiTtsStreamEvent =</span></span>
+<span class="line"><span>  | { type: &#39;start&#39;; sessionId: string; query: string }</span></span>
+<span class="line"><span>  | { type: &#39;chunk&#39;; sessionId: string; chunk: string }</span></span>
+<span class="line"><span>  | { type: &#39;end&#39;; sessionId: string }</span></span>
+<span class="line"><span>  | { type: &#39;error&#39;; sessionId: string; error: string };</span></span></code></pre></div><p>然后在 SSE 接口那边，发事件来触发这边的语音生成：</p><p>首先在 AiController 里需要传入 sessionId</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcicJ37uXWHV3guJUN1MzJQP61OaZJtJFqHJsH8v7TukZLCraJqKqtkvRAicgPDl7BUDhufNJBlzyZ2F4ZU2vpZJedxQeq7OkoxQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=21" alt="图片" referrerpolicy="no-referrer"></p><p>用 eventEmitter 发事件，建立连接。</p><p>在 AiService 里，发送具体的文本：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffMBv1DYVtwrnxib2iaH7vLhOia52Aic1FvuTuawwNQFVtvSy9Wvq7SbVeVfmT2fUwkg9Td8ubFXJXtRyqQI7shPwcNwy16eVHvr8c/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=22" alt="图片" referrerpolicy="no-referrer"></p><p>这样，当用户传入文本，生成回答的时候，就会和腾讯云 tts 服务建立链接，发送文本</p><p>接下来只要再搞一个 ws 服务，让前端可以连就可以了。</p><p>改下 main.ts:</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdvQpkz0Fwypw3WWqK8qzzYm1cY7AymVNiaOOnaWdgrRFLrS16GnXErtCuCFB5ox7rs77KJwpLB0DkUMJ0CvWCM9W4AxkFkuRwo/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=23" alt="图片" referrerpolicy="no-referrer"></p><p>用 ws 创建一个 WebSocketServer</p><p>把 socket 注册到 ttsRelayService，这样那边就可以用这个 socket 给客户端发消息了。</p><p>最后来改下前端的 html：</p><p>首先是和后端的 ws 建立连接：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffT66VUbIlS2Zlwpym3kKvBGbqdqOR2tN3Qt6sicCyjkFhrr9g7hyN14GoGK3ibGVajzCIvbKdgdkN763g7vkYIr6jNrTicKicm9cE/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=24" alt="图片" referrerpolicy="no-referrer"></p><p>和刚才的 ws 接口建立连接</p><p>根据返回的是字符串，还是二进制 ArrayBuffer 做不同处理</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcp8BvPfuppEnQx2xO9Njxda8NFm6mVWkib5k0yk4pBgsMQATcq52a8ZtrBeCeeBCVJlbqxnic4qpk5fP2EcYwv3rSDV5Uvjl39A/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=25" alt="图片" referrerpolicy="no-referrer"></p><p>字符串就是作为 JSON 来 parse，根据不同的类型做不同处理</p><p>二进制就是作为语音播放。</p><p>语音播放用到 Audio 的标签，然后它的 url 是 MediaSource</p><p>MediaSource 通过 SourceBuffer 动态添加流式的语音数据，就可以实现流式播放</p><p>原理是这样：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcPhXODPict3sXTNLMyWqwMJrgSxYtRjQhv0ydw9mMPtNicicdwF5IRMibcvpJibwZ5YGIgKKerVJSavgibXu3h1MS6LOrzPzJibQfia2w/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=26" alt="图片" referrerpolicy="no-referrer"></p><p>具体代码如下：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcVlnNVMJQQSN07odTef6lLGdg55xrickuZX2icfzh8GjC3zojhIfFNuJutYQtaWS0SGeJibficWTcSyc27f6ZiccuTrgK5m4g1Pf44/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=27" alt="图片" referrerpolicy="no-referrer"></p><p>给 audio 的 element 设置 MediaSource 的 object url</p><p>然后添加一个 SourceBuffer</p><p>之后 ws 返回的服务，往这个 sourceBuffer.appendBuffer 就好了。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcU2hUsticNzFQp7coRCAiaJWm8CU3MEGjiaLe76lFfRHljDDQyIctRjRMMLicklJicibtxhfh9W5e2NdibB1ib23DCVfFC4LVJKclEtibI/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=28" alt="图片" referrerpolicy="no-referrer"></p><p>具体代码从仓库复制吧，就不贴了。</p><p>配置下音色 id：<img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeicmSIkV6M4icH2kxJTM51FmsvKicjanMa5JItSibkYAbxxq9Jtf5amzXCKFRj0vtxfmVj9iaE5qUj3U139yn5Mv9JGN5NTBjNFANc/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=29" alt="图片" referrerpolicy="no-referrer"></p><p>改了配置需要重启服务才生效。</p><p>安装下 ws 的包：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install ws</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>pnpm install --save-dev @types/ws</span></span></code></pre></div><p>我们跑一下：</p><video src="`+d+'"></video><p>这样，我们就实现了豆包同款语音功能。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>我们实现了豆包同款的语音功能。</p><p>首先是语音识别 ASR：</p><p>这个不需要流式，前端用 MediaRecorder 录音完成后，放到 FormData 里 post 传给后端，后端调用腾讯云的 asr 接口转成文本返回</p><p>之后前端用文本调用 ai 接口，通过 SSE 流式返回文本回答。</p><p>然后是语音合成 TTS：</p><p>这个一般都是要流式的，因为文本是流式生成的，不可能等文本全生成再播放语音，所以需要用流式语音合成的接口。</p><p>文字用 SSE 流式返回，但这个是基于 http 的文本协议，不适合返回二进制数据，所以需要再做一个 WebSocket 服务来推送语音数据。</p><p>SSE 那边流式生成文本之后，通过事件传给 WebSocket 服务，把文本推给腾讯云 tts 服务，那边返回语音数据之后用 ws 推给前端。</p><p>前端用 Audio 标签 + MediaSource + SourceBuffer 来实现流式的播放。</p><p>Audio 标签设置 MediaSource 为 object url 的 src，MediaSource 添加 SourceBuffer，然后就可以不断 push 二进制数据 ArrayBuffer 实现流式播放了。</p><p>这个流式语音功能有技术难点，可以作为简历的一个亮点，把思路理清，试着自己复述一下。</p>',210)])])}const x=n(u,[["render",g]]);export{S as __pageData,x as default};

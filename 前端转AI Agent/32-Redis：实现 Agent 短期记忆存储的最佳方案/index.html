@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis：实现 Agent 短期记忆存储的最佳方案已付费 | 我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/ai-docs/assets/style.BCY4Bg7A.css" as="style">
+    <link rel="preload stylesheet" href="/ai-docs/vp-icons.css" as="style">
+    
+    <script type="module" src="/ai-docs/assets/app.DtHfIqAr.js"></script>
+    <link rel="preload" href="/ai-docs/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/theme.DA4Qk7BY.js">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/framework.lghGfHnE.js">
+    <link rel="modulepreload" href="/ai-docs/assets/前端转AI Agent_32-Redis：实现 Agent 短期记忆存储的最佳方案_index.md.zdAhZc5S.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/ai-docs/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-6aa21345 data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bb2aa2f0><div class="item social-links" data-v-bb2aa2f0><div class="VPSocialLinks social-links-list" data-v-bb2aa2f0 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible has-active" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>23-图编排引擎：LangGraph 和多 Agent 架构</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>25-基于 Docker Compose 的本地开发提效和生产环境部署</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>27-Neo4j 知识图谱和 Graph RAG</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>30-DeepAgents 实战：多 Agent 架构的深度调研助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>31-PostgreSQL：AI 时代最适合的数据库</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>32-Redis：实现 Agent 短期记忆存储的最佳方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>33-Mem0：分层记忆 + 三路召回的长期记忆方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>34-Nest 进阶：企业级 Node.js 后端最主流框架</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>36-多模态与 OSS 前端直传实战：AI 画板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>37-RabbitMQ：Agent 中异步处理的标配方案</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _ai-docs_%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_32-Redis%EF%BC%9A%E5%AE%9E%E7%8E%B0%20Agent%20%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E5%AD%98%E5%82%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%96%B9%E6%A1%88_" data-v-39a288b8><div><h1 id="redis-实现-agent-短期记忆存储的最佳方案已付费" tabindex="-1">Redis：实现 Agent 短期记忆存储的最佳方案已付费 <a class="header-anchor" href="#redis-实现-agent-短期记忆存储的最佳方案已付费" aria-label="Permalink to &quot;Redis：实现 Agent 短期记忆存储的最佳方案已付费&quot;">​</a></h1><p>原创 神说要有光 [神光的幸福生活](&lt;javascript:void(0);&gt;) <em>2026年6月1日 12:41</em> <em>山东</em> 1人</p><p>用户和 Agent 聊了几轮之后，对话上下文该存放在哪里呢？</p><p>CLI 版的单机 Agent 很简单：</p><p>所有对话、截断、摘要都直接放在进程内存里，不需要任何外部存储。</p><p>但后端服务不一样：</p><p>线上服务一般会部署多个服务实例做负载均衡，单实例内存无法共享会话数据；同时对话属于高频读写的热数据，对响应延迟要求极高，还需要实现会话闲置自动失效。</p><p>这种场景下，最近几轮对话、动态截断、历史摘要，这些运行时上下文必须放在 Redis 里。</p><p>依靠 Redis 低延迟读写、天然支持 TTL 过期、多实例数据共享的特性，完美支撑短期会话运行。</p><p>Redis 只负责承载运行时短期记忆，不会长期保存数据。</p><p>每一条消息本身，最终都会异步写入 PostgreSQL 保存，作为永久的聊天记录和可语义检索的长期记忆。</p><p>写消息的流程是这样的：</p><ul><li>用户发消息</li><li>写入 Redis（更新短期记忆）</li><li>同时写入 PostgreSQL（落库永久保存）</li><li>截断、摘要都在 Redis 里做</li><li>长期记忆检索从 PostgreSQL + 向量查</li></ul><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfc2Z3uLVPbQwfhdhGppYoibYKnoVE1n89z2HasWGC0pNylSw6ficcXqpnuPlh38dqNuvgeuIVfEj8hUx0p5c7bzVian0LrRthBSAw/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>我们先学下 Redis，然后基于它实现短期记忆。</p><p>Redis 是一个高性能的<strong>键值型内存数据库</strong>，也是后端开发中最常用的缓存中间件之一。</p><p>它的数据默认都存在内存里，读写延迟通常在亚毫秒级，天生就适合处理像对话上下文这样的高频读写场景。</p><p>它的几个特性，刚好完美适配 Agent 短期记忆的需求：</p><ul><li><strong>支持 TTL（过期时间）</strong></li></ul><p>会话闲置一段时间后，数据会自动过期清理，不用我们写额外的定时清理逻辑，非常省心。</p><ul><li><strong>多实例共享数据</strong></li></ul><p>所有 Agent 服务实例都能连接同一个 Redis，用户的会话上下文在任何实例上都能被读取，完美解决了负载均衡下的会话共享问题。</p><ul><li><strong>丰富的数据结构</strong></li></ul><p>我们可以用 List 直接存对话列表，用 Hash 存会话元信息，用 String 存对话摘要，实现起来非常灵活。</p><ul><li><strong>支持持久化</strong></li></ul><p>如果需要，Redis 也能通过 RDB/AOF 做数据备份，避免极端情况下会话数据丢失，兼顾性能与可靠性。</p><p>接下来，我们就来用一下 Redis</p><p>创建项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir redis-test</span></span>
+<span class="line"><span>cd redis-test</span></span>
+<span class="line"><span>npm init -y</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwffUSkMmLdR4HPORNR2icCx0IOO2s2icMyoWmQMAgsbLrCsmj2FSmwgtg4lJ4Ow3mkePFjZibIfFTqUe3rjib8PibXxPZFAVPFHwvDm4/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>创建 docker-compose.yml</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>services:</span></span>
+<span class="line"><span>  # Redis</span></span>
+<span class="line"><span>redis:</span></span>
+<span class="line"><span>    image:redis:7-alpine</span></span>
+<span class="line"><span>    container_name:agent_redis</span></span>
+<span class="line"><span>    restart:always</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;6379:6379&quot;</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redis:/data</span></span>
+<span class="line"><span>    command:redis-server--appendonlyyes</span></span>
+<span class="line"><span>    healthcheck:</span></span>
+<span class="line"><span>      test:[&quot;CMD&quot;,&quot;redis-cli&quot;,&quot;ping&quot;]</span></span>
+<span class="line"><span>      interval:5s</span></span>
+<span class="line"><span>      timeout:5s</span></span>
+<span class="line"><span>      retries:5</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Redis 官方 Web GUI（类似 pgAdmin）</span></span>
+<span class="line"><span>redisinsight:</span></span>
+<span class="line"><span>    image:redis/redisinsight:2.50</span></span>
+<span class="line"><span>    container_name:redis_insight</span></span>
+<span class="line"><span>    restart:always</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;5540:5540&quot;</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redisinsight:/data</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      -RI_HOST=0.0.0.0</span></span>
+<span class="line"><span>    depends_on:</span></span>
+<span class="line"><span>      -redis</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>networks:</span></span>
+<span class="line"><span>default:</span></span>
+<span class="line"><span>    name:common-network</span></span></code></pre></div><p>跑下 redis 以及它的 GUI</p><p><video src="/ai-docs/assets/video1.C5LRLAJZ.mp4"></video></p><p>我们通过命令创建了 string 类型的 key，并设置了 TTL 过期时间。</p><p>redis 还有很多数据类型：<img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfexpvicMkUe2eq0QbTel3wPwKGbqaQIeftmL8tIOv351DibSkqKu22icO3BXhhzQC5MHf9lrj4x9saUSDIVc01olZnySvUYcnriaLk/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>我们过一遍常用的 7 种：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcaImgKsVVTv8RAkRVLhibpRctLIbReds2gq5nPlZ2HZyJ6icJL9QJdpATxBkTa6kmh5spbAJBvZkRjIXDKtdqJd5y9smfSZ7CmM/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>创建 redis-data-types.md</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># Redis 核心数据类型手册</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 一、String 字符串</span></span>
+<span class="line"><span>适用场景：验证码、Token、登录会话、计数器、分布式锁、配置项、文本类短期记忆</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>set key value</span></span>
+<span class="line"><span>get key</span></span>
+<span class="line"><span>setex key 秒数 value</span></span>
+<span class="line"><span>set key value nx ex 秒数</span></span>
+<span class="line"><span>incr key</span></span>
+<span class="line"><span>decr key</span></span>
+<span class="line"><span>incrby key 步长</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>手机验证码，5 分钟过期</span></span>
+<span class="line"><span>setex verification:mobile:13800138000 300 &quot;666888&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户登录 Token，24 小时过期</span></span>
+<span class="line"><span>setex session:token:adf245kjndsa3 86400 &quot;userid:1001&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>文章阅读量自增</span></span>
+<span class="line"><span>incr counter:article:1024</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>分布式锁，10 秒过期，防止重复执行</span></span>
+<span class="line"><span>set lock:order:2001 &quot;locked&quot; nx ex 10</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>AI 对话摘要，1 小时过期</span></span>
+<span class="line"><span>setex agent:memory:user:1001 3600 &quot;用户想学习 PostgreSQL 向量检索&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 二、Hash 哈希</span></span>
+<span class="line"><span>适用场景：用户信息、商品资料、电商购物车、结构化对话上下文</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>hset key field value</span></span>
+<span class="line"><span>hmset key field1 value1 field2 value2</span></span>
+<span class="line"><span>hget key field</span></span>
+<span class="line"><span>hgetall key</span></span>
+<span class="line"><span>hkeys key</span></span>
+<span class="line"><span>hvals key</span></span>
+<span class="line"><span>hincrby key field 增量</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>存储用户基础信息</span></span>
+<span class="line"><span>hset user:info:1001 name &quot;张三&quot; age 28 phone &quot;13800138000&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>电商购物车，字段为商品 ID，值为购买数量</span></span>
+<span class="line"><span>hset cart:user:1001 product:10086 2 product:10087 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>存储 AI 会话完整上下文</span></span>
+<span class="line"><span>hset agent:session:user:1001 messages &quot;最近 5 轮对话&quot; summary &quot;对话摘要&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 三、List 列表</span></span>
+<span class="line"><span>适用场景：消息队列、任务队列、操作日志、聊天历史、有序记录</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>lpush key value1 value2</span></span>
+<span class="line"><span>rpush key value1 value2</span></span>
+<span class="line"><span>lrange key 0 -1</span></span>
+<span class="line"><span>lpop key</span></span>
+<span class="line"><span>rpop key</span></span>
+<span class="line"><span>llen key</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>订单消息队列，右侧入队</span></span>
+<span class="line"><span>rpush queue:order &quot;order_1001&quot;&quot;order_1002&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户浏览历史，左侧插入最新记录</span></span>
+<span class="line"><span>lpush user:history:1001 &quot;查看了 AI 课程&quot;&quot;查看了 Redis 教程&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>后台任务队列</span></span>
+<span class="line"><span>rpush queue:task &quot;生成对话摘要&quot;&quot;向量入库&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 四、Set 集合</span></span>
+<span class="line"><span>适用场景：数据去重、每日签到、IP 黑名单、共同好友、权限标签</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>sadd key value1 value2</span></span>
+<span class="line"><span>smembers key</span></span>
+<span class="line"><span>sismember key value</span></span>
+<span class="line"><span>sinter key1 key2</span></span>
+<span class="line"><span>sunion key1 key2</span></span>
+<span class="line"><span>sdiff key1 key2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>记录当日签到用户</span></span>
+<span class="line"><span>sadd sign:20250820:user 1001 1002 1003</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>网站 IP 黑名单</span></span>
+<span class="line"><span>sadd blacklist:ip &quot;192.168.1.100&quot;&quot;192.168.1.101&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>查询两位用户的共同好友</span></span>
+<span class="line"><span>sinter user:friend:1001 user:friend:1002</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 五、ZSet 有序集合</span></span>
+<span class="line"><span>适用场景：各类排行榜、内容热度排序、用户积分排名、权重队列</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>zadd key score member</span></span>
+<span class="line"><span>zrange key 0 -1</span></span>
+<span class="line"><span>zrevrange key 0 -1</span></span>
+<span class="line"><span>zscore key member</span></span>
+<span class="line"><span>zrank key member</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>课程热度排行榜，数值为热度分数</span></span>
+<span class="line"><span>zadd rank:course 98 &quot;PostgreSQL 实战&quot; 95 &quot;AI Agent 开发&quot; 92 &quot;Redis 从入门到精通&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户积分排行榜</span></span>
+<span class="line"><span>zadd rank:user:points 1000 &quot;张三&quot; 850 &quot;李四&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>文章热度排序</span></span>
+<span class="line"><span>zadd hot:article 1200 &quot;article:1024&quot; 980 &quot;article:1025&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 六、Bitmap 位图</span></span>
+<span class="line"><span>适用场景：海量用户签到记录、在线状态统计、布尔型数据存储，极致节省内存</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>setbit key 偏移量 0/1</span></span>
+<span class="line"><span>getbit key 偏移量</span></span>
+<span class="line"><span>bitcount key</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>记录用户当月签到，第 5 天、第 10 天完成签到</span></span>
+<span class="line"><span>setbit user:sign:1001:202508 5 1</span></span>
+<span class="line"><span>setbit user:sign:1001:202508 10 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>统计该用户当月总签到天数</span></span>
+<span class="line"><span>bitcount user:sign:1001:202508</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 七、Geo 地理位置</span></span>
+<span class="line"><span>适用场景：附近门店、附近的人、两地距离计算、位置检索</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**核心命令**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>geoadd key 经度 纬度 名称</span></span>
+<span class="line"><span>geodist key 名称1 名称2 km</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**真实业务示例**</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>添加线下门店经纬度信息</span></span>
+<span class="line"><span>geoadd shop:location 116.481028 39.921983 &quot;北京总店&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>计算两家门店之间的直线距离，单位千米</span></span>
+<span class="line"><span>geodist shop:location &quot;北京总店&quot;&quot;上海分店&quot; km</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 数据类型场景速查表</span></span>
+<span class="line"><span>| 数据类型 | 典型业务场景 |</span></span>
+<span class="line"><span>| ---- | ---- |</span></span>
+<span class="line"><span>| String | 验证码、Token、计数器、分布式锁、文本记忆 |</span></span>
+<span class="line"><span>| Hash | 用户信息、商品数据、购物车、结构化会话 |</span></span>
+<span class="line"><span>| List | 消息队列、任务队列、浏览/聊天历史 |</span></span>
+<span class="line"><span>| Set | 签到、数据去重、黑名单、好友关系 |</span></span>
+<span class="line"><span>| ZSet | 排行榜、热度排序、积分排名 |</span></span>
+<span class="line"><span>| Bitmap | 批量签到、海量布尔状态统计 |</span></span>
+<span class="line"><span>| Geo | 位置检索、距离计算、附近门店/人群 |</span></span></code></pre></div><p>试一下：</p><p><video src="/ai-docs/assets/video2.CZR0hUD8.mp4"></video></p><p>这样我们过了一遍 7 种常用 Redis 数据类型，以及各自适合的业务场景。</p><p>那在代码里咋用 redis 呢？</p><p>安装依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install ioredis</span></span></code></pre></div><p>创建 src/redis-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import Redis from&#39;ioredis&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 创建 Redis 客户端</span></span>
+<span class="line"><span>const redis = new Redis({</span></span>
+<span class="line"><span>host: &#39;localhost&#39;,</span></span>
+<span class="line"><span>port: 6379,</span></span>
+<span class="line"><span>db: 0,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 监听连接</span></span>
+<span class="line"><span>redis.on(&#39;connect&#39;, () =&gt; {</span></span>
+<span class="line"><span>console.log(&#39;✅ ioredis 连接成功（mjs 版）&#39;);</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 错误监听</span></span>
+<span class="line"><span>redis.on(&#39;error&#39;, (err) =&gt; {</span></span>
+<span class="line"><span>console.error(&#39;❌ Redis 连接失败：&#39;, err);</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 执行操作</span></span>
+<span class="line"><span>asyncfunction runRedisDemo() {</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 1. String 字符串</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    await redis.set(&#39;name&#39;, &#39;张三&#39;);</span></span>
+<span class="line"><span>    await redis.set(&#39;code&#39;, &#39;6666&#39;, &#39;EX&#39;, 300); // 5 分钟过期</span></span>
+<span class="line"><span>    console.log(&#39;String name:&#39;, await redis.get(&#39;name&#39;));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 2. Hash 哈希</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    await redis.hset(&#39;user:1001&#39;, &#39;name&#39;, &#39;李四&#39;, &#39;age&#39;, 28);</span></span>
+<span class="line"><span>    console.log(&#39;Hash user:&#39;, await redis.hgetall(&#39;user:1001&#39;));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 3. List 列表</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    await redis.lpush(&#39;task:list&#39;, &#39;任务1&#39;, &#39;任务2&#39;);</span></span>
+<span class="line"><span>    await redis.rpush(&#39;task:list&#39;, &#39;任务3&#39;);</span></span>
+<span class="line"><span>    console.log(&#39;List:&#39;, await redis.lrange(&#39;task:list&#39;, 0, -1));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 4. Set 集合</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    await redis.sadd(&#39;tag:set&#39;, &#39;redis&#39;, &#39;nest&#39;, &#39;node&#39;);</span></span>
+<span class="line"><span>    console.log(&#39;Set:&#39;, await redis.smembers(&#39;tag:set&#39;));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 5. ZSet 有序集合</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    await redis.zadd(&#39;score:rank&#39;, 99, &#39;小明&#39;, 95, &#39;小红&#39;);</span></span>
+<span class="line"><span>    console.log(&#39;ZSet 排名:&#39;, await redis.zrange(&#39;score:rank&#39;, 0, -1));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    // 6. 分布式锁（标准写法）</span></span>
+<span class="line"><span>    // =========================</span></span>
+<span class="line"><span>    const lockKey = &#39;lock:order:1001&#39;;</span></span>
+<span class="line"><span>    const lockResult = await redis.set(lockKey, &#39;locked&#39;, &#39;NX&#39;, &#39;EX&#39;, 10);</span></span>
+<span class="line"><span>    console.log(&#39;分布式锁:&#39;, lockResult ? &#39;加锁成功&#39; : &#39;加锁失败&#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  } catch (err) {</span></span>
+<span class="line"><span>    console.error(&#39;执行异常：&#39;, err);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 运行</span></span>
+<span class="line"><span>runRedisDemo();</span></span></code></pre></div><p>跑一下：</p><p><video src="/ai-docs/assets/video3.B5BxKjgf.mp4"></video></p><p>redis 的数据结构、应用场景，代码里怎么操作都会了。</p><p>接下来我们可以实现刚开始的需求：</p><p>基于 redis 实现 agent 短期记忆的存储。</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdZPbCgolelTWyDicYsiaJickKia51zeojBYIks28IN8eib7wRNqsTsCHHebdp4K60R2XRKHaibTsMq3oXxnhrhCdqV9uZj3SXlxsREk/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>安装 langgraph 和 deepagents：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @langchain/langgraph @langchain/openai deepagents dotenv langchain zod</span></span></code></pre></div><p>创建 src/agent-with-redis-memory.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>/**</span></span>
+<span class="line"><span> * 基于 Redis 的 Agent 短期记忆</span></span>
+<span class="line"><span> *</span></span>
+<span class="line"><span> * 模式：</span></span>
+<span class="line"><span> * - invoke 前：从 Redis 读取该会话的 messages</span></span>
+<span class="line"><span> * - invoke 后：把 agent 返回的 messages 写回 Redis（带 TTL）</span></span>
+<span class="line"><span> * - 压缩：由 langchain summarizationMiddleware 在 agent 内部完成</span></span>
+<span class="line"><span> *</span></span>
+<span class="line"><span> * 前置：docker compose up -d redis</span></span>
+<span class="line"><span> *</span></span>
+<span class="line"><span> * 运行：node src/agent-with-redis-memory.mjs</span></span>
+<span class="line"><span> * 输入 exit / quit / :q 退出；:clear 清空当前会话记忆</span></span>
+<span class="line"><span> */</span></span>
+<span class="line"><span>import&quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import Redis from&quot;ioredis&quot;;</span></span>
+<span class="line"><span>import * as readline from&quot;node:readline/promises&quot;;</span></span>
+<span class="line"><span>import { stdin , stdout } from&quot;node:process&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import {</span></span>
+<span class="line"><span>  mapChatMessagesToStoredMessages,</span></span>
+<span class="line"><span>  mapStoredMessagesToChatMessages,</span></span>
+<span class="line"><span>} from&quot;@langchain/core/messages&quot;;</span></span>
+<span class="line"><span>import { createAgent, HumanMessage, summarizationMiddleware } from&quot;langchain&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const REDIS_HOST = process.env.REDIS_HOST ?? &quot;localhost&quot;;</span></span>
+<span class="line"><span>const REDIS_PORT = Number(process.env.REDIS_PORT ?? 6379);</span></span>
+<span class="line"><span>const REDIS_DB = Number(process.env.REDIS_DB ?? 0);</span></span>
+<span class="line"><span>const MEMORY_TTL = Number(process.env.MEMORY_TTL_SECONDS ?? 1800);</span></span>
+<span class="line"><span>const KEY_PREFIX = process.env.MEMORY_KEY_PREFIX ?? &quot;agent:short_memory&quot;;</span></span>
+<span class="line"><span>const SESSION_ID = process.env.MEMORY_SESSION_ID ?? &quot;demo_user_001&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const summaryPrompt = `你是对话摘要助手。请用中文总结以下对话，包含：</span></span>
+<span class="line"><span>1. 讨论的主要话题</span></span>
+<span class="line"><span>2. 用户提到的重要事实（姓名、偏好、日期等，务必保留原文信息）</span></span>
+<span class="line"><span>3. 继续对话所需的关键上下文</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>保持简洁，不要编造，不要遗漏用户明确说过的信息。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>待摘要的对话：</span></span>
+<span class="line"><span>{messages}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>摘要：`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class RedisMessageStore {</span></span>
+<span class="line"><span>constructor({ redis, keyPrefix, ttlSeconds }) {</span></span>
+<span class="line"><span>    this.redis = redis;</span></span>
+<span class="line"><span>    this.keyPrefix = keyPrefix;</span></span>
+<span class="line"><span>    this.ttlSeconds = ttlSeconds;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  messagesKey(sessionId) {</span></span>
+<span class="line"><span>    return`${this.keyPrefix}:${sessionId}:messages`;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async loadMessages(sessionId) {</span></span>
+<span class="line"><span>    const raw = awaitthis.redis.get(this.messagesKey(sessionId));</span></span>
+<span class="line"><span>    if (!raw) return [];</span></span>
+<span class="line"><span>    return mapStoredMessagesToChatMessages(JSON.parse(raw));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async saveMessages(sessionId, messages) {</span></span>
+<span class="line"><span>    const payload = JSON.stringify(mapChatMessagesToStoredMessages(messages));</span></span>
+<span class="line"><span>    awaitthis.redis.set(this.messagesKey(sessionId), payload, &quot;EX&quot;, this.ttlSeconds);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async clear(sessionId) {</span></span>
+<span class="line"><span>    awaitthis.redis.del(this.messagesKey(sessionId));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async ttl(sessionId) {</span></span>
+<span class="line"><span>    returnthis.redis.ttl(this.messagesKey(sessionId));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction invokeWithMemory(agent, store, sessionId, userText) {</span></span>
+<span class="line"><span>const history = await store.loadMessages(sessionId);</span></span>
+<span class="line"><span>console.log(`  ↳ 从 Redis 加载 ${history.length} 条历史`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const result = await agent.invoke(</span></span>
+<span class="line"><span>    { messages: [...history, new HumanMessage(userText)] },</span></span>
+<span class="line"><span>    { recursionLimit: 30 },</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>await store.saveMessages(sessionId, result.messages);</span></span>
+<span class="line"><span>const ttl = await store.ttl(sessionId);</span></span>
+<span class="line"><span>console.log(`  ↳ 写回 Redis ${result.messages.length} 条 (TTL ${ttl}s)`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return result;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const redis = new Redis({ host: REDIS_HOST, port: REDIS_PORT, db: REDIS_DB });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>redis.on(&quot;connect&quot;, () =&gt; console.log(&quot;✅ Redis 已连接&quot;));</span></span>
+<span class="line"><span>redis.on(&quot;error&quot;, (err) =&gt; console.error(&quot;❌ Redis 错误:&quot;, err.message));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const store = new RedisMessageStore({</span></span>
+<span class="line"><span>  redis,</span></span>
+<span class="line"><span>keyPrefix: KEY_PREFIX,</span></span>
+<span class="line"><span>ttlSeconds: MEMORY_TTL,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = new ChatOpenAI({</span></span>
+<span class="line"><span>model: process.env.MODEL_NAME,</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>configuration: { baseURL: process.env.OPENAI_BASE_URL },</span></span>
+<span class="line"><span>temperature: 0,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const agent = createAgent({</span></span>
+<span class="line"><span>  model,</span></span>
+<span class="line"><span>tools: [],</span></span>
+<span class="line"><span>systemPrompt:</span></span>
+<span class="line"><span>    &quot;你是会话助手。记住用户提到的关键事实，中文简短回答。若消息中有对话摘要，请据此继续对话。&quot;,</span></span>
+<span class="line"><span>middleware: [</span></span>
+<span class="line"><span>    summarizationMiddleware({</span></span>
+<span class="line"><span>      model,</span></span>
+<span class="line"><span>      summaryPrompt,</span></span>
+<span class="line"><span>      trigger: { messages: 8 },</span></span>
+<span class="line"><span>      keep: { messages: 4 },</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  ],</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;输入 exit / quit / :q 退出，:clear 清空记忆\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const rl = readline.createInterface({ input: stdin, output: stdout });</span></span>
+<span class="line"><span>let prevCount = (await store.loadMessages(SESSION_ID)).length;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>while (true) {</span></span>
+<span class="line"><span>    const userText = (await rl.question(&quot;你: &quot;)).trim();</span></span>
+<span class="line"><span>    if (!userText) continue;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if ([&quot;exit&quot;, &quot;quit&quot;, &quot;:q&quot;].includes(userText.toLowerCase())) break;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (userText === &quot;:clear&quot;) {</span></span>
+<span class="line"><span>      await store.clear(SESSION_ID);</span></span>
+<span class="line"><span>      prevCount = 0;</span></span>
+<span class="line"><span>      console.log(&quot;已清空当前会话记忆\n&quot;);</span></span>
+<span class="line"><span>      continue;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const { messages } = await invokeWithMemory(agent, store, SESSION_ID, userText);</span></span>
+<span class="line"><span>    console.log(&quot;\n助手:&quot;, messages.at(-1)?.content);</span></span>
+<span class="line"><span>    console.log(`当前消息数: ${messages.length}`);</span></span>
+<span class="line"><span>    if (messages.length &lt; prevCount + 2) {</span></span>
+<span class="line"><span>      console.log(&quot;  ⚡ 已触发压缩&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    prevCount = messages.length;</span></span>
+<span class="line"><span>    console.log();</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>} finally {</span></span>
+<span class="line"><span>  rl.close();</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>await redis.quit();</span></span></code></pre></div><p>用到的环境变量在 .env 里配置：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># Redis（默认与 docker-compose 一致）</span></span>
+<span class="line"><span>REDIS_HOST=localhost</span></span>
+<span class="line"><span>REDIS_PORT=6379</span></span>
+<span class="line"><span>REDIS_DB=0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 短期记忆：key 前缀、会话 ID、过期时间（秒）</span></span>
+<span class="line"><span>MEMORY_KEY_PREFIX=agent:short_memory</span></span>
+<span class="line"><span>MEMORY_SESSION_ID=demo_user_001</span></span>
+<span class="line"><span>MEMORY_TTL_SECONDS=1800</span></span></code></pre></div><p>跑一下：</p><p><video src="/ai-docs/assets/video4.ClD1S-pi.mp4"></video></p><p>这样我们就基于 redis 实现了短期记忆的存储，具体的摘要 + 截断的压缩逻辑是用的 deepagents 的。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>Agent 基本都是用 Redis 做短期记忆的存储，用 PostgreSQL 做历史消息、长期记忆存储。</p><p>我们学了 Redis 的 7 种常用数据类型 string、hash、list、set、zset(有序集合）、bitmap（位图）、geo（地理位置)</p><p>过了一遍它们的读写命令，以及各自典型的业务场景。</p><p>然后基于 Redis + DeepAgents 实现了短期记忆。</p><p>DeepAgents 的压缩中间件做消息的摘要 + 截断，Redis 做短期记忆的存储。</p><p>一般会把每轮消息存入 PostgreSQL 做历史消息，还能用来基于向量做长期记忆的检索。</p><p>Redis 基本是 Agent 做短期记忆存储的最佳方案了。</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>31-PostgreSQL：AI 时代最适合的数据库</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>33-Mem0：分层记忆 + 三路召回的长期记忆方案</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2026 Broly</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"9in8dfBd\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"vRBR51V1\",\"前端转ai agent_00-使用前必看_index.md\":\"CbTYS_Eb\",\"前端转ai agent_00-使用前必看_readme.md\":\"CCl9lush\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"K1bvlp7D\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"r280E0HR\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BR8y3Rx-\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"CPS19Jds\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"uevMc9jJ\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"fv_PJpcc\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"CQFwjUY4\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"Dauq-g01\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"Dlv8XNVU\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"CbSTEnTT\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"DDTGNKby\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DNdEFKT6\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"d3Ff9pnH\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"vM0Tv4bo\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"-nnHYLJJ\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"-P7BvoH7\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"DoCV-mZ1\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"DNpP_NKJ\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"NF6swDka\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"g5ORvcwt\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"C6owZzsL\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"9LaNiTPL\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"CDhwzkpk\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"CBIRaqqG\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"3a4M612j\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"B93sSY-q\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"rn4q-WuQ\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"B2P5Ib1W\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"98EDEZn4\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"CsxP2wpi\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cw6wTwvm\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"4TGYH26M\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"Dnx8hJX1\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"B6f3zgYP\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"dsYJoRzd\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"CYJef_cl\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"Wb8snKbo\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"CwCIxuKO\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"DAvbttsE\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"CGyuW48n\",\"前端转ai agent_21-豆包同款语音功能：语音识别 asr _ 流式语音合成 tts_index.md\":\"BvzkAkZE\",\"前端转ai agent_22-agui 协议：vercel ai sdk _ langchain 实现流式组件渲染_index.md\":\"C9l5yQ0r\",\"前端转ai agent_23-图编排引擎：langgraph 和多 agent 架构_index.md\":\"JFycbGth\",\"前端转ai agent_24-agentic rag：基于 langgraph 实现大模型自主决策的 rag 闭环系统_index.md\":\"CNMTWNm2\",\"前端转ai agent_25-基于 docker compose 的本地开发提效和生产环境部署_index.md\":\"COKhwZcQ\",\"前端转ai agent_26-elasticsearch 全文检索：倒排索引表 _ ik 分词器 _ bm25 算法_index.md\":\"F6c4YINg\",\"前端转ai agent_27-neo4j 知识图谱和 graph rag_index.md\":\"CLhPw4y6\",\"前端转ai agent_28-langsmith 全链路观测：从 agent 调试到 rag 量化评估_index.md\":\"Cn4inZdB\",\"前端转ai agent_29-deepagents：开箱即用的 skill、上下文压缩等 middleware_index.md\":\"DbbKdg4N\",\"前端转ai agent_30-deepagents 实战：多 agent 架构的深度调研助手_index.md\":\"C3RLogEt\",\"前端转ai agent_31-postgresql：ai 时代最适合的数据库_index.md\":\"C_yU6PnR\",\"前端转ai agent_32-redis：实现 agent 短期记忆存储的最佳方案_index.md\":\"zdAhZc5S\",\"前端转ai agent_33-mem0：分层记忆 _ 三路召回的长期记忆方案_index.md\":\"D6wI3o4G\",\"前端转ai agent_34-nest 进阶：企业级 node.js 后端最主流框架_index.md\":\"DqZPfK77\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_index.md\":\"K740KrRB\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_135707.md\":\"BowQcI5P\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_index.md\":\"Cqu_ck56\",\"前端转ai agent_36-多模态与 oss 前端直传实战：ai 画板_index.md\":\"BtkIvueB\",\"前端转ai agent_37-rabbitmq：agent 中异步处理的标配方案_index.md\":\"DCN6ixuu\",\"前端转ai agent_index.md\":\"ClSoPTDr\",\"前端转ai agent_语雀答疑资料.md\":\"CQGtr2ih\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/ai-docs/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"},{\"text\":\"21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS\",\"link\":\"/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/\"},{\"text\":\"22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染\",\"link\":\"/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/\"},{\"text\":\"23-图编排引擎：LangGraph 和多 Agent 架构\",\"link\":\"/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/\"},{\"text\":\"24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统\",\"link\":\"/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/\"},{\"text\":\"25-基于 Docker Compose 的本地开发提效和生产环境部署\",\"link\":\"/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/\"},{\"text\":\"26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法\",\"link\":\"/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/\"},{\"text\":\"27-Neo4j 知识图谱和 Graph RAG\",\"link\":\"/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/\"},{\"text\":\"28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估\",\"link\":\"/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/\"},{\"text\":\"29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware\",\"link\":\"/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/\"},{\"text\":\"30-DeepAgents 实战：多 Agent 架构的深度调研助手\",\"link\":\"/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/\"},{\"text\":\"31-PostgreSQL：AI 时代最适合的数据库\",\"link\":\"/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/\"},{\"text\":\"32-Redis：实现 Agent 短期记忆存储的最佳方案\",\"link\":\"/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/\"},{\"text\":\"33-Mem0：分层记忆 + 三路召回的长期记忆方案\",\"link\":\"/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/\"},{\"text\":\"34-Nest 进阶：企业级 Node.js 后端最主流框架\",\"link\":\"/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/\"},{\"text\":\"36-多模态与 OSS 前端直传实战：AI 画板\",\"link\":\"/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/\"},{\"text\":\"37-RabbitMQ：Agent 中异步处理的标配方案\",\"link\":\"/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/\"}]}]},\"search\":{\"provider\":\"local\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/Broly789/ai-docs\"}],\"footer\":{\"copyright\":\"Copyright © 2026 Broly\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>

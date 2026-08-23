@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/ai-docs/assets/style.BCY4Bg7A.css" as="style">
+    <link rel="preload stylesheet" href="/ai-docs/vp-icons.css" as="style">
+    
+    <script type="module" src="/ai-docs/assets/app.DtHfIqAr.js"></script>
+    <link rel="preload" href="/ai-docs/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/theme.DA4Qk7BY.js">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/framework.lghGfHnE.js">
+    <link rel="modulepreload" href="/ai-docs/assets/前端转AI Agent_31-PostgreSQL：AI 时代最适合的数据库_index.md.C_yU6PnR.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/ai-docs/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-6aa21345 data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bb2aa2f0><div class="item social-links" data-v-bb2aa2f0><div class="VPSocialLinks social-links-list" data-v-bb2aa2f0 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible has-active" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>23-图编排引擎：LangGraph 和多 Agent 架构</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>25-基于 Docker Compose 的本地开发提效和生产环境部署</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>27-Neo4j 知识图谱和 Graph RAG</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>30-DeepAgents 实战：多 Agent 架构的深度调研助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>31-PostgreSQL：AI 时代最适合的数据库</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>32-Redis：实现 Agent 短期记忆存储的最佳方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>33-Mem0：分层记忆 + 三路召回的长期记忆方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>34-Nest 进阶：企业级 Node.js 后端最主流框架</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>36-多模态与 OSS 前端直传实战：AI 画板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>37-RabbitMQ：Agent 中异步处理的标配方案</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _ai-docs_%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_31-PostgreSQL%EF%BC%9AAI%20%E6%97%B6%E4%BB%A3%E6%9C%80%E9%80%82%E5%90%88%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93_" data-v-39a288b8><div><p>关系型数据库是互联网应用的基石。</p><p>账号信息、订单数据、聊天记录，或者企业的业务数据，几乎全部都依赖关系型数据库存储。</p><p>你用豆包、gemini 之类的 agent 的时候，不管多久的会话、聊天，都能翻到记录：</p><p>这也是存在关系型数据库里的。</p><p>一般是这样的表结构：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/NMByQQfVwfd71JzySTKutqpzOcwVtKro0D2RTJtRsaa9icI8zzKupoV50FibFNAA3OgicQ3YISib4dneNjiaH0V2rT4ooEsF7IiaZQKqORdXq0u4U/640?wx_fmt=jpeg&amp;from=appmsg&amp;watermark=1&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0" alt="图片" referrerpolicy="no-referrer"></p><p>三个表：用户表存用户信息，会话表存左侧会话列表的消息，消息表存具体的消息</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfeapCMokLKPXRP8FP0WO6d3LTtaUicqIQq0BPyJPKNIeZsoCmENmQI6q7hXiciauLJ3ThzuEgbL5ib3s7HAjl54by2XQKZibENmUNZ8/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=1" alt="图片" referrerpolicy="no-referrer"></p><p>当用户登录的时候，会查出所有的会话列表显示在左边，这用到表和表的关联查询，用户和会话是一对多关系</p><p>当点击某个会话的时候，会查询所有的历史消息，会话和消息也是一对多关系</p><p>id 是主键（primary key），用于表示表的一条记录（record）</p><p>user_id、conversation_id 是外键（foreign key），用于关联其他表的主键</p><p>通过这种主外键就可以实现表和表的关联查询</p><p>比如 sql 语句如下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>// 1. 根据用户 ID 查询他的所有会话</span></span>
+<span class="line"><span>SELECT * </span></span>
+<span class="line"><span>FROM conversations </span></span>
+<span class="line"><span>WHERE user_id = &#39;你的用户ID&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 2. 根据会话 ID 查询这个会话里的所有消息</span></span>
+<span class="line"><span>SELECT * </span></span>
+<span class="line"><span>FROM messages </span></span>
+<span class="line"><span>WHERE conversation_id = &#39;你的会话ID&#39;</span></span>
+<span class="line"><span>ORDER BY created_at ASC;</span></span></code></pre></div><p>MySQL、PostgreSQL（简称 PG）都是很流行的关系型数据库。</p><p>但在 AI 时代，PostgreSQL 优势更大。</p><p>因为消息内容需要加一个对应的向量字段用于语义检索：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdK48bmocOzUeAUOkuRdkovqGrvrUfQPicYLT2ia26be0vcdfrib3VUxcYVv9iatDBkYRFLmVWwkbvQIchSRqk8IqqEHrbgdKV4VA8/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=2" alt="图片" referrerpolicy="no-referrer"></p><p>mysql 是不支持的，你需要在 milvus 里建一个对应的集合：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfc22Ww2bjQydpqlnbkPg2Agbqt23TYog2HkoI8ib20ia0yWiaSbDa3uZvEIKsDf7WOGMRGIlYFvCsvo859lVOVYibEKp3AvQMJic8bY/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=3" alt="图片" referrerpolicy="no-referrer"></p><p>这里用同样的结构来创建 milvus 集合就行，id 和 message.id 一致。</p><p>这样语义检索出数据后，可以关联到 MySQL 那边。</p><p>查询的时候是这样，写入的时候也要写两份，同样的数据要双写到 MySQL + Milvus，比较麻烦。</p><p>那如果关系型数据库也支持向量检索就好了。</p><p>没错，这就是 PostgreSQL 的最大优势。</p><p>PostgreSQL 只需要在原本的消息表上，多加一个向量字段，不需要额外的数据库，不需要双写，不需要维护两套系统。</p><p>所有消息、会话、用户数据、向量语义特征，全部存在同一张表里。</p><p>查询的时候更简单。不用先查 Milvus、再查 MySQL，再手动拼接结果。</p><p>一条 SQL 就能同时做到：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>-- AI 长期记忆：根据用户ID + 语义检索历史消息</span></span>
+<span class="line"><span>SELECT m.*</span></span>
+<span class="line"><span>FROM messages m</span></span>
+<span class="line"><span>JOIN conversations c </span></span>
+<span class="line"><span>ON m.conversation_id = c.id</span></span>
+<span class="line"><span>WHERE</span></span>
+<span class="line"><span>  c.user_id = &#39;你的用户ID&#39;-- 只查这个用户</span></span>
+<span class="line"><span>AND c.id = &#39;你的会话ID&#39;-- 只查这个会话</span></span>
+<span class="line"><span>ORDERBY</span></span>
+<span class="line"><span>  m.embedding &lt;=&gt; &#39;[1.2, 0.5, 0.8, ...]&#39;-- 向量相似度检索</span></span>
+<span class="line"><span>LIMIT5;</span></span></code></pre></div><p>按用户过滤、按会话筛选、按时间排序、按语义检索。</p><p>这就是 AI 时代最需要的能力。</p><p>业务关系 + 向量检索，完美融合。</p><p>不用拆分架构，不用同步数据，不用写复杂的关联逻辑。</p><p>一张表，搞定传统关系查询 + AI 长期 记忆。</p><p>所以你会发现 OpenAI、豆包、Kimi、通义千问、Dify 这些头部 AI 产品，几乎都把 PostgreSQL 当成核心数据库。</p><p>不是 MySQL 不好，而是在 AI 时代 PostgreSQL 真的太合适了。</p><p>这节我们就来学一下 PostgreSQL</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir pgsql-test</span></span>
+<span class="line"><span>cd pgsql-test</span></span>
+<span class="line"><span>npm init -y</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffyO7pYpSoibEceIR3JDcgCPTRwA3bzxLsc73Kk0XgUReto7TCaVbiaiaVibt3P1ySDRyY3uroMRhe6rSZibe4CUdIRvy8ibHzlBUaiaA/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=4" alt="图片" referrerpolicy="no-referrer"></p><p>创建 docker-compose.yml</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>services:</span></span>
+<span class="line"><span>  # PostgreSQL with pgvector (AI 向量数据库)</span></span>
+<span class="line"><span>postgres:</span></span>
+<span class="line"><span>      image:pgvector/pgvector:pg16</span></span>
+<span class="line"><span>      container_name:pg_vector_db</span></span>
+<span class="line"><span>      restart:always</span></span>
+<span class="line"><span>      environment:</span></span>
+<span class="line"><span>        POSTGRES_USER:user</span></span>
+<span class="line"><span>        POSTGRES_PASSWORD:123456</span></span>
+<span class="line"><span>        POSTGRES_DB:hello_pg</span></span>
+<span class="line"><span>      ports:</span></span>
+<span class="line"><span>        -&quot;5432:5432&quot;</span></span>
+<span class="line"><span>      volumes:</span></span>
+<span class="line"><span>        -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/postgres:/var/lib/postgresql/data</span></span>
+<span class="line"><span>        -./init-scripts:/docker-entrypoint-initdb.d</span></span>
+<span class="line"><span>      healthcheck:</span></span>
+<span class="line"><span>        test:[&quot;CMD-SHELL&quot;,&quot;pg_isready -U user -d hello_pg&quot;]</span></span>
+<span class="line"><span>        interval:5s</span></span>
+<span class="line"><span>        timeout:5s</span></span>
+<span class="line"><span>        retries:5</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># PostgreSQL GUI (pgAdmin)</span></span>
+<span class="line"><span>pgadmin:</span></span>
+<span class="line"><span>    container_name:pgadmin</span></span>
+<span class="line"><span>    image:dpage/pgadmin4:latest</span></span>
+<span class="line"><span>    environment:</span></span>
+<span class="line"><span>      PGADMIN_DEFAULT_EMAIL:admin@admin.com</span></span>
+<span class="line"><span>      PGADMIN_DEFAULT_PASSWORD:admin</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      -${DOCKER_VOLUME_DIRECTORY:-.}/volumes/pgadmin:/var/lib/pgadmin</span></span>
+<span class="line"><span>    healthcheck:</span></span>
+<span class="line"><span>      test:[&quot;CMD&quot;,&quot;curl&quot;,&quot;-f&quot;,&quot;http://localhost:80/login&quot;]</span></span>
+<span class="line"><span>      interval:30s</span></span>
+<span class="line"><span>      timeout:20s</span></span>
+<span class="line"><span>      retries:3</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      -&quot;8088:80&quot;</span></span>
+<span class="line"><span>    depends_on:</span></span>
+<span class="line"><span>      -postgres</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>networks:</span></span>
+<span class="line"><span>default:</span></span>
+<span class="line"><span>    name:common-network</span></span></code></pre></div><p>跑一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docker compose up -d</span></span></code></pre></div><p>接下来创建下表：</p><p>create_tables.sql</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>-- 启用 pgvector 向量扩展</span></span>
+<span class="line"><span>CREATE EXTENSION IFNOTEXISTS vector;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 用户表</span></span>
+<span class="line"><span>CREATETABLEIFNOTEXISTSusers (</span></span>
+<span class="line"><span>    idSERIAL PRIMARY KEY,</span></span>
+<span class="line"><span>    nameTEXTNOTNULL,</span></span>
+<span class="line"><span>    created_at TIMESTAMPWITHTIME ZONE DEFAULTCURRENT_TIMESTAMP</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 会话表</span></span>
+<span class="line"><span>CREATETABLEIFNOTEXISTS conversations (</span></span>
+<span class="line"><span>    idSERIAL PRIMARY KEY,</span></span>
+<span class="line"><span>    user_id INTEGERNOTNULL,</span></span>
+<span class="line"><span>    title TEXT,</span></span>
+<span class="line"><span>    created_at TIMESTAMPWITHTIME ZONE DEFAULTCURRENT_TIMESTAMP,</span></span>
+<span class="line"><span>    CONSTRAINT fk_conversations_user</span></span>
+<span class="line"><span>        FOREIGNKEY (user_id) REFERENCESusers(id)</span></span>
+<span class="line"><span>        ONDELETECASCADE</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 消息表（带向量）</span></span>
+<span class="line"><span>CREATETABLEIFNOTEXISTS messages (</span></span>
+<span class="line"><span>    idSERIAL PRIMARY KEY,</span></span>
+<span class="line"><span>    conversation_id INTEGERNOTNULL,</span></span>
+<span class="line"><span>    roleTEXTNOTNULLCHECK (roleIN (&#39;user&#39;, &#39;assistant&#39;, &#39;system&#39;)),</span></span>
+<span class="line"><span>    contentTEXTNOTNULL,</span></span>
+<span class="line"><span>    embedding vector(1024), -- 与 EMBEDDING_MODEL 输出维度一致（text-embedding-v3 为 1024）</span></span>
+<span class="line"><span>    created_at TIMESTAMPWITHTIME ZONE DEFAULTCURRENT_TIMESTAMP,</span></span>
+<span class="line"><span>    CONSTRAINT fk_messages_conversation</span></span>
+<span class="line"><span>        FOREIGNKEY (conversation_id) REFERENCES conversations(id)</span></span>
+<span class="line"><span>        ONDELETECASCADE</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 向量索引（加速搜索）</span></span>
+<span class="line"><span>CREATEINDEXIFNOTEXISTS idx_messages_embedding</span></span>
+<span class="line"><span>    ON messages USING hnsw (embedding vector_cosine_ops);</span></span></code></pre></div><p>跑一下：</p><p>我们把 sql 移到了 init-scripts 目录下，这样 pg 容器启动就会自动执行建表语句</p><p>接下来就可以增删改查了。</p><p>因为有个向量字段，需要用嵌入模型来生成向量，我们用代码来做 crud：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install pg @langchain/openai @langchain/postgres dotenv</span></span></code></pre></div><p>先创建 .env</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>DATABASE_URL=postgresql://user:123456@localhost:5432/hello_pg</span></span>
+<span class="line"><span>OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1</span></span>
+<span class="line"><span>OPENAI_API_KEY=sk-xx</span></span></code></pre></div><p>然后分别写下三个表的 CRUD 代码：</p><p>src/db.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import pg from&quot;pg&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const { Pool } = pg;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const pool = new Pool({</span></span>
+<span class="line"><span>connectionString: process.env.DATABASE_URL</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction query(text, params) {</span></span>
+<span class="line"><span>return pool.query(text, params);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export { pool, query };</span></span></code></pre></div><p>用 pg 这个包连接数据库，创建 Pool，用 pool.query 执行 sql</p><p>src/users.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { query } from&quot;./db.mjs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction createUser(name) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;INSERT INTO users (name) VALUES ($1) RETURNING *&quot;,</span></span>
+<span class="line"><span>    [name]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getUserById(id) {</span></span>
+<span class="line"><span>const { rows } = await query(&quot;SELECT * FROM users WHERE id = $1&quot;, [id]);</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getAllUsers() {</span></span>
+<span class="line"><span>const { rows } = await query(&quot;SELECT * FROM users ORDER BY id&quot;);</span></span>
+<span class="line"><span>return rows;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction updateUser(id, name) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;UPDATE users SET name = $1 WHERE id = $2 RETURNING *&quot;,</span></span>
+<span class="line"><span>    [name, id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction deleteUser(id) {</span></span>
+<span class="line"><span>const { rowCount } = await query(&quot;DELETE FROM users WHERE id = $1&quot;, [id]);</span></span>
+<span class="line"><span>return rowCount &gt; 0;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export {</span></span>
+<span class="line"><span>  createUser,</span></span>
+<span class="line"><span>  getUserById,</span></span>
+<span class="line"><span>  getAllUsers,</span></span>
+<span class="line"><span>  updateUser,</span></span>
+<span class="line"><span>  deleteUser,</span></span>
+<span class="line"><span>};</span></span></code></pre></div><p>用户表的 CRUD 代码</p><p>src/conversations.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { query } from&quot;./db.mjs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction createConversation(userId, title = null) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;INSERT INTO conversations (user_id, title) VALUES ($1, $2) RETURNING *&quot;,</span></span>
+<span class="line"><span>    [userId, title]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getConversationById(id) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;SELECT * FROM conversations WHERE id = $1&quot;,</span></span>
+<span class="line"><span>    [id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getConversationsByUserId(userId) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;SELECT * FROM conversations WHERE user_id = $1 ORDER BY created_at DESC&quot;,</span></span>
+<span class="line"><span>    [userId]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getAllConversations() {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;SELECT * FROM conversations ORDER BY created_at DESC&quot;</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction updateConversation(id, { title }) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    &quot;UPDATE conversations SET title = $1 WHERE id = $2 RETURNING *&quot;,</span></span>
+<span class="line"><span>    [title, id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction deleteConversation(id) {</span></span>
+<span class="line"><span>const { rowCount } = await query(</span></span>
+<span class="line"><span>    &quot;DELETE FROM conversations WHERE id = $1&quot;,</span></span>
+<span class="line"><span>    [id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rowCount &gt; 0;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export {</span></span>
+<span class="line"><span>  createConversation,</span></span>
+<span class="line"><span>  getConversationById,</span></span>
+<span class="line"><span>  getConversationsByUserId,</span></span>
+<span class="line"><span>  getAllConversations,</span></span>
+<span class="line"><span>  updateConversation,</span></span>
+<span class="line"><span>  deleteConversation,</span></span>
+<span class="line"><span>};</span></span></code></pre></div><p>对话表的 CRUD 代码</p><p>还有消息表的 CRUD 代码</p><p>src/messages.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { OpenAIEmbeddings } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { query } from&quot;./db.mjs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const VALID_ROLES = [&quot;user&quot;, &quot;assistant&quot;, &quot;system&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let embeddings;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function getEmbeddings() {</span></span>
+<span class="line"><span>if (!embeddings) {</span></span>
+<span class="line"><span>    embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>      model: process.env.EMBEDDING_MODEL || &quot;text-embedding-v3&quot;,</span></span>
+<span class="line"><span>      apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>      configuration: {</span></span>
+<span class="line"><span>        baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>      },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>return embeddings;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction createMessage(conversationId, role, content, withEmbedding = false) {</span></span>
+<span class="line"><span>if (!VALID_ROLES.includes(role)) {</span></span>
+<span class="line"><span>    thrownewError(`role 必须是 ${VALID_ROLES.join(&quot;、&quot;)} 之一`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (withEmbedding) {</span></span>
+<span class="line"><span>    const vector = await getEmbeddings().embedQuery(content);</span></span>
+<span class="line"><span>    const { rows } = await query(</span></span>
+<span class="line"><span>      `INSERT INTO messages (conversation_id, role, content, embedding)</span></span>
+<span class="line"><span>       VALUES ($1, $2, $3, $4::vector)</span></span>
+<span class="line"><span>       RETURNING id, conversation_id, role, content, created_at`,</span></span>
+<span class="line"><span>      [conversationId, role, content, JSON.stringify(vector)]</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>    return rows[0];</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    `INSERT INTO messages (conversation_id, role, content)</span></span>
+<span class="line"><span>     VALUES ($1, $2, $3)</span></span>
+<span class="line"><span>     RETURNING *`,</span></span>
+<span class="line"><span>    [conversationId, role, content]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getMessageById(id) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    `SELECT id, conversation_id, role, content, created_at</span></span>
+<span class="line"><span>     FROM messages WHERE id = $1`,</span></span>
+<span class="line"><span>    [id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction getMessagesByConversationId(conversationId) {</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    `SELECT id, conversation_id, role, content, created_at</span></span>
+<span class="line"><span>     FROM messages</span></span>
+<span class="line"><span>     WHERE conversation_id = $1</span></span>
+<span class="line"><span>     ORDER BY created_at ASC`,</span></span>
+<span class="line"><span>    [conversationId]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction updateMessage(id, content, withEmbedding = false) {</span></span>
+<span class="line"><span>if (withEmbedding) {</span></span>
+<span class="line"><span>    const vector = await getEmbeddings().embedQuery(content);</span></span>
+<span class="line"><span>    const { rows } = await query(</span></span>
+<span class="line"><span>      `UPDATE messages</span></span>
+<span class="line"><span>       SET content = $1, embedding = $2::vector</span></span>
+<span class="line"><span>       WHERE id = $3</span></span>
+<span class="line"><span>       RETURNING id, conversation_id, role, content, created_at`,</span></span>
+<span class="line"><span>      [content, JSON.stringify(vector), id]</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>    return rows[0] ?? null;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    `UPDATE messages SET content = $1 WHERE id = $2 RETURNING *`,</span></span>
+<span class="line"><span>    [content, id]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows[0] ?? null;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction deleteMessage(id) {</span></span>
+<span class="line"><span>const { rowCount } = await query(&quot;DELETE FROM messages WHERE id = $1&quot;, [id]);</span></span>
+<span class="line"><span>return rowCount &gt; 0;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction searchSimilarMessages(conversationId, searchText, limit = 5) {</span></span>
+<span class="line"><span>const vector = await getEmbeddings().embedQuery(searchText);</span></span>
+<span class="line"><span>const { rows } = await query(</span></span>
+<span class="line"><span>    `SELECT id, conversation_id, role, content, created_at,</span></span>
+<span class="line"><span>            1 - (embedding &lt;=&gt; $1::vector) AS similarity</span></span>
+<span class="line"><span>     FROM messages</span></span>
+<span class="line"><span>     WHERE conversation_id = $2 AND embedding IS NOT NULL</span></span>
+<span class="line"><span>     ORDER BY embedding &lt;=&gt; $1::vector</span></span>
+<span class="line"><span>     LIMIT $3`,</span></span>
+<span class="line"><span>    [JSON.stringify(vector), conversationId, limit]</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>return rows;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export {</span></span>
+<span class="line"><span>  createMessage,</span></span>
+<span class="line"><span>  getMessageById,</span></span>
+<span class="line"><span>  getMessagesByConversationId,</span></span>
+<span class="line"><span>  updateMessage,</span></span>
+<span class="line"><span>  deleteMessage,</span></span>
+<span class="line"><span>  searchSimilarMessages,</span></span>
+<span class="line"><span>};</span></span></code></pre></div><p>这个要用到嵌入模型来做向量化</p><p>然后在 src/index.mjs 里用一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { pool } from&quot;./db.mjs&quot;;</span></span>
+<span class="line"><span>import * as users from&quot;./users.mjs&quot;;</span></span>
+<span class="line"><span>import * as conversations from&quot;./conversations.mjs&quot;;</span></span>
+<span class="line"><span>import * as messages from&quot;./messages.mjs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction run() {</span></span>
+<span class="line"><span>console.log(&quot;=== 用户 CRUD ===&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const user = await users.createUser(&quot;张三&quot;);</span></span>
+<span class="line"><span>console.log(&quot;创建用户:&quot;, user);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const fetchedUser = await users.getUserById(user.id);</span></span>
+<span class="line"><span>console.log(&quot;查询用户:&quot;, fetchedUser);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const updatedUser = await users.updateUser(user.id, &quot;李四&quot;);</span></span>
+<span class="line"><span>console.log(&quot;更新用户:&quot;, updatedUser);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;\n=== 会话 CRUD ===&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const conversation = await conversations.createConversation(</span></span>
+<span class="line"><span>    user.id,</span></span>
+<span class="line"><span>    &quot;第一次对话&quot;</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;创建会话:&quot;, conversation);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const userConversations = await conversations.getConversationsByUserId(</span></span>
+<span class="line"><span>    user.id</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;用户的会话列表:&quot;, userConversations);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const updatedConversation = await conversations.updateConversation(</span></span>
+<span class="line"><span>    conversation.id,</span></span>
+<span class="line"><span>    { title: &quot;更新后的标题&quot; }</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;更新会话:&quot;, updatedConversation);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;\n=== 消息 CRUD ===&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const userMessage = await messages.createMessage(</span></span>
+<span class="line"><span>    conversation.id,</span></span>
+<span class="line"><span>    &quot;user&quot;,</span></span>
+<span class="line"><span>    &quot;你好，请介绍一下 PostgreSQL&quot;</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;创建用户消息:&quot;, userMessage);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const assistantMessage = await messages.createMessage(</span></span>
+<span class="line"><span>    conversation.id,</span></span>
+<span class="line"><span>    &quot;assistant&quot;,</span></span>
+<span class="line"><span>    &quot;PostgreSQL 是一个功能强大的开源关系型数据库。&quot;</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;创建 AI 消息:&quot;, assistantMessage);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const conversationMessages = await messages.getMessagesByConversationId(</span></span>
+<span class="line"><span>    conversation.id</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;会话消息列表:&quot;, conversationMessages);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const updatedMessage = await messages.updateMessage(</span></span>
+<span class="line"><span>    userMessage.id,</span></span>
+<span class="line"><span>    &quot;你好，请介绍一下 pgvector&quot;</span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>console.log(&quot;更新消息:&quot;, updatedMessage);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;\n=== 语义检索 ===&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const seedMessages = [</span></span>
+<span class="line"><span>    { role: &quot;user&quot;, content: &quot;PostgreSQL 支持哪些数据类型？&quot; },</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      role: &quot;assistant&quot;,</span></span>
+<span class="line"><span>      content:</span></span>
+<span class="line"><span>        &quot;PostgreSQL 支持整数、文本、JSON、数组，以及 pgvector 扩展提供的向量类型。&quot;,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>    { role: &quot;user&quot;, content: &quot;怎么做相似度搜索？&quot; },</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      role: &quot;assistant&quot;,</span></span>
+<span class="line"><span>      content:</span></span>
+<span class="line"><span>        &quot;可以使用 pgvector 的 cosine 距离运算符 &lt;=&gt;，配合 hnsw 索引加速向量检索。&quot;,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  ];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>for (const msg of seedMessages) {</span></span>
+<span class="line"><span>    await messages.createMessage(</span></span>
+<span class="line"><span>      conversation.id,</span></span>
+<span class="line"><span>      msg.role,</span></span>
+<span class="line"><span>      msg.content,</span></span>
+<span class="line"><span>      true</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>console.log(`已写入 ${seedMessages.length} 条带 embedding 的消息`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const searchQueries = [&quot;向量相似度怎么查&quot;, &quot;关系型数据库有哪些类型&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>for (const searchText of searchQueries) {</span></span>
+<span class="line"><span>    console.log(`\n搜索: &quot;${searchText}&quot;`);</span></span>
+<span class="line"><span>    const results = await messages.searchSimilarMessages(</span></span>
+<span class="line"><span>      conversation.id,</span></span>
+<span class="line"><span>      searchText,</span></span>
+<span class="line"><span>      3</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>    if (results.length === 0) {</span></span>
+<span class="line"><span>      console.log(&quot;  无匹配结果&quot;);</span></span>
+<span class="line"><span>      continue;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    for (const [i, row] of results.entries()) {</span></span>
+<span class="line"><span>      console.log(</span></span>
+<span class="line"><span>        `  ${i + 1}. [${row.role}] ${row.content} (similarity: ${Number(row.similarity).toFixed(4)})`</span></span>
+<span class="line"><span>      );</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// console.log(&quot;\n=== 清理 ===&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// await messages.deleteMessage(assistantMessage.id);</span></span>
+<span class="line"><span>// await messages.deleteMessage(updatedMessage.id);</span></span>
+<span class="line"><span>// await conversations.deleteConversation(conversation.id);</span></span>
+<span class="line"><span>// await users.deleteUser(user.id);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// console.log(&quot;演示数据已清理&quot;);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>run()</span></span>
+<span class="line"><span>  .catch((err) =&gt; {</span></span>
+<span class="line"><span>    console.error(&quot;运行失败:&quot;, err.message);</span></span>
+<span class="line"><span>    process.exit(1);</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .finally(() =&gt; pool.end());</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export { users, conversations, messages };</span></span></code></pre></div><p>跑下试试：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>node src/index.mjs</span></span></code></pre></div><p>重点是语义检索这部分：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>核心就是根据传入的向量和这个向量字段做相似度判断，排序后取前几条就可以了。</p><p>其次是多表的关联查询：</p><p>查询某个用户的所有会话：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>某个会话的所有消息：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>当然，这些 sql 不需要记住，大概理解就行，我们一般都是通过 ORM 框架才操作数据库。</p><p>比如前面讲过的 TypeORM。</p><p>创建 nest 项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest new typeorm-pg-crud</span></span></code></pre></div><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>安装依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install --save @nestjs/typeorm typeorm pg</span></span></code></pre></div><p>在 AppModule 引入 typeorm：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>TypeOrmModule.forRoot({</span></span>
+<span class="line"><span>  type: &#39;postgres&#39;,</span></span>
+<span class="line"><span>host: &#39;localhost&#39;,</span></span>
+<span class="line"><span>port: 5432,</span></span>
+<span class="line"><span>username: &#39;user&#39;,</span></span>
+<span class="line"><span>password: &#39;123456&#39;,</span></span>
+<span class="line"><span>database: &#39;hello_pg&#39;,</span></span>
+<span class="line"><span>synchronize: true,</span></span>
+<span class="line"><span>logging: true,</span></span>
+<span class="line"><span>entities: []</span></span>
+<span class="line"><span>})</span></span></code></pre></div><p>指定数据库连接信息、database</p><p>然后分别创建 conversations 模块</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>nest g res conversations --no-spec</span></span></code></pre></div><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>生成 CRUD 代码</p><p>现在只有 conversation 的 Entity：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>我们补全 entity：</p><p>entities/user.entity.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  Column,</span></span>
+<span class="line"><span>  CreateDateColumn,</span></span>
+<span class="line"><span>  Entity,</span></span>
+<span class="line"><span>  OneToMany,</span></span>
+<span class="line"><span>  PrimaryGeneratedColumn,</span></span>
+<span class="line"><span>} from&#39;typeorm&#39;;</span></span>
+<span class="line"><span>import { Conversation } from&#39;./conversation.entity&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Entity(&#39;users&#39;)</span></span>
+<span class="line"><span>exportclass User {</span></span>
+<span class="line"><span>  @PrimaryGeneratedColumn()</span></span>
+<span class="line"><span>id: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;text&#39; })</span></span>
+<span class="line"><span>name: string;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @CreateDateColumn({ type: &#39;timestamptz&#39;, name: &#39;created_at&#39; })</span></span>
+<span class="line"><span>createdAt: Date;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @OneToMany(() =&gt; Conversation, (conversation) =&gt; conversation.user)</span></span>
+<span class="line"><span>conversations: Conversation[];</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>entities/conversation.entity.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  Column,</span></span>
+<span class="line"><span>  CreateDateColumn,</span></span>
+<span class="line"><span>  Entity,</span></span>
+<span class="line"><span>  JoinColumn,</span></span>
+<span class="line"><span>  ManyToOne,</span></span>
+<span class="line"><span>  OneToMany,</span></span>
+<span class="line"><span>  PrimaryGeneratedColumn,</span></span>
+<span class="line"><span>} from&#39;typeorm&#39;;</span></span>
+<span class="line"><span>import { User } from&#39;./user.entity&#39;;</span></span>
+<span class="line"><span>import { Message } from&#39;./message.entity&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Entity(&#39;conversations&#39;)</span></span>
+<span class="line"><span>exportclass Conversation {</span></span>
+<span class="line"><span>  @PrimaryGeneratedColumn()</span></span>
+<span class="line"><span>id: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ name: &#39;user_id&#39; })</span></span>
+<span class="line"><span>userId: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;text&#39;, nullable: true })</span></span>
+<span class="line"><span>title: string | null;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @CreateDateColumn({ type: &#39;timestamptz&#39;, name: &#39;created_at&#39; })</span></span>
+<span class="line"><span>createdAt: Date;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @ManyToOne(() =&gt; User, (user) =&gt; user.conversations, { onDelete: &#39;CASCADE&#39; })</span></span>
+<span class="line"><span>  @JoinColumn({ name: &#39;user_id&#39; })</span></span>
+<span class="line"><span>user: User;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @OneToMany(() =&gt; Message, (message) =&gt; message.conversation)</span></span>
+<span class="line"><span>messages: Message[];</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>entities/message.entity.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  Column,</span></span>
+<span class="line"><span>  CreateDateColumn,</span></span>
+<span class="line"><span>  Entity,</span></span>
+<span class="line"><span>  JoinColumn,</span></span>
+<span class="line"><span>  ManyToOne,</span></span>
+<span class="line"><span>  PrimaryGeneratedColumn,</span></span>
+<span class="line"><span>} from&#39;typeorm&#39;;</span></span>
+<span class="line"><span>import { Conversation } from&#39;./conversation.entity&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export enum MessageRole {</span></span>
+<span class="line"><span>  USER = &#39;user&#39;,</span></span>
+<span class="line"><span>  ASSISTANT = &#39;assistant&#39;,</span></span>
+<span class="line"><span>  SYSTEM = &#39;system&#39;,</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Entity(&#39;messages&#39;)</span></span>
+<span class="line"><span>exportclass Message {</span></span>
+<span class="line"><span>  @PrimaryGeneratedColumn()</span></span>
+<span class="line"><span>id: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ name: &#39;conversation_id&#39; })</span></span>
+<span class="line"><span>conversationId: number;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({</span></span>
+<span class="line"><span>    type: &#39;text&#39;,</span></span>
+<span class="line"><span>    enum: MessageRole,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>role: MessageRole;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column({ type: &#39;text&#39; })</span></span>
+<span class="line"><span>content: string;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @Column(&#39;vector&#39;, { length: 1024, nullable: true })</span></span>
+<span class="line"><span>embedding: number[] | null;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @CreateDateColumn({ type: &#39;timestamptz&#39;, name: &#39;created_at&#39; })</span></span>
+<span class="line"><span>createdAt: Date;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  @ManyToOne(() =&gt; Conversation, (conversation) =&gt; conversation.messages, {</span></span>
+<span class="line"><span>    onDelete: &#39;CASCADE&#39;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  @JoinColumn({ name: &#39;conversation_id&#39; })</span></span>
+<span class="line"><span>conversation: Conversation;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这里主要是一对多关系的映射，需要用到 @OneToMany、@ManyToOne 的装饰器</p><p>做好了表、列、一对多关系的映射</p><p>在 entities 数组里引入下：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>这样我们就可以用 typeorm 做三个实体的 crud 了</p><p>语义检索要用到嵌入模型，安装下依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @langchain/openai dotenv</span></span></code></pre></div><p>创建 .env</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1</span></span>
+<span class="line"><span>OPENAI_API_KEY=sk-xx</span></span></code></pre></div><p>改一下 conversations.service.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &#39;dotenv/config&#39;;</span></span>
+<span class="line"><span>import {</span></span>
+<span class="line"><span>  BadRequestException,</span></span>
+<span class="line"><span>  Injectable,</span></span>
+<span class="line"><span>  NotFoundException,</span></span>
+<span class="line"><span>} from&#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { InjectEntityManager } from&#39;@nestjs/typeorm&#39;;</span></span>
+<span class="line"><span>import { OpenAIEmbeddings } from&#39;@langchain/openai&#39;;</span></span>
+<span class="line"><span>import { EntityManager } from&#39;typeorm&#39;;</span></span>
+<span class="line"><span>import { User } from&#39;./entities/user.entity&#39;;</span></span>
+<span class="line"><span>import { Conversation } from&#39;./entities/conversation.entity&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export interface SemanticSearchResult {</span></span>
+<span class="line"><span>id: number;</span></span>
+<span class="line"><span>  conversation_id: number;</span></span>
+<span class="line"><span>  role: string;</span></span>
+<span class="line"><span>  content: string;</span></span>
+<span class="line"><span>  created_at: Date;</span></span>
+<span class="line"><span>  similarity: number;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Injectable()</span></span>
+<span class="line"><span>exportclass ConversationsService {</span></span>
+<span class="line"><span>  private embeddings: OpenAIEmbeddings | null = null;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>constructor(</span></span>
+<span class="line"><span>    @InjectEntityManager()</span></span>
+<span class="line"><span>    private readonly em: EntityManager,</span></span>
+<span class="line"><span>  ) {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** 用户 → 会话（一对多） */</span></span>
+<span class="line"><span>async findConversationsByUserId(userId: number) {</span></span>
+<span class="line"><span>    const user = awaitthis.em.findOne(User, {</span></span>
+<span class="line"><span>      where: { id: userId },</span></span>
+<span class="line"><span>      relations: { conversations: true },</span></span>
+<span class="line"><span>      order: { conversations: { createdAt: &#39;DESC&#39; } },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (!user) {</span></span>
+<span class="line"><span>      thrownew NotFoundException(`User #${userId} not found`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return user;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** 会话 → 消息（一对多） */</span></span>
+<span class="line"><span>async findMessagesByConversationId(conversationId: number) {</span></span>
+<span class="line"><span>    const conversation = awaitthis.em.findOne(Conversation, {</span></span>
+<span class="line"><span>      where: { id: conversationId },</span></span>
+<span class="line"><span>      relations: { messages: true },</span></span>
+<span class="line"><span>      order: { messages: { createdAt: &#39;ASC&#39; } },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (!conversation) {</span></span>
+<span class="line"><span>      thrownew NotFoundException(`Conversation #${conversationId} not found`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return {</span></span>
+<span class="line"><span>      id: conversation.id,</span></span>
+<span class="line"><span>      userId: conversation.userId,</span></span>
+<span class="line"><span>      title: conversation.title,</span></span>
+<span class="line"><span>      createdAt: conversation.createdAt,</span></span>
+<span class="line"><span>      messages: conversation.messages.map(</span></span>
+<span class="line"><span>        ({ id, conversationId, role, content, createdAt }) =&gt; ({</span></span>
+<span class="line"><span>          id,</span></span>
+<span class="line"><span>          conversationId,</span></span>
+<span class="line"><span>          role,</span></span>
+<span class="line"><span>          content,</span></span>
+<span class="line"><span>          createdAt,</span></span>
+<span class="line"><span>        }),</span></span>
+<span class="line"><span>      ),</span></span>
+<span class="line"><span>    };</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** 会话内语义检索（pgvector 余弦距离） */</span></span>
+<span class="line"><span>async searchSimilarMessages(</span></span>
+<span class="line"><span>    conversationId: number,</span></span>
+<span class="line"><span>    searchText: string,</span></span>
+<span class="line"><span>    limit = 5,</span></span>
+<span class="line"><span>  ): Promise&lt;SemanticSearchResult[]&gt; {</span></span>
+<span class="line"><span>    const conversation = awaitthis.em.findOne(Conversation, {</span></span>
+<span class="line"><span>      where: { id: conversationId },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (!conversation) {</span></span>
+<span class="line"><span>      thrownew NotFoundException(`Conversation #${conversationId} not found`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const vector = awaitthis.embedQuery(searchText);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const rows: SemanticSearchResult[] = awaitthis.em.query(</span></span>
+<span class="line"><span>      `SELECT id, conversation_id, role, content, created_at,</span></span>
+<span class="line"><span>              1 - (embedding &lt;=&gt; $1::vector) AS similarity</span></span>
+<span class="line"><span>       FROM messages</span></span>
+<span class="line"><span>       WHERE conversation_id = $2 AND embedding IS NOT NULL</span></span>
+<span class="line"><span>       ORDER BY embedding &lt;=&gt; $1::vector</span></span>
+<span class="line"><span>       LIMIT $3`,</span></span>
+<span class="line"><span>      [JSON.stringify(vector), conversationId, limit],</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return rows.map((row) =&gt; ({</span></span>
+<span class="line"><span>      ...row,</span></span>
+<span class="line"><span>      similarity: Number(row.similarity),</span></span>
+<span class="line"><span>    }));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private getEmbeddings(): OpenAIEmbeddings {</span></span>
+<span class="line"><span>    if (!this.embeddings) {</span></span>
+<span class="line"><span>      if (!process.env.OPENAI_API_KEY) {</span></span>
+<span class="line"><span>        thrownew BadRequestException(</span></span>
+<span class="line"><span>          &#39;语义检索需要配置 OPENAI_API_KEY（与 pgsql-test 相同）&#39;,</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      this.embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>        model: process.env.EMBEDDING_MODEL || &#39;text-embedding-v3&#39;,</span></span>
+<span class="line"><span>        apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>        configuration: {</span></span>
+<span class="line"><span>          baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>        },</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    returnthis.embeddings;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  private async embedQuery(text: string): Promise&lt;number[]&gt; {</span></span>
+<span class="line"><span>    returnthis.getEmbeddings().embedQuery(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这里实现了查询用户的所有会话、查询某个会话的所有消息的关联查询。</p><p>只要加上 relations 就可以关联查询了：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>要注意的是向量检索是扩展的 sql 语法，所以得用 sql 写查询：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>流程和之前一样。</p><p>然后改下 controller 加一下三个接口：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import {</span></span>
+<span class="line"><span>  Body,</span></span>
+<span class="line"><span>  Controller,</span></span>
+<span class="line"><span>  DefaultValuePipe,</span></span>
+<span class="line"><span>  Get,</span></span>
+<span class="line"><span>  Param,</span></span>
+<span class="line"><span>  ParseIntPipe,</span></span>
+<span class="line"><span>  Post,</span></span>
+<span class="line"><span>  Query,</span></span>
+<span class="line"><span>} from&#39;@nestjs/common&#39;;</span></span>
+<span class="line"><span>import { ConversationsService } from&#39;./conversations.service&#39;;</span></span>
+<span class="line"><span>import { SemanticSearchDto } from&#39;./dto/semantic-search.dto&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@Controller(&#39;conversations&#39;)</span></span>
+<span class="line"><span>exportclass ConversationsController {</span></span>
+<span class="line"><span>constructor(private readonly conversationsService: ConversationsService) {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** GET /conversations/users/:userId — 用户的会话列表 */</span></span>
+<span class="line"><span>  @Get(&#39;users/:userId&#39;)</span></span>
+<span class="line"><span>  findByUser(@Param(&#39;userId&#39;, ParseIntPipe) userId: number) {</span></span>
+<span class="line"><span>    returnthis.conversationsService.findConversationsByUserId(userId);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** GET /conversations/:id/messages — 会话的消息列表 */</span></span>
+<span class="line"><span>  @Get(&#39;:id/messages&#39;)</span></span>
+<span class="line"><span>  findMessages(@Param(&#39;id&#39;, ParseIntPipe) id: number) {</span></span>
+<span class="line"><span>    returnthis.conversationsService.findMessagesByConversationId(id);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** POST /conversations/:id/search — 会话内语义检索 */</span></span>
+<span class="line"><span>  @Post(&#39;:id/search&#39;)</span></span>
+<span class="line"><span>  search(</span></span>
+<span class="line"><span>    @Param(&#39;id&#39;, ParseIntPipe) id: number,</span></span>
+<span class="line"><span>    @Body() dto: SemanticSearchDto,</span></span>
+<span class="line"><span>    @Query(&#39;limit&#39;, new DefaultValuePipe(5), ParseIntPipe) queryLimit?: number,</span></span>
+<span class="line"><span>  ) {</span></span>
+<span class="line"><span>    const limit = dto.limit ?? queryLimit ?? 5;</span></span>
+<span class="line"><span>    returnthis.conversationsService.searchSimilarMessages(</span></span>
+<span class="line"><span>      id,</span></span>
+<span class="line"><span>      dto.query,</span></span>
+<span class="line"><span>      limit,</span></span>
+<span class="line"><span>    );</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>还要创建用到的接受参数的 dto</p><p>dto/semantic-search.dto.ts</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>export class SemanticSearchDto {</span></span>
+<span class="line"><span>  query: string;</span></span>
+<span class="line"><span>  limit?: number;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>改下服务启动的端口：</p><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>跑一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm run start:dev</span></span></code></pre></div><p>![图片](data:image/svg+xml,%3C%3Fxml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;%3F%3E%3Csvg width=&#39;1px&#39; height=&#39;1px&#39; viewBox=&#39;0 0 1 1&#39; version=&#39;1.1&#39; xmlns=&#39;<a href="http://www.w3.org/2000/svg" target="_blank" rel="noreferrer">http://www.w3.org/2000/svg</a>&#39; xmlns:xlink=&#39;<a href="http://www.w3.org/1999/xlink" target="_blank" rel="noreferrer">http://www.w3.org/1999/xlink</a>&#39;%3E%3Ctitle%3E%3C/title%3E%3Cg stroke=&#39;none&#39; stroke-width=&#39;1&#39; fill=&#39;none&#39; fill-rule=&#39;evenodd&#39; fill-opacity=&#39;0&#39;%3E%3Cg transform=&#39;translate(-249.000000, -126.000000)&#39; fill=&#39;%23FFFFFF&#39;%3E%3Crect x=&#39;249&#39; y=&#39;126&#39; width=&#39;1&#39; height=&#39;1&#39;%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E)</p><p>我们准备一些 curl：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>// 用户 → 会话（一对多）</span></span>
+<span class="line"><span>curl -s http://localhost:3005/conversations/users/2 | jq</span></span>
+<span class="line"><span>// 会话 → 消息（一对多）</span></span>
+<span class="line"><span>curl -s http://localhost:3005/conversations/2/messages | jq</span></span>
+<span class="line"><span>// 语义检索</span></span>
+<span class="line"><span>curl -s -X POST http://localhost:3005/conversations/2/search \</span></span>
+<span class="line"><span>  -H &#39;Content-Type: application/json&#39; \</span></span>
+<span class="line"><span>  -d &#39;{&quot;query&quot;:&quot;向量相似度怎么查&quot;,&quot;limit&quot;:3}&#39; | jq</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>curl -s -X POST &#39;http://localhost:3005/conversations/2/search?limit=5&#39; \</span></span>
+<span class="line"><span>  -H &#39;Content-Type: application/json&#39; \</span></span>
+<span class="line"><span>  -d &#39;{&quot;query&quot;:&quot;PostgreSQL 支持哪些数据类型&quot;}&#39; | jq</span></span></code></pre></div><p>试一下：</p><p>这样我们就实现了基于 ORM 实现 PostgreSQL 的一对多关联查询，以及向量语义检索。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>PostgreSQL 在 AI 时代比 MySQL 更有优势，它可以通过 pgvector 插件实现向量字段，以及语义检索。</p><p>我们可以在 sql 里关联多个表查询，并且做语义检索。</p><p>相比 MySQL + Milvus 结合的方式，简化了不少。</p><p>我们用 docker compose 跑了 PostgreSQL 和它的 UI 界面。</p><p>之后在 node 代码里通过 sql 做了 CRUD、语义检索。</p><p>并且又用 TypeORM + Nest 用 ORM 的方式实现了一对多关联查询，但语义检索还是得用 sql，因为是扩展语法。</p><p>至此，我们就用 PostgreSQL 可以在业务里面直接实现关联查询 + 语义检索了，不再需要 MySQL + Milvus。</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>30-DeepAgents 实战：多 Agent 架构的深度调研助手</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>32-Redis：实现 Agent 短期记忆存储的最佳方案</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2026 Broly</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"9in8dfBd\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"vRBR51V1\",\"前端转ai agent_00-使用前必看_index.md\":\"CbTYS_Eb\",\"前端转ai agent_00-使用前必看_readme.md\":\"CCl9lush\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"K1bvlp7D\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"r280E0HR\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BR8y3Rx-\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"CPS19Jds\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"uevMc9jJ\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"fv_PJpcc\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"CQFwjUY4\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"Dauq-g01\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"Dlv8XNVU\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"CbSTEnTT\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"DDTGNKby\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DNdEFKT6\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"d3Ff9pnH\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"vM0Tv4bo\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"-nnHYLJJ\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"-P7BvoH7\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"DoCV-mZ1\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"DNpP_NKJ\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"NF6swDka\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"g5ORvcwt\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"C6owZzsL\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"9LaNiTPL\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"CDhwzkpk\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"CBIRaqqG\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"3a4M612j\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"B93sSY-q\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"rn4q-WuQ\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"B2P5Ib1W\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"98EDEZn4\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"CsxP2wpi\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cw6wTwvm\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"4TGYH26M\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"Dnx8hJX1\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"B6f3zgYP\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"dsYJoRzd\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"CYJef_cl\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"Wb8snKbo\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"CwCIxuKO\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"DAvbttsE\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"CGyuW48n\",\"前端转ai agent_21-豆包同款语音功能：语音识别 asr _ 流式语音合成 tts_index.md\":\"BvzkAkZE\",\"前端转ai agent_22-agui 协议：vercel ai sdk _ langchain 实现流式组件渲染_index.md\":\"C9l5yQ0r\",\"前端转ai agent_23-图编排引擎：langgraph 和多 agent 架构_index.md\":\"JFycbGth\",\"前端转ai agent_24-agentic rag：基于 langgraph 实现大模型自主决策的 rag 闭环系统_index.md\":\"CNMTWNm2\",\"前端转ai agent_25-基于 docker compose 的本地开发提效和生产环境部署_index.md\":\"COKhwZcQ\",\"前端转ai agent_26-elasticsearch 全文检索：倒排索引表 _ ik 分词器 _ bm25 算法_index.md\":\"F6c4YINg\",\"前端转ai agent_27-neo4j 知识图谱和 graph rag_index.md\":\"CLhPw4y6\",\"前端转ai agent_28-langsmith 全链路观测：从 agent 调试到 rag 量化评估_index.md\":\"Cn4inZdB\",\"前端转ai agent_29-deepagents：开箱即用的 skill、上下文压缩等 middleware_index.md\":\"DbbKdg4N\",\"前端转ai agent_30-deepagents 实战：多 agent 架构的深度调研助手_index.md\":\"C3RLogEt\",\"前端转ai agent_31-postgresql：ai 时代最适合的数据库_index.md\":\"C_yU6PnR\",\"前端转ai agent_32-redis：实现 agent 短期记忆存储的最佳方案_index.md\":\"zdAhZc5S\",\"前端转ai agent_33-mem0：分层记忆 _ 三路召回的长期记忆方案_index.md\":\"D6wI3o4G\",\"前端转ai agent_34-nest 进阶：企业级 node.js 后端最主流框架_index.md\":\"DqZPfK77\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_index.md\":\"K740KrRB\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_135707.md\":\"BowQcI5P\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_index.md\":\"Cqu_ck56\",\"前端转ai agent_36-多模态与 oss 前端直传实战：ai 画板_index.md\":\"BtkIvueB\",\"前端转ai agent_37-rabbitmq：agent 中异步处理的标配方案_index.md\":\"DCN6ixuu\",\"前端转ai agent_index.md\":\"ClSoPTDr\",\"前端转ai agent_语雀答疑资料.md\":\"CQGtr2ih\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/ai-docs/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"},{\"text\":\"21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS\",\"link\":\"/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/\"},{\"text\":\"22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染\",\"link\":\"/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/\"},{\"text\":\"23-图编排引擎：LangGraph 和多 Agent 架构\",\"link\":\"/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/\"},{\"text\":\"24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统\",\"link\":\"/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/\"},{\"text\":\"25-基于 Docker Compose 的本地开发提效和生产环境部署\",\"link\":\"/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/\"},{\"text\":\"26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法\",\"link\":\"/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/\"},{\"text\":\"27-Neo4j 知识图谱和 Graph RAG\",\"link\":\"/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/\"},{\"text\":\"28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估\",\"link\":\"/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/\"},{\"text\":\"29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware\",\"link\":\"/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/\"},{\"text\":\"30-DeepAgents 实战：多 Agent 架构的深度调研助手\",\"link\":\"/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/\"},{\"text\":\"31-PostgreSQL：AI 时代最适合的数据库\",\"link\":\"/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/\"},{\"text\":\"32-Redis：实现 Agent 短期记忆存储的最佳方案\",\"link\":\"/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/\"},{\"text\":\"33-Mem0：分层记忆 + 三路召回的长期记忆方案\",\"link\":\"/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/\"},{\"text\":\"34-Nest 进阶：企业级 Node.js 后端最主流框架\",\"link\":\"/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/\"},{\"text\":\"36-多模态与 OSS 前端直传实战：AI 画板\",\"link\":\"/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/\"},{\"text\":\"37-RabbitMQ：Agent 中异步处理的标配方案\",\"link\":\"/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/\"}]}]},\"search\":{\"provider\":\"local\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/Broly789/ai-docs\"}],\"footer\":{\"copyright\":\"Copyright © 2026 Broly\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>

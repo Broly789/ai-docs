@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DeepAgents 实战：多 Agent 架构的深度调研助手 | 我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/ai-docs/assets/style.BCY4Bg7A.css" as="style">
+    <link rel="preload stylesheet" href="/ai-docs/vp-icons.css" as="style">
+    
+    <script type="module" src="/ai-docs/assets/app.DtHfIqAr.js"></script>
+    <link rel="preload" href="/ai-docs/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/theme.DA4Qk7BY.js">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/framework.lghGfHnE.js">
+    <link rel="modulepreload" href="/ai-docs/assets/前端转AI Agent_30-DeepAgents 实战：多 Agent 架构的深度调研助手_index.md.C3RLogEt.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/ai-docs/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-6aa21345 data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bb2aa2f0><div class="item social-links" data-v-bb2aa2f0><div class="VPSocialLinks social-links-list" data-v-bb2aa2f0 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible has-active" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>23-图编排引擎：LangGraph 和多 Agent 架构</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>25-基于 Docker Compose 的本地开发提效和生产环境部署</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>27-Neo4j 知识图谱和 Graph RAG</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>30-DeepAgents 实战：多 Agent 架构的深度调研助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>31-PostgreSQL：AI 时代最适合的数据库</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>32-Redis：实现 Agent 短期记忆存储的最佳方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>33-Mem0：分层记忆 + 三路召回的长期记忆方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>34-Nest 进阶：企业级 Node.js 后端最主流框架</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>36-多模态与 OSS 前端直传实战：AI 画板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>37-RabbitMQ：Agent 中异步处理的标配方案</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _ai-docs_%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_30-DeepAgents%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A4%9A%20Agent%20%E6%9E%B6%E6%9E%84%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%B0%83%E7%A0%94%E5%8A%A9%E6%89%8B_" data-v-39a288b8><div><h1 id="deepagents-实战-多-agent-架构的深度调研助手" tabindex="-1">DeepAgents 实战：多 Agent 架构的深度调研助手 <a class="header-anchor" href="#deepagents-实战-多-agent-架构的深度调研助手" aria-label="Permalink to &quot;DeepAgents 实战：多 Agent 架构的深度调研助手&quot;">​</a></h1><p>前面学了 DeepAgents 的各种 middleware，但是太散了。</p><p>而且 middleware 里带的 tool 需要在 prompt 里说明怎么用。</p><p>那有没有一个整合所有中间件的 api，并且内置了 prompt 呢？</p><p>有的，就是 createDeepAgent</p><p>我们基于 deepagents 开发一个多 Agent 项目：深度调研助手</p><p>你只要给它一个主题，它的主 Agent 会自动规划任务，列出 todo 列表，然后交给不同的子 Agent 来执行任务，比如联网搜索、代码执行等，最后生成一份调研报告</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdI2MoBToe3e2ytecSVRw8t506XxWCoXfk9iaOyh4tIYnPZ9ApefYUaJUlBsvGCxCK39A7J5d7HLHSS3BkJLHpOGicoqbSJCyO4U/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=0" alt="图片" referrerpolicy="no-referrer"></p><p>我们分了三个子 Agent：</p><p><strong>主 Agent</strong>：整个系统的编排中心，负责把用户输入的调研主题拆解成可执行流程，并协调各子 Agent 分工完成。它不亲自包揽所有调研细节，而是按「规划 → 调研 → 分析 → 起草 → 审阅 → 定稿」推进任务：先用待办列表明确步骤，再按需委派子 Agent，最后由自己整合材料、撰写报告并根据编辑反馈修订定稿。</p><p><strong>调研员子 Agent（researcher）</strong>：每次只负责一个聚焦的子主题。通过联网搜索收集资料，将关键事实与来源 URL 整理成结构化摘要，写入 findings_*.md。多个调研员可并行工作，适合把大主题拆成若干子方向同时推进。</p><p><strong>分析师子 Agent（analyst）</strong>：当调研涉及数字对比、排名、增长率等计算时启用。在 QuickJS REPL 中执行 JavaScript 完成数值分析，禁止凭猜测给出数字。结果写入 analysis_*.md，供主 Agent 写报告时引用。</p><p>**编辑子 Agent（editor）**在报告草稿完成后介入，从准确性、结构完整性、来源引用、语言表述等维度审阅，返回具体修改建议。编辑不直接改写报告，审阅与修订分离，便于主 Agent 在保持整体思路的前提下做针对性修改。</p><p>大概有这个 4 个 Agent</p><p>创建项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir deep-research-assistant</span></span>
+<span class="line"><span>cd deep-research-assistant</span></span>
+<span class="line"><span>npm init -y</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfekNfbiau45ibVbYC1Bq3FQy7prVWUBUFvnaB6rQGiaibb0mxV086LVU63iaWXibNUkm0ma7iaiauCuneZom98LBULcncrz5VdtPzc19jM/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=1" alt="图片" referrerpolicy="no-referrer"></p><p>进入项目，安装依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @langchain/core @langchain/langgraph @langchain/openai @langchain/quickjs dedent deepagents dotenv langchain zod</span></span></code></pre></div><p>写一下 .env 配置：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>OPENAI_API_KEY=sk-xx</span></span>
+<span class="line"><span>OPENAI_BASE_URL=&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span></span>
+<span class="line"><span>OPENAI_MODEL=&quot;qwen-plus&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 用于身份验证，实现链路上报  </span></span>
+<span class="line"><span>LANGCHAIN_API_KEY=xxx</span></span>
+<span class="line"><span># 指定LangSmith中的项目，追踪结果会归类到该项目下</span></span>
+<span class="line"><span>LANGCHAIN_PROJECT=deep-research-assistant</span></span>
+<span class="line"><span># 开启LangSmith追踪功能</span></span>
+<span class="line"><span>LANGCHAIN_TRACING_V2=true</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>BOCHA_API_KEY=sk-xx</span></span></code></pre></div><p>开启 langsmith 追踪</p><p>这里用到网络搜索，配置下博查的 api key</p><p>然后创建 src/tools/search.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import { tool } from&quot;langchain&quot;;</span></span>
+<span class="line"><span>import { z } from&quot;zod&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const BOCHA_API_URL = &quot;https://api.bochaai.com/v1/web-search&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function formatWebPages(webpages) {</span></span>
+<span class="line"><span>return webpages</span></span>
+<span class="line"><span>    .map(</span></span>
+<span class="line"><span>      (page, idx) =&gt;</span></span>
+<span class="line"><span>        `引用: ${idx + 1}</span></span>
+<span class="line"><span>标题: ${page.name ?? &quot;&quot;}</span></span>
+<span class="line"><span>URL: ${page.url ?? &quot;&quot;}</span></span>
+<span class="line"><span>摘要: ${page.summary ?? &quot;&quot;}</span></span>
+<span class="line"><span>网站名称: ${page.siteName ?? &quot;&quot;}</span></span>
+<span class="line"><span>网站图标: ${page.siteIcon ?? &quot;&quot;}</span></span>
+<span class="line"><span>发布时间: ${page.dateLastCrawled ?? &quot;&quot;}`,</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span>    .join(&quot;\n\n&quot;);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction bochaWebSearch(query, count) {</span></span>
+<span class="line"><span>const apiKey = process.env.BOCHA_API_KEY?.trim();</span></span>
+<span class="line"><span>if (!apiKey) {</span></span>
+<span class="line"><span>    return&quot;Bocha 联网搜索的 API Key 未配置（环境变量 BOCHA_API_KEY），请先在 .env 中配置后再重试。&quot;;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const response = await fetch(BOCHA_API_URL, {</span></span>
+<span class="line"><span>    method: &quot;POST&quot;,</span></span>
+<span class="line"><span>    headers: {</span></span>
+<span class="line"><span>      Authorization: `Bearer ${apiKey}`,</span></span>
+<span class="line"><span>      &quot;Content-Type&quot;: &quot;application/json&quot;,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>    body: JSON.stringify({</span></span>
+<span class="line"><span>      query,</span></span>
+<span class="line"><span>      freshness: &quot;noLimit&quot;,</span></span>
+<span class="line"><span>      summary: true,</span></span>
+<span class="line"><span>      count,</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (!response.ok) {</span></span>
+<span class="line"><span>    const errorText = await response.text();</span></span>
+<span class="line"><span>    return`搜索 API 请求失败，状态码: ${response.status}，错误信息: ${errorText}`;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let json;</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    json = await response.json();</span></span>
+<span class="line"><span>  } catch (e) {</span></span>
+<span class="line"><span>    return`搜索 API 请求失败，原因是：搜索结果解析失败 ${e.message}`;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    if (json.code !== 200 || !json.data) {</span></span>
+<span class="line"><span>      return`搜索 API 请求失败，原因是: ${json.msg ?? &quot;未知错误&quot;}`;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const webpages = json.data.webPages?.value ?? [];</span></span>
+<span class="line"><span>    if (!webpages.length) {</span></span>
+<span class="line"><span>      return`未找到与「${query}」相关的结果。`;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return formatWebPages(webpages);</span></span>
+<span class="line"><span>  } catch (e) {</span></span>
+<span class="line"><span>    return`搜索 API 请求失败，原因是：搜索结果解析失败 ${e.message}`;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>exportconst webSearch = tool(</span></span>
+<span class="line"><span>async (input) =&gt; {</span></span>
+<span class="line"><span>    const count = input.count ?? 10;</span></span>
+<span class="line"><span>    console.log(`  🔎 搜索: ${input.query}（${count} 条）`);</span></span>
+<span class="line"><span>    return bochaWebSearch(input.query, count);</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>    name: &quot;web_search&quot;,</span></span>
+<span class="line"><span>    description:</span></span>
+<span class="line"><span>      &quot;使用 Bocha 联网搜索 API 检索互联网网页。输入中文或中英结合的搜索关键词，可选 count 指定结果数量。返回标题、URL、摘要、网站名称、图标和发布时间。&quot;,</span></span>
+<span class="line"><span>    schema: z.object({</span></span>
+<span class="line"><span>      query: z</span></span>
+<span class="line"><span>        .string()</span></span>
+<span class="line"><span>        .min(1)</span></span>
+<span class="line"><span>        .describe(&quot;搜索关键词，优先使用中文，例如：2026年 AI Agent 框架对比、LangGraph 最新动态&quot;),</span></span>
+<span class="line"><span>      count: z</span></span>
+<span class="line"><span>        .number()</span></span>
+<span class="line"><span>        .int()</span></span>
+<span class="line"><span>        .min(1)</span></span>
+<span class="line"><span>        .max(20)</span></span>
+<span class="line"><span>        .optional()</span></span>
+<span class="line"><span>        .describe(&quot;返回的搜索结果数量，默认 10 条&quot;),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>);</span></span></code></pre></div><p>这个就是网络搜索的 tool</p><p>然后写下 4 个 Agent：</p><p>src/agent.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import path from&quot;node:path&quot;;</span></span>
+<span class="line"><span>import { fileURLToPath } from&quot;node:url&quot;;</span></span>
+<span class="line"><span>import dedent from&quot;dedent&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { createCodeInterpreterMiddleware } from&quot;@langchain/quickjs&quot;;</span></span>
+<span class="line"><span>import { createDeepAgent, FilesystemBackend } from&quot;deepagents&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import { webSearch } from&quot;./tools/search.mjs&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const projectDir = path.resolve(</span></span>
+<span class="line"><span>  path.dirname(fileURLToPath(import.meta.url)),</span></span>
+<span class="line"><span>&quot;..&quot;,</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const researcherSubAgent = {</span></span>
+<span class="line"><span>name: &quot;researcher&quot;,</span></span>
+<span class="line"><span>description:</span></span>
+<span class="line"><span>    &quot;通过联网搜索调研单一子主题。每次只分配一个子主题；多个独立子主题可并行启动多个调研员。&quot;,</span></span>
+<span class="line"><span>systemPrompt: dedent`</span></span>
+<span class="line"><span>    你是一名专业调研员，负责调研**一个**分配给你的子主题，并写入**一份**调研结果文件。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 工作流程（严格遵守，禁止空转循环）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    1. **可选**：用 write_todos 列出最多 3 条中文执行步骤（例如「搜索官方文档」「搜索社区评价」「整理并写入 findings」），然后按步骤执行</span></span>
+<span class="line"><span>    2. 最多调用 3 次 web_search（硬性上限，绝不超过）</span></span>
+<span class="line"><span>    3. 将搜索结果整理为结构化摘要，包含关键事实与来源 URL</span></span>
+<span class="line"><span>    4. 调用 write_file **一次**，保存到任务指定的路径（必须在 /workspace/sources/findings_*.md 下，禁止写到其他目录）</span></span>
+<span class="line"><span>    5. 用一句话确认已完成，然后**立即停止**，不要再搜索、写文件或更新 todo</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## write_todos 使用规则（若使用）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - 最多 3 条，每条 content 必须用中文</span></span>
+<span class="line"><span>    - 仅用于拆解本子的调研步骤，不要重复主 Agent 已完成的总体规划</span></span>
+<span class="line"><span>    - 最后一条 todo 必须是「写入 findings 文件」；该步骤完成后将所有 todo 标为 completed 并结束</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 其他规则</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - 不要重复相同的搜索关键词</span></span>
+<span class="line"><span>    - write_file 完成后禁止再次搜索——你的任务已结束</span></span>
+<span class="line"><span>    - 其他人只能看到你写入的文件，内容必须完整、自洽</span></span>
+<span class="line"><span>    - **所有输出必须使用中文**（专有名词如 LangGraph 可保留英文）</span></span>
+<span class="line"><span>    - 搜索关键词优先使用中文；若主题本身是英文专有名词，可中英结合</span></span>
+<span class="line"><span>  `,</span></span>
+<span class="line"><span>tools: [webSearch],</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const editorSubAgent = {</span></span>
+<span class="line"><span>name: &quot;editor&quot;,</span></span>
+<span class="line"><span>description:</span></span>
+<span class="line"><span>    &quot;审阅报告草稿的准确性、结构与完整性。在 /workspace/reports/draft_*.md 写好后使用。&quot;,</span></span>
+<span class="line"><span>systemPrompt: dedent`</span></span>
+<span class="line"><span>    你是一名资深情报编辑，负责**审阅**报告草稿——**不要**亲自改写报告。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 阅读材料</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - 原始问题：/workspace/sources/question.txt</span></span>
+<span class="line"><span>    - 待审草稿：任务中指定的路径</span></span>
+<span class="line"><span>    - 支撑材料：/workspace/sources/ 下的调研文件（如需要）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 审阅要点</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    - 报告是否直接回答了原始问题？</span></span>
+<span class="line"><span>    - 章节结构是否清晰，段落是否充实（而非只有 bullet 列表）？</span></span>
+<span class="line"><span>    - 是否引用了来源，并在「参考资料」章节列出？</span></span>
+<span class="line"><span>    - 是否有遗漏、无依据的断言或缺失的视角？</span></span>
+<span class="line"><span>    - 语言是否为中文，表述是否专业？</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 输出</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    返回简洁的审阅意见和具体、可操作的修改建议。</span></span>
+<span class="line"><span>    **不要**写入报告文件，只提供反馈。所有输出使用中文。</span></span>
+<span class="line"><span>  `,</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const analystSubAgent = {</span></span>
+<span class="line"><span>name: &quot;analyst&quot;,</span></span>
+<span class="line"><span>description:</span></span>
+<span class="line"><span>    &quot;使用 eval REPL 进行数值计算与结构化数据分析。适用于计算、排名、同比对比或 JSON/CSV 分析。&quot;,</span></span>
+<span class="line"><span>systemPrompt: dedent`</span></span>
+<span class="line"><span>    你是一名数据分析师，所有计算必须通过 eval REPL 完成——**禁止**猜测数字。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ## 工作流程</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    1. 从 /workspace/sources/ 读取数据文件（或从调研结果中提取数字）</span></span>
+<span class="line"><span>    2. 在 REPL 中编写并运行 JavaScript，计算总和、均值、排名、增长率等</span></span>
+<span class="line"><span>    3. 将分析结果保存到 /workspace/sources/analysis_*.md，包含计算逻辑与结论</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    必须展示计算过程，结论可从 REPL 输出复现。所有输出使用中文。</span></span>
+<span class="line"><span>  `,</span></span>
+<span class="line"><span>middleware: [createCodeInterpreterMiddleware()],</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const orchestratorPrompt = dedent`</span></span>
+<span class="line"><span>  你是「深度调研助手」的主 Agent，负责协调调研、分析与编辑，产出高质量调研简报。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 语言要求</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - **所有输出必须使用中文**：对话回复、write_todos 任务列表、文件内容、搜索关键词</span></span>
+<span class="line"><span>  - write_todos 中每条 todo 的 content 必须用中文描述，例如「撰写调研计划」「委派调研员调研 LangGraph」</span></span>
+<span class="line"><span>  - 搜索时优先使用中文关键词；英文专有名词（如 LangGraph、AutoGen）可保留</span></span>
+<span class="line"><span>  - 报告、调研笔记、计划文件全部用中文撰写</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 你的职责</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  协调调研员、分析师和编辑完成报告。不要亲自完成所有调研——将专业工作委派给子 Agent。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 标准流程</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  1. **规划** — 用 write_todos 拆解任务（中文）。将用户问题保存到 /workspace/sources/question.txt</span></span>
+<span class="line"><span>  2. **调研** — 按 web-research 技能：写 research_plan.md，委派调研员子 Agent（可并行）</span></span>
+<span class="line"><span>  3. **分析** — 若涉及数字对比或数据表，委派分析师子 Agent</span></span>
+<span class="line"><span>  4. **起草** — **由你亲自**按 report-writer 技能撰写，用 write_file 写入 /workspace/reports/draft_[主题].md</span></span>
+<span class="line"><span>  5. **审阅** — 委派编辑子 Agent 审稿，根据反馈修订一次</span></span>
+<span class="line"><span>  6. **定稿** — 保存最终报告到 /workspace/reports/report_[主题]_[日期].md</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## task 工具（子 Agent 委派）</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  **仅**以下 subagent_type 合法：researcher、analyst、editor、general-purpose。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - web-research、report-writer 是**技能**（写作指南），**不是**子 Agent，禁止作为 subagent_type 调用</span></span>
+<span class="line"><span>  - 报告起草、修订、定稿由**主 Agent 自己**用 write_file / edit_file 完成，不要委派 task</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 委派规则</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - 每个调研员只负责一个聚焦的子主题</span></span>
+<span class="line"><span>  - **每份报告最多 3 个调研员**——只选最相关的子主题</span></span>
+<span class="line"><span>  - 框架对比类任务：优先调研用户明确点名的框架；否则选最重要的 3 个</span></span>
+<span class="line"><span>  - 最多并行启动 3 个调研员，已有 3 份 findings 文件后不再新增调研员</span></span>
+<span class="line"><span>  - 仅在确实需要数值计算时使用分析师</span></span>
+<span class="line"><span>  - 每份报告只调用编辑一次（草稿完成后）</span></span>
+<span class="line"><span>  - 调研完成后直接进入起草 → 审阅 → 定稿，不要额外开调研轮次</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 文件约定</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - 计划与原始资料：/workspace/sources/</span></span>
+<span class="line"><span>  - 草稿与终稿：/workspace/reports/</span></span>
+<span class="line"><span>  - 同一时间只编辑一个文件，避免冲突</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  ## 完成时告知用户</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  - 最终报告保存路径</span></span>
+<span class="line"><span>  - 2–3 句话的核心发现摘要</span></span>
+<span class="line"><span>  - 调研中的局限或信息缺口</span></span>
+<span class="line"><span>`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>exportfunction createIntelligenceDeskAgent() {</span></span>
+<span class="line"><span>const apiKey = process.env.OPENAI_API_KEY?.trim();</span></span>
+<span class="line"><span>if (!apiKey) {</span></span>
+<span class="line"><span>    thrownewError(&quot;未设置 OPENAI_API_KEY 环境变量&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = process.env.OPENAI_MODEL?.trim() || &quot;gpt-4o&quot;;</span></span>
+<span class="line"><span>const baseURL = process.env.OPENAI_BASE_URL?.trim() || undefined;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const backend = new FilesystemBackend({</span></span>
+<span class="line"><span>    rootDir: projectDir,</span></span>
+<span class="line"><span>    virtualMode: true,</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return createDeepAgent({</span></span>
+<span class="line"><span>    model: new ChatOpenAI({</span></span>
+<span class="line"><span>      model,</span></span>
+<span class="line"><span>      temperature: 0,</span></span>
+<span class="line"><span>      apiKey,</span></span>
+<span class="line"><span>      ...(baseURL</span></span>
+<span class="line"><span>        ? {</span></span>
+<span class="line"><span>            configuration: {</span></span>
+<span class="line"><span>              baseURL,</span></span>
+<span class="line"><span>            },</span></span>
+<span class="line"><span>          }</span></span>
+<span class="line"><span>        : {}),</span></span>
+<span class="line"><span>    }),</span></span>
+<span class="line"><span>    systemPrompt: orchestratorPrompt,</span></span>
+<span class="line"><span>    backend,</span></span>
+<span class="line"><span>    memory: [path.join(projectDir, &quot;AGENTS.md&quot;)],</span></span>
+<span class="line"><span>    skills: [&quot;/skills/&quot;],</span></span>
+<span class="line"><span>    subagents: [researcherSubAgent, editorSubAgent, analystSubAgent],</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export { projectDir };</span></span></code></pre></div><p>我们直接用 createDeepAgent 的 api，这样不用自己组装 middleware 了，配置下 skills 目录、memory 的文件路径、子 agent 就好了。</p><p>这里的 dedent 是去掉换行和缩进的空格，换成 \n 的：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffvmE9oiawytsnibTv3EXRZmwHhhxm6KVnvJDFibMlS1kLaqCAO7y2OicN49SQDgDeTNsNH8cvqsaQo4ajUCzVpcRFEYp8Lm8WJEKU/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=2" alt="图片" referrerpolicy="no-referrer"></p><p>写代码的时候正常缩进，用这个可以自动去掉换成 \n</p><p>然后分析的子 Agent 需要执行代码，用到了 quickjs 这个 js 引擎来执行：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdRD0Ij4c2O54iaT5Jew02fArj558zncuMVhjJvbAHgcSeo8XqkveiakXD8D2kBkS1pvm7UhUpXOCbiahhd0fZd3Bqul3CUt8k2QA/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=3" alt="图片" referrerpolicy="no-referrer"></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfd53t9VLEhicPiaVkickT2Vn5Ljicdkxmc43nkA341DaibNbY87cVNoWdgMRRZrtgxfdQtraeKIoMvrQj9tLIzxfLxakXFRTz1d059o/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=4" alt="图片" referrerpolicy="no-referrer"></p><p>还有一个 src/cli.mjs 就是调用这个 agent，格式化下输出（直接从仓库复制吧）</p><p>还有两个 skill：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfc62yngoKYkUJCMe4kPK2duVeUMNFfqLYlRGNJZcJbcRN4ib4oeTBgIA6RGbJvibFlTtseiaoOoCWS4rCohZWT1I4AOiclBHwRgZx8/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=5" alt="图片" referrerpolicy="no-referrer"></p><p>skill 就是对 prompt 的封装，这里就是告诉 agent 怎么网络搜索、怎么写报告的</p><p>跑一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>node src/cli.mjs  &quot;调研国家统计局公开的2023年省级地区生产总值（GDP）数据：提取GDP总量前6名省份的具体数值及同 比增速，计算六省GDP总和、各省占全国GDP的比重，并按增速从高到低排名&quot;</span></span></code></pre></div><p>神光的编程秘籍</p><p>这样，一个可以加载 skills、有自动读取长期记忆 Agents.md、多个子 Agent 的 Agent 就完成了。</p><p>网络搜索的 tool 前面用过几次了。</p><p>重点是这个沙箱执行代码的 tool</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffCjOF3rr3aphD49oDzrydeSbd8omocTTGdhp0xYUIl3bFxlndWwDN8NHPUdAgImySicheibEtFMjU7tZWb8dRy0icsLlorZD734g/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=6" alt="图片" referrerpolicy="no-referrer"></p><p>大模型不会数学计算，涉及到计算的都是生成代码，用 eval 的 tool 来执行，这里是 js 代码用 quickjs 引擎来执行。</p><p>当然，你生成别的语言的代码也行，用对应的引擎执行即可。</p><p>这里有个 langsmith 小技巧：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfeWz5GhNdfx6BrH3f2vP05buibx1o6FK3zMCSuWeh3v1rWRdYR3nc2NjrDSA6eoRvCHah4Ria6F5z5vrWVvg9UNGaZHtBCGjUq8I/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=7" alt="图片" referrerpolicy="no-referrer"></p><p>可以通过 filter 过滤出所有的 tool 来，更容易理清流程。</p><p>最后就是 todo 了，复杂任务不能走一步想一步，都要提前生成 todo 列表，一步步执行：</p><p>主 agent 的 todo 列表：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffYJUH1qwmMjchvGdyR1GvxpvUiczPKibS3RlDteCEjLsjH5VTLd6PLGdfcytFKAXOqia9e3ict5WZZicV81lSD6ictickAXx3GZzicznw/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=8" alt="图片" referrerpolicy="no-referrer"></p><p>当前的是 in_progress，完成后会标记为 completed</p><p>这个是调研员子 Agent 的 todo 列表：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfe1hBh1gU7sRM3Sd52Qz2BIicFQthD2Y5vybib3xSrLqUQvdpoD5URibvA1lmX4cJjZeBdW5m8tZCNtUGqTclK4FU8KonvUckRQBA/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><p>其实这个中间件是 langchain 提供的，我们用一下试试：</p><p>src/todo-middleware-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import {</span></span>
+<span class="line"><span>  createAgent,</span></span>
+<span class="line"><span>  HumanMessage,</span></span>
+<span class="line"><span>  todoListMiddleware,</span></span>
+<span class="line"><span>} from&quot;langchain&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = new ChatOpenAI({</span></span>
+<span class="line"><span>model: process.env.OPENAI_MODEL,</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>temperature: 0,</span></span>
+<span class="line"><span>configuration: { </span></span>
+<span class="line"><span>    baseURL: process.env.OPENAI_BASE_URL</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const agent = createAgent({</span></span>
+<span class="line"><span>  model,</span></span>
+<span class="line"><span>tools: [],</span></span>
+<span class="line"><span>systemPrompt:</span></span>
+<span class="line"><span>    &quot;你是生活规划助手。收到需要多步完成的请求时，先用 write_todos 列出中文执行步骤，然后简要说明你的计划。&quot;,</span></span>
+<span class="line"><span>middleware: [todoListMiddleware()],</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const query =</span></span>
+<span class="line"><span>&quot;我下周末想带爸妈去杭州玩两天，帮我规划一下：交通怎么选、住哪里方便、必去景点和吃什么，预算控制在人均 1500 元左右。&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const result = await agent.invoke({</span></span>
+<span class="line"><span>messages: [new HumanMessage(query)],</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;todos:&quot;, JSON.stringify(result.todos, null, 2));</span></span>
+<span class="line"><span>console.log(&quot;─&quot;.repeat(50));</span></span>
+<span class="line"><span>console.log(&quot;回复:&quot;, result.messages.at(-1)?.content);</span></span></code></pre></div><p>用 createAgent + todoListMiddleware</p><p>这个中间件自带了 write_todos 的 tool，会生成 todo 列表写到 graph 的 state 里</p><p>神光的编程秘籍</p><p>这是 langchain 提供的中间件：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfegBibuG0UcL5JokZntib0Kz9nWbicv3mwEmnEJgiaWXmTJyfIkVQ3xgBoX40wsxcKeVr1RJ9ibnZZSJPjaMeBGdib9r2aRtS0FN6jxY/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=10" alt="图片" referrerpolicy="no-referrer"></p><p>我们的 Agent 里也可以用。</p><p>通过这个 agent，我们把 deepagents 的 createDeepAgent 的 todo 规划、多 Agent 执行、skill、memory 等用了一遍。</p><p>相比自己调用中间件，它集成了各种中间件，内置了对应的 prompt，用起来更简单</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcelxD4tnKjfCvr5tRhsKcGbBFrxkibzG8rSz415IsMTDSGgN09gKN8nqPGZ5MgfzkhEZdlXztq9icCoSzOicE6gKoTVkwSe0sHnQ/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=11" alt="图片" referrerpolicy="no-referrer"></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdqpLA37XfJx0fCKatdia25d8AVbYic6rtQ09smICgtEnAmHY8kF4uibwgQAG70UtWzurwX6SHWDLyuo3BFlJxw1JfbGgYX3L81YU/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=12" alt="图片" referrerpolicy="no-referrer"></p><p>上下文压缩这块，内置逻辑是每个模型有输入上下文限制，达到 85% 会触发总结，保留 10%</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwffNL8sWWREAkm6S72yEj64ibd14jYaM4F5mv3FiahzjBiamXzY5X0LIk29ZiacaQpFurw0MKCs8WrHibWq3vIKCRYric5VK47juWH1ib0/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=13" alt="图片" referrerpolicy="no-referrer"></p><p>qwen 模型没这个，我们我们可以这样改：</p><p>src/max-input-tokens-test.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = new ChatOpenAI({</span></span>
+<span class="line"><span>    model: process.env.OPENAI_MODEL,</span></span>
+<span class="line"><span>    apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>    temperature: 0,</span></span>
+<span class="line"><span>    configuration: { </span></span>
+<span class="line"><span>      baseURL: process.env.OPENAI_BASE_URL</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(model.profile.maxInputTokens);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Object.defineProperty(model, &quot;profile&quot;, {</span></span>
+<span class="line"><span>get: () =&gt; ({ maxInputTokens: 131_072 }),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(model.profile.maxInputTokens);</span></span></code></pre></div><p>神光的编程秘籍</p><p>我们改下这个值，就可以实现对上下文压缩触发阈值的修改：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdibicCzglYcNDuUo0qic3LicF15ocgmax0PiakIPWWuUjtc0kHXhlf64tfTqOuAA9h7blDIXUazKAsgr0RPicvmkdDRRNDA1gpoS6e8/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=14" alt="图片" referrerpolicy="no-referrer"></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcOGGHc3V2Nm3RoGt8Q4g8wan6qH9I4iaicWaHMsN1uvuEvEzaD9McABGf3mXwCDfTYpuCjNwVgibftUa6uDrvFfxeq1n5fRgw6u4/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=15" alt="图片" referrerpolicy="no-referrer"></p><p>而且，触发摘要后，会把会话原文记录在 conversation_history 目录下归档：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffzZoNFJWyBluhuicibZptOE3CbCAwwZt89OgEibVRTx8Q6IDxCJUtbOcmGMM1ViajoBvhPJvwViaBOAjfialIujXBgLkvXXrLbMI1Gk/640?wx_fmt=png&amp;from=appmsg" alt="图片" referrerpolicy="no-referrer"></p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>我们基于 DeepAgents 的 createDeepAgent api 实现了深度调研助手。</p><p>这是一个多 Agent 架构的 agent</p><p>主 Agent 会列出 todo 列表，按步执行，具体的调研、数据计算分析、报告编辑，由三个子 Agent 负责，它们有各自的能力，比如网络搜索、沙盒执行代码</p><p>子 Agent 执行的时候，如果需要多个步骤，也是先列 todo 列表再执行，比如调研的时候。执行完更改 todo 任务状态。</p><p>Agents.md 的长期记忆、skill 执行 等都是内置了，配置一下就行。</p><p>上下文压缩也是内置功能，可以修改 profile.maxInputTokens 来修改触发阈值。</p><p>这样，我们没有写很多代码，就完成了一个多 Agent 架构支持 skill 的功能比较完善的 Agent，这就是 DeepAgents 开发 Agent 的好处，有很多开箱即用的能力。</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>31-PostgreSQL：AI 时代最适合的数据库</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2026 Broly</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"9in8dfBd\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"vRBR51V1\",\"前端转ai agent_00-使用前必看_index.md\":\"CbTYS_Eb\",\"前端转ai agent_00-使用前必看_readme.md\":\"CCl9lush\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"K1bvlp7D\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"r280E0HR\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BR8y3Rx-\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"CPS19Jds\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"uevMc9jJ\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"fv_PJpcc\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"CQFwjUY4\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"Dauq-g01\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"Dlv8XNVU\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"CbSTEnTT\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"DDTGNKby\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DNdEFKT6\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"d3Ff9pnH\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"vM0Tv4bo\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"-nnHYLJJ\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"-P7BvoH7\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"DoCV-mZ1\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"DNpP_NKJ\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"NF6swDka\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"g5ORvcwt\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"C6owZzsL\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"9LaNiTPL\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"CDhwzkpk\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"CBIRaqqG\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"3a4M612j\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"B93sSY-q\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"rn4q-WuQ\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"B2P5Ib1W\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"98EDEZn4\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"CsxP2wpi\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cw6wTwvm\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"4TGYH26M\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"Dnx8hJX1\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"B6f3zgYP\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"dsYJoRzd\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"CYJef_cl\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"Wb8snKbo\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"CwCIxuKO\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"DAvbttsE\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"CGyuW48n\",\"前端转ai agent_21-豆包同款语音功能：语音识别 asr _ 流式语音合成 tts_index.md\":\"BvzkAkZE\",\"前端转ai agent_22-agui 协议：vercel ai sdk _ langchain 实现流式组件渲染_index.md\":\"C9l5yQ0r\",\"前端转ai agent_23-图编排引擎：langgraph 和多 agent 架构_index.md\":\"JFycbGth\",\"前端转ai agent_24-agentic rag：基于 langgraph 实现大模型自主决策的 rag 闭环系统_index.md\":\"CNMTWNm2\",\"前端转ai agent_25-基于 docker compose 的本地开发提效和生产环境部署_index.md\":\"COKhwZcQ\",\"前端转ai agent_26-elasticsearch 全文检索：倒排索引表 _ ik 分词器 _ bm25 算法_index.md\":\"F6c4YINg\",\"前端转ai agent_27-neo4j 知识图谱和 graph rag_index.md\":\"CLhPw4y6\",\"前端转ai agent_28-langsmith 全链路观测：从 agent 调试到 rag 量化评估_index.md\":\"Cn4inZdB\",\"前端转ai agent_29-deepagents：开箱即用的 skill、上下文压缩等 middleware_index.md\":\"DbbKdg4N\",\"前端转ai agent_30-deepagents 实战：多 agent 架构的深度调研助手_index.md\":\"C3RLogEt\",\"前端转ai agent_31-postgresql：ai 时代最适合的数据库_index.md\":\"C_yU6PnR\",\"前端转ai agent_32-redis：实现 agent 短期记忆存储的最佳方案_index.md\":\"zdAhZc5S\",\"前端转ai agent_33-mem0：分层记忆 _ 三路召回的长期记忆方案_index.md\":\"D6wI3o4G\",\"前端转ai agent_34-nest 进阶：企业级 node.js 后端最主流框架_index.md\":\"DqZPfK77\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_index.md\":\"K740KrRB\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_135707.md\":\"BowQcI5P\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_index.md\":\"Cqu_ck56\",\"前端转ai agent_36-多模态与 oss 前端直传实战：ai 画板_index.md\":\"BtkIvueB\",\"前端转ai agent_37-rabbitmq：agent 中异步处理的标配方案_index.md\":\"DCN6ixuu\",\"前端转ai agent_index.md\":\"ClSoPTDr\",\"前端转ai agent_语雀答疑资料.md\":\"CQGtr2ih\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/ai-docs/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"},{\"text\":\"21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS\",\"link\":\"/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/\"},{\"text\":\"22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染\",\"link\":\"/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/\"},{\"text\":\"23-图编排引擎：LangGraph 和多 Agent 架构\",\"link\":\"/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/\"},{\"text\":\"24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统\",\"link\":\"/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/\"},{\"text\":\"25-基于 Docker Compose 的本地开发提效和生产环境部署\",\"link\":\"/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/\"},{\"text\":\"26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法\",\"link\":\"/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/\"},{\"text\":\"27-Neo4j 知识图谱和 Graph RAG\",\"link\":\"/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/\"},{\"text\":\"28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估\",\"link\":\"/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/\"},{\"text\":\"29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware\",\"link\":\"/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/\"},{\"text\":\"30-DeepAgents 实战：多 Agent 架构的深度调研助手\",\"link\":\"/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/\"},{\"text\":\"31-PostgreSQL：AI 时代最适合的数据库\",\"link\":\"/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/\"},{\"text\":\"32-Redis：实现 Agent 短期记忆存储的最佳方案\",\"link\":\"/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/\"},{\"text\":\"33-Mem0：分层记忆 + 三路召回的长期记忆方案\",\"link\":\"/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/\"},{\"text\":\"34-Nest 进阶：企业级 Node.js 后端最主流框架\",\"link\":\"/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/\"},{\"text\":\"36-多模态与 OSS 前端直传实战：AI 画板\",\"link\":\"/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/\"},{\"text\":\"37-RabbitMQ：Agent 中异步处理的标配方案\",\"link\":\"/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/\"}]}]},\"search\":{\"provider\":\"local\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/Broly789/ai-docs\"}],\"footer\":{\"copyright\":\"Copyright © 2026 Broly\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>

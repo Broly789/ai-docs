@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>我的学习文档</title>
+    <meta name="description" content="前端转 AI Agent 课程笔记">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/ai-docs/assets/style.BCY4Bg7A.css" as="style">
+    <link rel="preload stylesheet" href="/ai-docs/vp-icons.css" as="style">
+    
+    <script type="module" src="/ai-docs/assets/app.DtHfIqAr.js"></script>
+    <link rel="preload" href="/ai-docs/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/theme.DA4Qk7BY.js">
+    <link rel="modulepreload" href="/ai-docs/assets/chunks/framework.lghGfHnE.js">
+    <link rel="modulepreload" href="/ai-docs/assets/前端转AI Agent_24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统_index.md.CNMTWNm2.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle has-sidebar" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/ai-docs/" data-v-1168a8e4><!--[--><!--]--><!--[--><img class="VPImage logo" src="📚" alt data-v-8426fc1a><!--]--><span data-v-1168a8e4>我的学习文档</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-6aa21345 data-v-dc692963><span id="main-nav-aria-label" class="visually-hidden" data-v-dc692963> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/ai-docs/前端转AI Agent/" tabindex="0" data-v-dc692963 data-v-e56f3d57><!--[--><span data-v-e56f3d57>前端转AI Agent</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-6aa21345 data-v-0394ad82 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><div class="group" data-v-bb2aa2f0><div class="item social-links" data-v-bb2aa2f0><div class="VPSocialLinks social-links-list" data-v-bb2aa2f0 data-v-7bc22406><!--[--><a class="VPSocialLink no-icon" href="https://github.com/Broly789/ai-docs" aria-label="github" target="_blank" rel="noopener" data-v-7bc22406 data-v-bd121fe5><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-a6f0e41e><span class="vpi-align-left menu-icon" data-v-a6f0e41e></span><span class="menu-text" data-v-a6f0e41e>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-5d98c3a5 data-v-319d5ca6><div class="curtain" data-v-319d5ca6></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-319d5ca6><span class="visually-hidden" id="sidebar-aria-label" data-v-319d5ca6> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-c40bc020><section class="VPSidebarItem level-0 collapsible has-active" data-v-c40bc020 data-v-b3fd67f8><div class="item" role="button" tabindex="0" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><h2 class="text" data-v-b3fd67f8>前端转AI Agent</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-b3fd67f8><span class="vpi-chevron-right caret-icon" data-v-b3fd67f8></span></div></div><div class="items" data-v-b3fd67f8><!--[--><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/00-使用前必看/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>00-使用前必看</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/01-AI Agent 开发要学什么？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>01-AI Agent 开发要学什么？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>02-从 Tool 开始：让大模型自动调工具读文件</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>03-实现 mini cursor：大模型自动调用 tool 执行命令</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/04-MCP 可跨进程调用的 Tool/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>04-MCP 可跨进程调用的 Tool</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>06-RAG：把文档向量化，基于向量实现真正的语义搜索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>08-LangChain 全部 Splitter，其实只需要其中的一个</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>09-向量数据库 Milvus：做 AI Agent 开发必备技术</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>10-Milvus + RAG 实战：电子书语义检索助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>11-Memory 管理的三大策略：截断、总结、检索</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>12-结构化大模型输出：Output Parser 还是 tool？</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>13-Output Parser 实战：智能录入 + 流式版 mini curosr</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/14-Prompt Template：组件化管理 prompt/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>14-Prompt Template：组件化管理 prompt</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>15-Runnable：把写逻辑变成组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/16-实战练习 LCEL 组装 chain/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>16-实战练习 LCEL 组装 chain</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>17-LangChain 整体总结：AI Agent 第一阶段学习完成</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>18-Nest + LangChain 实现基于 SSE 的流式 ai 接口</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>23-图编排引擎：LangGraph 和多 Agent 架构</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>25-基于 Docker Compose 的本地开发提效和生产环境部署</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>27-Neo4j 知识图谱和 Graph RAG</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>30-DeepAgents 实战：多 Agent 架构的深度调研助手</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>31-PostgreSQL：AI 时代最适合的数据库</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>32-Redis：实现 Agent 短期记忆存储的最佳方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>33-Mem0：分层记忆 + 三路召回的长期记忆方案</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>34-Nest 进阶：企业级 Node.js 后端最主流框架</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>36-多模态与 OSS 前端直传实战：AI 画板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-b3fd67f8 data-v-b3fd67f8><div class="item" data-v-b3fd67f8><div class="indicator" data-v-b3fd67f8></div><a class="VPLink link link" href="/ai-docs/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/" data-v-b3fd67f8><!--[--><p class="text" data-v-b3fd67f8>37-RabbitMQ：Agent 中异步处理的标配方案</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-sidebar has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _ai-docs_%E5%89%8D%E7%AB%AF%E8%BD%ACAI%20Agent_24-Agentic%20RAG%EF%BC%9A%E5%9F%BA%E4%BA%8E%20LangGraph%20%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%87%AA%E4%B8%BB%E5%86%B3%E7%AD%96%E7%9A%84%20RAG%20%E9%97%AD%E7%8E%AF%E7%B3%BB%E7%BB%9F_" data-v-39a288b8><div><p>公司内部的 Agent 基本都要用到 RAG。</p><p>因为大模型能思考，但它不知道公司内部的文档，而我们需要它能基于内部文档来回答。</p><p>传统 RAG 是这样的：</p><p>查询的时候，把 query 用嵌入模型向量化，根据余弦相似度，匹配向量数据库中最相近的文档返回：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfeud9nI4zgHToOB2SgZOzHp3NBvaqtAK7yt9H5rDMdxq23aacDlrZh2bgE6LiaguRGjQhjnx7ykyyL6HRavX0JIyAWT6V9mTHMI/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0" alt="图片" referrerpolicy="no-referrer"></p><p>但这个流程太固定，会有一些问题：</p><ul><li>所有问题都走检索，其实简单常识类问题不需要检索，浪费资源</li><li>没有纠错和评估机制，无法判断检索内容是否准确、是否足够</li><li>处理不了需要多步检索的复杂问题，比如先查 A、再查 B 才能得出结论</li><li>专业术语、精确实体更适合关键词检索，纯语义检索容易匹配不准</li><li>本地知识库没有的内容，不会主动去网络搜索补充，容易编造答案</li></ul><p>解决这些问题，显然要在 RAG 的固定流程中，引入大模型来思考。</p><ul><li>让模型根据问题类型选择检索策略，简单问题直接回答，复杂问题才走完整检索</li><li>评估检索结果是否相关、是否足够，让模型判断是否需要重新检索或补充检索</li><li>让模型自动拆解复杂问题，决定先查什么、后查什么，实现多步检索</li><li>同时结合关键词检索与语义检索，由模型统一融合多路结果，提升专业场景准确率</li><li>让模型判断本地知识库是否覆盖答案，覆盖不足时自动触发网络搜索补充信息</li></ul><p>最终把原本 “死板的检索 - 生成” 流程，升级为可思考、可判断、可纠错的智能 RAG 架构。</p><p>这种由大模型自主决策怎么检索、检索的信息是否足够、是否要重新检索等的 RAG 流程就叫 <strong>Agentic RAG</strong>。</p><p>这很适合用 LangGraph 的多 Agent 架构来做，每个 Agent 负责其中一块功能。</p><p>我们来写一下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir advanced-rag</span></span>
+<span class="line"><span>cd advanced-rag</span></span>
+<span class="line"><span>npm init -y</span></span></code></pre></div><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfd4R7KwBJ0dq1x8OgU342y6zUDVkWwG0qdY948tap3Tzrbj5acq9C88lNLnQ3HUtsEK22KDciciaHgDUVHH0OeicpwGeQaNp30cuQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=1" alt="图片" referrerpolicy="no-referrer"></p><p>安装依赖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pnpm install @langchain/langgraph @langchain/core @langchain/openai @langchain/community dotenv zod</span></span></code></pre></div><p>创建 .env</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>OPENAI_API_KEY=sk-xxx</span></span>
+<span class="line"><span>OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1</span></span>
+<span class="line"><span>MODEL_NAME=qwen-plus</span></span></code></pre></div><p>我们先基于 LangGraph 实现传统 RAG</p><p>创建 src/naive-rag.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI, OpenAIEmbeddings } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { Annotation, END, START, StateGraph } from&quot;@langchain/langgraph&quot;;</span></span>
+<span class="line"><span>import { Milvus } from&quot;@langchain/community/vectorstores/milvus&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const COLLECTION_NAME = &quot;ebook_collection&quot;;</span></span>
+<span class="line"><span>const TOP_K = 5;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const GraphState = Annotation.Root({</span></span>
+<span class="line"><span>    question: Annotation,</span></span>
+<span class="line"><span>    k: Annotation,</span></span>
+<span class="line"><span>    documents: Annotation,</span></span>
+<span class="line"><span>    generation: Annotation,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = new ChatOpenAI({</span></span>
+<span class="line"><span>    temperature: 0,</span></span>
+<span class="line"><span>    model: &quot;qwen-plus&quot;,</span></span>
+<span class="line"><span>    configuration: {</span></span>
+<span class="line"><span>        baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>    apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>    model: &quot;text-embedding-v3&quot;,</span></span>
+<span class="line"><span>    dimensions: 1024,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let vectorStore;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction retrieveRelevantContent(question, k = TOP_K) {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>        const docsWithScores = await vectorStore.similaritySearchWithScore(question, k);</span></span>
+<span class="line"><span>        return docsWithScores.map(([doc, score]) =&gt; ({</span></span>
+<span class="line"><span>            score,</span></span>
+<span class="line"><span>            content: doc.pageContent,</span></span>
+<span class="line"><span>            id: doc.metadata?.id ?? &quot;unknown&quot;,</span></span>
+<span class="line"><span>            book_id: doc.metadata?.book_id ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>            chapter_num: doc.metadata?.chapter_num ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>            index: doc.metadata?.index ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>        }));</span></span>
+<span class="line"><span>    } catch (error) {</span></span>
+<span class="line"><span>        console.error(&quot;检索内容时出错:&quot;, error.message);</span></span>
+<span class="line"><span>        return [];</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const retrieveNode = async (state) =&gt; {</span></span>
+<span class="line"><span>    const documents = await retrieveRelevantContent(state.question, state.k);</span></span>
+<span class="line"><span>    return {</span></span>
+<span class="line"><span>        question: state.question,</span></span>
+<span class="line"><span>        k: state.k,</span></span>
+<span class="line"><span>        documents,</span></span>
+<span class="line"><span>    };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const generateNode = async (state) =&gt; {</span></span>
+<span class="line"><span>    const context = state.documents</span></span>
+<span class="line"><span>        .map(</span></span>
+<span class="line"><span>            (item, i) =&gt;</span></span>
+<span class="line"><span>                `[片段 ${i + 1}]</span></span>
+<span class="line"><span>章节: 第 ${item.chapter_num} 章</span></span>
+<span class="line"><span>内容: ${item.content}`,</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span>        .join(&quot;\n\n━━━━━\n\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const prompt = `你是一个专业的《天龙八部》小说助手。基于小说内容回答问题，用准确、详细的语言。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>请根据以下《天龙八部》小说片段内容回答问题：</span></span>
+<span class="line"><span>${context}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题: ${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回答要求：</span></span>
+<span class="line"><span>1. 如果片段中有相关信息，请结合小说内容给出详细、准确的回答</span></span>
+<span class="line"><span>2. 可以综合多个片段的内容，提供完整的答案</span></span>
+<span class="line"><span>3. 如果片段中没有相关信息，请如实告知用户</span></span>
+<span class="line"><span>4. 回答要准确，符合小说的情节和人物设定</span></span>
+<span class="line"><span>5. 可以引用原文内容来支持你的回答</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>AI 助手的回答:`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>    let generation = &quot;&quot;;</span></span>
+<span class="line"><span>    const stream = await model.stream(prompt);</span></span>
+<span class="line"><span>    forawait (const chunk of stream) {</span></span>
+<span class="line"><span>        const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>        if (!text) continue;</span></span>
+<span class="line"><span>        generation += text;</span></span>
+<span class="line"><span>        process.stdout.write(text);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return {</span></span>
+<span class="line"><span>        question: state.question,</span></span>
+<span class="line"><span>        k: state.k,</span></span>
+<span class="line"><span>        documents: state.documents,</span></span>
+<span class="line"><span>        generation,</span></span>
+<span class="line"><span>    };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const graph = new StateGraph(GraphState)</span></span>
+<span class="line"><span>    .addNode(&quot;retrieve&quot;, retrieveNode)</span></span>
+<span class="line"><span>    .addNode(&quot;generate&quot;, generateNode)</span></span>
+<span class="line"><span>    .addEdge(START, &quot;retrieve&quot;)</span></span>
+<span class="line"><span>    .addEdge(&quot;retrieve&quot;, &quot;generate&quot;)</span></span>
+<span class="line"><span>    .addEdge(&quot;generate&quot;, END)</span></span>
+<span class="line"><span>    .compile();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction main() {</span></span>
+<span class="line"><span>    const question = &quot;阿朱的结局是什么？&quot;;</span></span>
+<span class="line"><span>    const kArg = 5;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // 导出为 Mermaid：可复制到 https://mermaid.live 或 Markdown 的 ```mermaid 代码块</span></span>
+<span class="line"><span>    const drawable = await graph.getGraphAsync();</span></span>
+<span class="line"><span>    const mermaid = drawable.drawMermaid({ withStyles: true });</span></span>
+<span class="line"><span>    console.log(mermaid);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    console.log(&quot;连接到 Milvus...&quot;);</span></span>
+<span class="line"><span>    vectorStore = await Milvus.fromExistingCollection(embeddings, {</span></span>
+<span class="line"><span>        collectionName: COLLECTION_NAME,</span></span>
+<span class="line"><span>        url: &quot;localhost:19530&quot;,</span></span>
+<span class="line"><span>        textField: &quot;content&quot;,</span></span>
+<span class="line"><span>        primaryField: &quot;id&quot;,</span></span>
+<span class="line"><span>        vectorField: &quot;vector&quot;,</span></span>
+<span class="line"><span>        indexCreateOptions: {</span></span>
+<span class="line"><span>            metric_type: &quot;COSINE&quot;,</span></span>
+<span class="line"><span>            index_type: &quot;HNSW&quot;,</span></span>
+<span class="line"><span>            params: { M: 16, efConstruction: 200 },</span></span>
+<span class="line"><span>            search_params: { ef: 64 },</span></span>
+<span class="line"><span>        },</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>    vectorStore.indexSearchParams = { metric_type: &quot;COSINE&quot;, params: JSON.stringify({ ef: 64 }) };</span></span>
+<span class="line"><span>    console.log(&quot;✓ 已连接\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>        await vectorStore.client.loadCollection({ collection_name: COLLECTION_NAME });</span></span>
+<span class="line"><span>        console.log(`✓ 集合 ${COLLECTION_NAME} 已加载\n`);</span></span>
+<span class="line"><span>    } catch (error) {</span></span>
+<span class="line"><span>        if (!error.message.includes(&quot;already loaded&quot;)) {</span></span>
+<span class="line"><span>            throw error;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        console.log(`✓ 集合 ${COLLECTION_NAME} 已处于加载状态\n`);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span>    console.log(`问题: ${question}`);</span></span>
+<span class="line"><span>    console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const result = await graph.invoke({</span></span>
+<span class="line"><span>        question,</span></span>
+<span class="line"><span>        k: Number.isFinite(kArg) ? kArg : TOP_K,</span></span>
+<span class="line"><span>        documents: [],</span></span>
+<span class="line"><span>        generation: &quot;&quot;,</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    console.log(&quot;\n【检索相关内容】&quot;);</span></span>
+<span class="line"><span>    if (result.documents.length === 0) {</span></span>
+<span class="line"><span>        console.log(&quot;未找到相关内容&quot;);</span></span>
+<span class="line"><span>        console.log(&quot;\n【AI 回答】&quot;);</span></span>
+<span class="line"><span>        console.log(&quot;抱歉，我没有找到相关的《天龙八部》内容。&quot;);</span></span>
+<span class="line"><span>        return;</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        result.documents.forEach((item, i) =&gt; {</span></span>
+<span class="line"><span>            console.log(`\n[片段 ${i + 1}] 相似度: ${item.score.toFixed(4)}`);</span></span>
+<span class="line"><span>            console.log(`书籍: ${item.book_id}`);</span></span>
+<span class="line"><span>            console.log(`章节: 第 ${item.chapter_num} 章`);</span></span>
+<span class="line"><span>            console.log(`片段索引: ${item.index}`);</span></span>
+<span class="line"><span>            console.log(</span></span>
+<span class="line"><span>                `内容: ${item.content.substring(0, 200)}${item.content.length &gt; 200 ? &quot;...&quot; : &quot;&quot;}`,</span></span>
+<span class="line"><span>            );</span></span>
+<span class="line"><span>        });</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (!result.generation) {</span></span>
+<span class="line"><span>        console.log(&quot;\n【AI 回答】&quot;);</span></span>
+<span class="line"><span>        console.log(&quot;模型未返回内容。&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>main()</span></span></code></pre></div><p>RAG 是一个线性的流程，之前用 LCEL 的链写过，这次用 langgraph 来写：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdunicrEhUzRHtsAjCgxK1OcgyjWBCnCdVtnPdQsapia3pAuwibAOicFFwoTzL7qRSanVlcgxRR13hy67N6VMCoXQkfru2vlqBUOMY/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=2" alt="图片" referrerpolicy="no-referrer"></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffgNLicibiayx6jqvo7nmWhsOTVzIGzJSp1duKg5RR4X6el90uwltnkpvxM0JGSYAOb8hMGymiadWjGIoCuTiaSfGricGUEZ7TVgeKsQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=3" alt="图片" referrerpolicy="no-referrer"></p><p>检索节点就是把 query 向量化从 Milvus 里检索相关文档：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfeP9fxEGFibd13jYLq70Wpfup6NrYYHKVBwhFvG3oOTicMnicJPnY9FwFyydz4Jib0h1cxvNDd383KyeDMmRDLTtvPszI93UxExkj0/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=4" alt="图片" referrerpolicy="no-referrer"></p><p>生成节点是把检索的文档放到 prompt 里，调用大模型生成回答：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfcJTGhXsHDiaLpWew3qxA4zZiabbWo5gP2fmWeMZ7f5NJ8CUXiaj0Gs4qhDdWa6UMHUeK4rdQRwSsFJLpBiau0BIQDg7wVauq4to0o/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=5" alt="图片" referrerpolicy="no-referrer"></p><p>然后我们一条条来解决上面的问题。</p><p>首先是这个：</p><ul><li>让模型根据问题类型选择检索策略，简单问题直接回答，复杂问题才走完整检索</li></ul><p>这个就是加一个节点来做判断，是直接回答，还是先检索向量数据库再回答</p><p>src/rag-query-router.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { z } from&quot;zod&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI, OpenAIEmbeddings } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { Annotation, END, START, StateGraph } from&quot;@langchain/langgraph&quot;;</span></span>
+<span class="line"><span>import { Milvus } from&quot;@langchain/community/vectorstores/milvus&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const llm = new ChatOpenAI({</span></span>
+<span class="line"><span>temperature: 0,</span></span>
+<span class="line"><span>model: &quot;qwen-plus&quot;,</span></span>
+<span class="line"><span>configuration: {</span></span>
+<span class="line"><span>      baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>model: &quot;text-embedding-v3&quot;,</span></span>
+<span class="line"><span>dimensions: 1024,</span></span>
+<span class="line"><span>configuration: { </span></span>
+<span class="line"><span>    baseURL: process.env.OPENAI_BASE_URL </span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const RouteSchema = z.object({</span></span>
+<span class="line"><span>strategy: z.enum([&quot;simple&quot;, &quot;complex&quot;]),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const GraphState = Annotation.Root({</span></span>
+<span class="line"><span>question: Annotation,</span></span>
+<span class="line"><span>k: Annotation,</span></span>
+<span class="line"><span>strategy: Annotation,</span></span>
+<span class="line"><span>routeReason: Annotation,</span></span>
+<span class="line"><span>documents: Annotation,</span></span>
+<span class="line"><span>generation: Annotation,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let vectorStore;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction retrieveRelevantContent(question, k) {</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    const docsWithScores = await vectorStore.similaritySearchWithScore(question, k);</span></span>
+<span class="line"><span>    return docsWithScores.map(([doc, score]) =&gt; ({</span></span>
+<span class="line"><span>      score,</span></span>
+<span class="line"><span>      content: doc.pageContent,</span></span>
+<span class="line"><span>      id: doc.metadata?.id ?? &quot;unknown&quot;,</span></span>
+<span class="line"><span>      book_id: doc.metadata?.book_id ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      chapter_num: doc.metadata?.chapter_num ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      index: doc.metadata?.index ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>    }));</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    console.error(&quot;检索内容时出错:&quot;, error.message);</span></span>
+<span class="line"><span>    return [];</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const routeQuestionNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---ROUTE_QUESTION---&quot;);</span></span>
+<span class="line"><span>const router = llm.withStructuredOutput(RouteSchema);</span></span>
+<span class="line"><span>const route = await router.invoke(`</span></span>
+<span class="line"><span>你是问答路由器。请判断用户问题是否需要外部检索。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>规则：</span></span>
+<span class="line"><span>- simple: 常识问答、简短定义、无需特定小说细节即可回答。</span></span>
+<span class="line"><span>- complex: 需要《天龙八部》具体情节、人物关系、章节事实、原文细节或证据支持。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`路由策略: ${route.strategy} (${route.reason})`);</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    question: state.question,</span></span>
+<span class="line"><span>    k: state.k,</span></span>
+<span class="line"><span>    strategy: route.strategy,</span></span>
+<span class="line"><span>    routeReason: route.reason,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const retrieveNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---RETRIEVE---&quot;);</span></span>
+<span class="line"><span>const documents = await retrieveRelevantContent(state.question, state.k);</span></span>
+<span class="line"><span>if (documents.length === 0) {</span></span>
+<span class="line"><span>    console.log(&quot;RETRIEVE结果: 未命中文档&quot;);</span></span>
+<span class="line"><span>  } else {</span></span>
+<span class="line"><span>    console.log(`RETRIEVE结果: 命中 ${documents.length} 条`);</span></span>
+<span class="line"><span>    documents.forEach((item, i) =&gt; {</span></span>
+<span class="line"><span>      const preview =</span></span>
+<span class="line"><span>        item.content.length &gt; 120 ? `${item.content.substring(0, 120)}...` : item.content;</span></span>
+<span class="line"><span>      console.log(</span></span>
+<span class="line"><span>        `[R${i + 1}] score=${Number(item.score).toFixed(4)} chapter=${item.chapter_num} index=${item.index}`,</span></span>
+<span class="line"><span>      );</span></span>
+<span class="line"><span>      console.log(`      ${preview}`);</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    question: state.question,</span></span>
+<span class="line"><span>    k: state.k,</span></span>
+<span class="line"><span>    strategy: state.strategy,</span></span>
+<span class="line"><span>    routeReason: state.routeReason,</span></span>
+<span class="line"><span>    documents,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const directAnswerNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---DIRECT_ANSWER---&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个中文问答助手，请直接简洁回答问题。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    question: state.question,</span></span>
+<span class="line"><span>    k: state.k,</span></span>
+<span class="line"><span>    strategy: state.strategy,</span></span>
+<span class="line"><span>    routeReason: state.routeReason,</span></span>
+<span class="line"><span>    documents: [],</span></span>
+<span class="line"><span>    generation,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const ragGenerateNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---RAG_GENERATE---&quot;);</span></span>
+<span class="line"><span>const context = state.documents</span></span>
+<span class="line"><span>    .map(</span></span>
+<span class="line"><span>      (item, i) =&gt;</span></span>
+<span class="line"><span>        `[片段 ${i + 1}]</span></span>
+<span class="line"><span>章节: 第 ${item.chapter_num} 章</span></span>
+<span class="line"><span>内容: ${item.content}`,</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span>    .join(&quot;\n\n━━━━━\n\n&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个专业的《天龙八部》小说助手。基于小说内容回答问题，用准确、详细的语言。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>请根据以下《天龙八部》小说片段内容回答问题：</span></span>
+<span class="line"><span>${context || &quot;（未检索到相关内容）&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题: ${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回答要求：</span></span>
+<span class="line"><span>1. 如果片段中有相关信息，请结合小说内容给出详细、准确的回答</span></span>
+<span class="line"><span>2. 可以综合多个片段的内容，提供完整的答案</span></span>
+<span class="line"><span>3. 如果片段中没有相关信息，请如实告知用户</span></span>
+<span class="line"><span>4. 回答要准确，符合小说的情节和人物设定</span></span>
+<span class="line"><span>5. 可以引用原文内容来支持你的回答</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>AI 助手的回答:`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    question: state.question,</span></span>
+<span class="line"><span>    k: state.k,</span></span>
+<span class="line"><span>    strategy: state.strategy,</span></span>
+<span class="line"><span>    routeReason: state.routeReason,</span></span>
+<span class="line"><span>    documents: state.documents,</span></span>
+<span class="line"><span>    generation,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function decideNext(state) {</span></span>
+<span class="line"><span>return state.strategy === &quot;simple&quot; ? &quot;direct_answer&quot; : &quot;retrieve&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const graph = new StateGraph(GraphState)</span></span>
+<span class="line"><span>  .addNode(&quot;route_question&quot;, routeQuestionNode)</span></span>
+<span class="line"><span>  .addNode(&quot;direct_answer&quot;, directAnswerNode)</span></span>
+<span class="line"><span>  .addNode(&quot;retrieve&quot;, retrieveNode)</span></span>
+<span class="line"><span>  .addNode(&quot;rag_generate&quot;, ragGenerateNode)</span></span>
+<span class="line"><span>  .addEdge(START, &quot;route_question&quot;)</span></span>
+<span class="line"><span>  .addConditionalEdges(&quot;route_question&quot;, decideNext, {</span></span>
+<span class="line"><span>    direct_answer: &quot;direct_answer&quot;,</span></span>
+<span class="line"><span>    retrieve: &quot;retrieve&quot;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .addEdge(&quot;retrieve&quot;, &quot;rag_generate&quot;)</span></span>
+<span class="line"><span>  .addEdge(&quot;direct_answer&quot;, END)</span></span>
+<span class="line"><span>  .addEdge(&quot;rag_generate&quot;, END)</span></span>
+<span class="line"><span>  .compile();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction main() {</span></span>
+<span class="line"><span>const question = &quot;阿朱的结局是什么？&quot;;</span></span>
+<span class="line"><span>const k = 5;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// 导出为 Mermaid：可复制到 https://mermaid.live 或 Markdown 的 ```mermaid 代码块</span></span>
+<span class="line"><span>const drawable = await graph.getGraphAsync();</span></span>
+<span class="line"><span>const mermaid = drawable.drawMermaid({ withStyles: true });</span></span>
+<span class="line"><span>console.log(mermaid);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;连接到 Milvus...&quot;);</span></span>
+<span class="line"><span>  vectorStore = await Milvus.fromExistingCollection(embeddings, {</span></span>
+<span class="line"><span>    collectionName: &quot;ebook_collection&quot;,</span></span>
+<span class="line"><span>    url: &quot;localhost:19530&quot;,</span></span>
+<span class="line"><span>    textField: &quot;content&quot;,</span></span>
+<span class="line"><span>    primaryField: &quot;id&quot;,</span></span>
+<span class="line"><span>    vectorField: &quot;vector&quot;,</span></span>
+<span class="line"><span>    indexCreateOptions: {</span></span>
+<span class="line"><span>      metric_type: &quot;COSINE&quot;,</span></span>
+<span class="line"><span>      index_type: &quot;HNSW&quot;,</span></span>
+<span class="line"><span>      params: { M: 16, efConstruction: 200 },</span></span>
+<span class="line"><span>      search_params: { ef: 64 },</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span>  vectorStore.indexSearchParams = { metric_type: &quot;COSINE&quot;, params: JSON.stringify({ ef: 64 }) };</span></span>
+<span class="line"><span>console.log(&quot;✓ 已连接\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    await vectorStore.client.loadCollection({ collection_name: &quot;ebook_collection&quot; });</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已加载\n&quot;);</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    if (!error.message.includes(&quot;already loaded&quot;)) {</span></span>
+<span class="line"><span>      throw error;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已处于加载状态\n&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span>console.log(`问题: ${question}`);</span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const result = await graph.invoke({</span></span>
+<span class="line"><span>    question,</span></span>
+<span class="line"><span>    k: Number.isFinite(k) ? k : 5,</span></span>
+<span class="line"><span>    strategy: &quot;&quot;,</span></span>
+<span class="line"><span>    routeReason: &quot;&quot;,</span></span>
+<span class="line"><span>    documents: [],</span></span>
+<span class="line"><span>    generation: &quot;&quot;,</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (result.strategy === &quot;complex&quot;) {</span></span>
+<span class="line"><span>    console.log(&quot;\n【检索相关内容】&quot;);</span></span>
+<span class="line"><span>    if (result.documents.length === 0) {</span></span>
+<span class="line"><span>      console.log(&quot;未找到相关内容&quot;);</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>      result.documents.forEach((item, i) =&gt; {</span></span>
+<span class="line"><span>        console.log(`\n[片段 ${i + 1}] 相似度: ${item.score.toFixed(4)}`);</span></span>
+<span class="line"><span>        console.log(`书籍: ${item.book_id}`);</span></span>
+<span class="line"><span>        console.log(`章节: 第 ${item.chapter_num} 章`);</span></span>
+<span class="line"><span>        console.log(`片段索引: ${item.index}`);</span></span>
+<span class="line"><span>        console.log(</span></span>
+<span class="line"><span>          `内容: ${item.content.substring(0, 200)}${item.content.length &gt; 200 ? &quot;...&quot; : &quot;&quot;}`,</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`\n最终策略: ${result.strategy}`);</span></span>
+<span class="line"><span>if (!result.generation?.trim()) {</span></span>
+<span class="line"><span>    console.log(&quot;模型未返回内容。&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>main()</span></span></code></pre></div><p>现在的 graph 如下：<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwff8uy93W35QiaQF8rLu7uG1GtgUvNn7JsBZUDGyhjjsnRy1ysCJv9G5IBmicbnj2TUmqjUG9ot4qkO82wOP0bjgHxby6XMoVZ0gQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=6" alt="图片" referrerpolicy="no-referrer"></p><p>我们加了一个对问题做路由的节点：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfdIvqQ3nGpVTrGMQiafERibF3qibYDpp7AV3N573oqJ2JaRwDtVx4H5kicxOTFmEqTWKPsrflbMPQ5GLfMhqLxQoPC2s102jKiaFRNw/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=7" alt="图片" referrerpolicy="no-referrer"></p><p>根据问题返回不同的类型，然后用 conditional edge 转到不同节点来处理</p><p>这个路由节点用 withStructuredOutput 来控制结构化输出</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcaUsM7gZ1ibddicxbVibuicicTzzhExjeacALra2n1C8Ws3HDHawRJF1lb1bibotIzhwmbjqmwIWXm5MU5tSQfFjAruEHquBTXNYc2k/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=8" alt="图片" referrerpolicy="no-referrer"></p><p>用大模型识别 query 是哪种类型，并给出原因</p><p>简单问题直接调大模型回答，复杂的问题先检索向量数据库再生成回答</p><p>这样就能识别出与小说相关的问题才走检索了。</p><p>继续来优化现在 RAG 的问题：</p><ul><li>处理不了需要多步检索的复杂问题，比如先查 A、再查 B 才能得出结论</li></ul><p>比如这种：段誉遇到的第一个神仙姐姐画像，是谁的弟子？</p><p>直接把这个 query 向量化匹配显然不够准确</p><p>应该是先检索神仙姐姐画像是谁，有了结果再去检索她是谁的弟子。</p><p>所以我们要支持下子问题的拆分：</p><p>src/rag-multihop.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { z } from&quot;zod&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI, OpenAIEmbeddings } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { Annotation, END, START, StateGraph } from&quot;@langchain/langgraph&quot;;</span></span>
+<span class="line"><span>import { Milvus } from&quot;@langchain/community/vectorstores/milvus&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const llm = new ChatOpenAI({</span></span>
+<span class="line"><span>temperature: 0,</span></span>
+<span class="line"><span>model: &quot;qwen-plus&quot;,</span></span>
+<span class="line"><span>configuration: {</span></span>
+<span class="line"><span>    baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>model: &quot;text-embedding-v3&quot;,</span></span>
+<span class="line"><span>dimensions: 1024,</span></span>
+<span class="line"><span>configuration: {</span></span>
+<span class="line"><span>    baseURL: process.env.OPENAI_BASE_URL,</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/**</span></span>
+<span class="line"><span> * complex：先拆解子问题序列，再按序检索</span></span>
+<span class="line"><span> */</span></span>
+<span class="line"><span>const GraphState = Annotation.Root({</span></span>
+<span class="line"><span>question: Annotation,</span></span>
+<span class="line"><span>k: Annotation,</span></span>
+<span class="line"><span>strategy: Annotation,</span></span>
+<span class="line"><span>routeReason: Annotation,</span></span>
+<span class="line"><span>/** 拆解得到的有序子问题，仅用于检索 */</span></span>
+<span class="line"><span>subQuestions: Annotation,</span></span>
+<span class="line"><span>/** 下一轮 retrieve 要用的下标（指向 subQuestions 中尚未检索的那一条） */</span></span>
+<span class="line"><span>nextSubIdx: Annotation,</span></span>
+<span class="line"><span>documents: Annotation,</span></span>
+<span class="line"><span>currentQuery: Annotation,</span></span>
+<span class="line"><span>retrievalCount: Annotation,</span></span>
+<span class="line"><span>maxRetrievals: Annotation,</span></span>
+<span class="line"><span>plannedNext: Annotation,</span></span>
+<span class="line"><span>generation: Annotation,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let vectorStore;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction retrieveRelevantContent(question, k) {</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    const docsWithScores = await vectorStore.similaritySearchWithScore(question, k);</span></span>
+<span class="line"><span>    return docsWithScores.map(([doc, score]) =&gt; ({</span></span>
+<span class="line"><span>      score,</span></span>
+<span class="line"><span>      content: doc.pageContent,</span></span>
+<span class="line"><span>      id: doc.metadata?.id ?? &quot;unknown&quot;,</span></span>
+<span class="line"><span>      book_id: doc.metadata?.book_id ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      chapter_num: doc.metadata?.chapter_num ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      index: doc.metadata?.index ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>    }));</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    console.error(&quot;检索内容时出错:&quot;, error.message);</span></span>
+<span class="line"><span>    return [];</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/** 按 id 合并；同 id 保留更高 score */</span></span>
+<span class="line"><span>function mergeUnique(existingDocs, newDocs) {</span></span>
+<span class="line"><span>const map = newMap();</span></span>
+<span class="line"><span>for (const d of [...existingDocs, ...newDocs]) {</span></span>
+<span class="line"><span>    const key = String(d.id);</span></span>
+<span class="line"><span>    const prev = map.get(key);</span></span>
+<span class="line"><span>    if (!prev || Number(d.score) &gt; Number(prev.score)) {</span></span>
+<span class="line"><span>      map.set(key, d);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>returnArray.from(map.values()).sort((a, b) =&gt;Number(b.score) - Number(a.score));</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const RouteSchema = z.object({</span></span>
+<span class="line"><span>strategy: z.enum([&quot;simple&quot;, &quot;complex&quot;]),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const DecomposeSchema = z.object({</span></span>
+<span class="line"><span>sub_questions: z.array(z.string()).min(1).max(8),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const NextStepSchema = z.object({</span></span>
+<span class="line"><span>nextAction: z.enum([&quot;retrieve&quot;, &quot;generate&quot;]),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const routeQuestionNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---ROUTE_QUESTION---&quot;);</span></span>
+<span class="line"><span>const router = llm.withStructuredOutput(RouteSchema);</span></span>
+<span class="line"><span>const route = await router.invoke(`</span></span>
+<span class="line"><span>你是问答路由器。请判断用户问题是否需要外部检索。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>规则：</span></span>
+<span class="line"><span>- simple: 常识问答、简短定义、无需特定小说细节即可回答。</span></span>
+<span class="line"><span>- complex: 需要《天龙八部》具体情节、人物关系、章节事实、原文细节或证据支持。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`路由策略: ${route.strategy} (${route.reason})`);</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    strategy: route.strategy,</span></span>
+<span class="line"><span>    routeReason: route.reason,</span></span>
+<span class="line"><span>    retrievalCount: 0,</span></span>
+<span class="line"><span>    maxRetrievals: state.maxRetrievals ?? 8,</span></span>
+<span class="line"><span>    documents: [],</span></span>
+<span class="line"><span>    subQuestions: [],</span></span>
+<span class="line"><span>    nextSubIdx: 0,</span></span>
+<span class="line"><span>    currentQuery: &quot;&quot;,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const decomposeQuestionNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---DECOMPOSE_QUESTION---&quot;);</span></span>
+<span class="line"><span>const decomposer = llm.withStructuredOutput(DecomposeSchema);</span></span>
+<span class="line"><span>const out = await decomposer.invoke(`你是《天龙八部》多跳问答的「子问题拆解器」。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户原始问题：</span></span>
+<span class="line"><span>${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>任务：将问题拆成**有序**子问题列表 sub_questions，用于**依次向量检索**。要求：</span></span>
+<span class="line"><span>1. 链式推理、多层关系、因果先后的问题，必须拆成多条；单跳即可答的也可只输出 1 条。</span></span>
+<span class="line"><span>2. 每条子问题必须是**可独立检索**的完整中文问句，**禁止**使用「他/她/此人/上文」等指代；可写全人物名与事件名。</span></span>
+<span class="line"><span>3. 顺序必须符合推理链：先搞清前置实体/事实，再查后续结论。</span></span>
+<span class="line"><span>4. **不要**把整句原题原样复制成唯一一条（除非确实无法拆分）；不要拆成过碎的关键词列表。</span></span>
+<span class="line"><span>5. 输出 1～8 条即可。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>请输出 sub_questions 与简短 reason。`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const subQuestions = out.sub_questions.map((s) =&gt; s.trim()).filter(Boolean);</span></span>
+<span class="line"><span>if (subQuestions.length === 0) {</span></span>
+<span class="line"><span>    thrownewError(&quot;decompose_question: sub_questions 为空&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`拆解 ${subQuestions.length} 条子问题 (${out.reason})`);</span></span>
+<span class="line"><span>  subQuestions.forEach((q, i) =&gt; {</span></span>
+<span class="line"><span>    console.log(`  [${i + 1}] ${q}`);</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    subQuestions,</span></span>
+<span class="line"><span>    nextSubIdx: 0,</span></span>
+<span class="line"><span>    currentQuery: subQuestions[0],</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const retrieveNode = async (state) =&gt; {</span></span>
+<span class="line"><span>const subs = state.subQuestions ?? [];</span></span>
+<span class="line"><span>const idx = state.nextSubIdx ?? 0;</span></span>
+<span class="line"><span>const q = subs[idx]?.trim();</span></span>
+<span class="line"><span>if (!q) {</span></span>
+<span class="line"><span>    thrownewError(`retrieve: 子问题下标 ${idx} 无有效文本（共 ${subs.length} 条）`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const round = state.retrievalCount + 1;</span></span>
+<span class="line"><span>console.log(`---RETRIEVE (第 ${round} 轮，子问题 ${idx + 1}/${subs.length})---`);</span></span>
+<span class="line"><span>console.log(`查询: ${q}`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const newDocs = await retrieveRelevantContent(q, state.k);</span></span>
+<span class="line"><span>const merged = mergeUnique(state.documents ?? [], newDocs);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (newDocs.length === 0) {</span></span>
+<span class="line"><span>    console.log(&quot;本轮未命中文档&quot;);</span></span>
+<span class="line"><span>  } else {</span></span>
+<span class="line"><span>    console.log(`本轮命中 ${newDocs.length} 条，累计去重后 ${merged.length} 条`);</span></span>
+<span class="line"><span>    newDocs.forEach((item, i) =&gt; {</span></span>
+<span class="line"><span>      const preview =</span></span>
+<span class="line"><span>        item.content.length &gt; 120 ? `${item.content.substring(0, 120)}...` : item.content;</span></span>
+<span class="line"><span>      console.log(</span></span>
+<span class="line"><span>        `[R${i + 1}] score=${Number(item.score).toFixed(4)} chapter=${item.chapter_num} index=${item.index}`,</span></span>
+<span class="line"><span>      );</span></span>
+<span class="line"><span>      console.log(`      ${preview}`);</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    documents: merged,</span></span>
+<span class="line"><span>    retrievalCount: round,</span></span>
+<span class="line"><span>    nextSubIdx: idx + 1,</span></span>
+<span class="line"><span>    currentQuery: q,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const planNextStepNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---PLAN_NEXT_STEP---&quot;);</span></span>
+<span class="line"><span>const subs = state.subQuestions ?? [];</span></span>
+<span class="line"><span>const nextIdx = state.nextSubIdx ?? 0;</span></span>
+<span class="line"><span>const remaining = subs.length - nextIdx;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const subList = subs.map((s, i) =&gt;`${i + 1}. ${s}${i &lt; nextIdx ? &quot; （已检索）&quot; : i === nextIdx ? &quot; （下一轮将检索，若选择继续）&quot; : &quot; （未检索）&quot;}`).join(&quot;\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const docStr =</span></span>
+<span class="line"><span>    state.documents.length === 0</span></span>
+<span class="line"><span>      ? &quot;（尚无检索结果）&quot;</span></span>
+<span class="line"><span>      : state.documents</span></span>
+<span class="line"><span>          .slice(0, 6)</span></span>
+<span class="line"><span>          .map(</span></span>
+<span class="line"><span>            (d, i) =&gt;</span></span>
+<span class="line"><span>              `[${i + 1}] score=${Number(d.score).toFixed(4)} 第${d.chapter_num}章: ${d.content.slice(0, 200)}${d.content.length &gt; 200 ? &quot;...&quot; : &quot;&quot;}`,</span></span>
+<span class="line"><span>          )</span></span>
+<span class="line"><span>          .join(&quot;\n\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const prompt = `你是多跳 RAG 规划器。检索查询已由前置步骤拆解为**有序子问题**；若需继续检索，下一轮将自动使用「下一条子问题」做向量检索，你**不要**自拟新的检索句。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户原始问题：${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>子问题序列：</span></span>
+<span class="line"><span>${subList || &quot;（无）&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>已检索轮数：${state.retrievalCount}；剩余未检索子问题条数：${remaining}</span></span>
+<span class="line"><span>最大检索轮数上限：${state.maxRetrievals}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>已召回文档摘要：</span></span>
+<span class="line"><span>${docStr}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>请判断下一步：</span></span>
+<span class="line"><span>1) 已有足够依据回答用户原始问题 → nextAction=generate</span></span>
+<span class="line"><span>2) 仍缺关键事实、且仍存在未检索的子问题、且未超过轮数上限 → nextAction=retrieve</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>硬性规则：</span></span>
+<span class="line"><span>- 若剩余未检索子问题条数为 0，必须 nextAction=generate。</span></span>
+<span class="line"><span>- 若已检索轮数已达到或超过最大检索轮数，必须 nextAction=generate。`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const model = llm.withStructuredOutput(NextStepSchema);</span></span>
+<span class="line"><span>const { nextAction, reason } = await model.invoke(prompt);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let finalNext = nextAction;</span></span>
+<span class="line"><span>if (state.retrievalCount &gt;= state.maxRetrievals) finalNext = &quot;generate&quot;;</span></span>
+<span class="line"><span>if (remaining &lt;= 0) finalNext = &quot;generate&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`[决策] plannedNext=${finalNext} (模型建议=${nextAction}) (${reason})`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    plannedNext: finalNext,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function afterRoute(state) {</span></span>
+<span class="line"><span>return state.strategy === &quot;simple&quot; ? &quot;direct_answer&quot; : &quot;decompose_question&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function afterPlan(state) {</span></span>
+<span class="line"><span>return state.plannedNext === &quot;retrieve&quot; ? &quot;retrieve&quot; : &quot;generate&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const directAnswerNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---DIRECT_ANSWER---&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个中文问答助手，请直接简洁回答问题。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span>return { generation };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const generateNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---GENERATE---&quot;);</span></span>
+<span class="line"><span>const context = state.documents</span></span>
+<span class="line"><span>    .map(</span></span>
+<span class="line"><span>      (item, i) =&gt;</span></span>
+<span class="line"><span>        `[片段 ${i + 1}]</span></span>
+<span class="line"><span>章节: 第 ${item.chapter_num} 章</span></span>
+<span class="line"><span>内容: ${item.content}`,</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span>    .join(&quot;\n\n━━━━━\n\n&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个专业的《天龙八部》小说助手。基于小说内容回答问题，用准确、详细的语言。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>请根据以下《天龙八部》小说片段内容回答问题：</span></span>
+<span class="line"><span>${context || &quot;（未检索到相关内容）&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题: ${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回答要求：</span></span>
+<span class="line"><span>1. 如果片段中有相关信息，请结合小说内容给出详细、准确的回答</span></span>
+<span class="line"><span>2. 可以综合多个片段的内容，提供完整的答案</span></span>
+<span class="line"><span>3. 如果片段中没有相关信息，请如实告知用户</span></span>
+<span class="line"><span>4. 回答要准确，符合小说的情节和人物设定</span></span>
+<span class="line"><span>5. 可以引用原文内容来支持你的回答</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>AI 助手的回答:`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span>return { generation };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const graph = new StateGraph(GraphState)</span></span>
+<span class="line"><span>  .addNode(&quot;route_question&quot;, routeQuestionNode)</span></span>
+<span class="line"><span>  .addNode(&quot;direct_answer&quot;, directAnswerNode)</span></span>
+<span class="line"><span>  .addNode(&quot;decompose_question&quot;, decomposeQuestionNode)</span></span>
+<span class="line"><span>  .addNode(&quot;retrieve&quot;, retrieveNode)</span></span>
+<span class="line"><span>  .addNode(&quot;plan_next_step&quot;, planNextStepNode)</span></span>
+<span class="line"><span>  .addNode(&quot;generate&quot;, generateNode)</span></span>
+<span class="line"><span>  .addEdge(START, &quot;route_question&quot;)</span></span>
+<span class="line"><span>  .addConditionalEdges(&quot;route_question&quot;, afterRoute, {</span></span>
+<span class="line"><span>    direct_answer: &quot;direct_answer&quot;,</span></span>
+<span class="line"><span>    decompose_question: &quot;decompose_question&quot;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .addEdge(&quot;decompose_question&quot;, &quot;retrieve&quot;)</span></span>
+<span class="line"><span>  .addEdge(&quot;retrieve&quot;, &quot;plan_next_step&quot;)</span></span>
+<span class="line"><span>  .addConditionalEdges(&quot;plan_next_step&quot;, afterPlan, {</span></span>
+<span class="line"><span>    retrieve: &quot;retrieve&quot;,</span></span>
+<span class="line"><span>    generate: &quot;generate&quot;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .addEdge(&quot;direct_answer&quot;, END)</span></span>
+<span class="line"><span>  .addEdge(&quot;generate&quot;, END)</span></span>
+<span class="line"><span>  .compile();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction main() {</span></span>
+<span class="line"><span>const question =</span></span>
+<span class="line"><span>    &quot;《天龙八部》中「四大恶人」排行第二的是谁？此人之子在身世揭晓前，其生父在武林中的公开身份是什么？&quot;;</span></span>
+<span class="line"><span>const k = 5;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const drawable = await graph.getGraphAsync();</span></span>
+<span class="line"><span>console.log(drawable.drawMermaid({ withStyles: true }));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;连接到 Milvus...&quot;);</span></span>
+<span class="line"><span>  vectorStore = await Milvus.fromExistingCollection(embeddings, {</span></span>
+<span class="line"><span>    collectionName: &quot;ebook_collection&quot;,</span></span>
+<span class="line"><span>    url: &quot;localhost:19530&quot;,</span></span>
+<span class="line"><span>    textField: &quot;content&quot;,</span></span>
+<span class="line"><span>    primaryField: &quot;id&quot;,</span></span>
+<span class="line"><span>    vectorField: &quot;vector&quot;,</span></span>
+<span class="line"><span>    indexCreateOptions: {</span></span>
+<span class="line"><span>      metric_type: &quot;COSINE&quot;,</span></span>
+<span class="line"><span>      index_type: &quot;HNSW&quot;,</span></span>
+<span class="line"><span>      params: { M: 16, efConstruction: 200 },</span></span>
+<span class="line"><span>      search_params: { ef: 64 },</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span>  vectorStore.indexSearchParams = { metric_type: &quot;COSINE&quot;, params: JSON.stringify({ ef: 64 }) };</span></span>
+<span class="line"><span>console.log(&quot;✓ 已连接\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    await vectorStore.client.loadCollection({ collection_name: &quot;ebook_collection&quot; });</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已加载\n&quot;);</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    if (!error.message.includes(&quot;already loaded&quot;)) {</span></span>
+<span class="line"><span>      throw error;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已处于加载状态\n&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span>console.log(`问题: ${question}`);</span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const result = await graph.invoke({</span></span>
+<span class="line"><span>    question,</span></span>
+<span class="line"><span>    k: Number.isFinite(k) ? k : 5,</span></span>
+<span class="line"><span>    strategy: &quot;&quot;,</span></span>
+<span class="line"><span>    routeReason: &quot;&quot;,</span></span>
+<span class="line"><span>    subQuestions: [],</span></span>
+<span class="line"><span>    nextSubIdx: 0,</span></span>
+<span class="line"><span>    documents: [],</span></span>
+<span class="line"><span>    currentQuery: &quot;&quot;,</span></span>
+<span class="line"><span>    retrievalCount: 0,</span></span>
+<span class="line"><span>    maxRetrievals: 8,</span></span>
+<span class="line"><span>    plannedNext: &quot;&quot;,</span></span>
+<span class="line"><span>    generation: &quot;&quot;,</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (result.strategy === &quot;complex&quot;) {</span></span>
+<span class="line"><span>    if (result.subQuestions?.length) {</span></span>
+<span class="line"><span>      console.log(&quot;\n【子问题序列】&quot;);</span></span>
+<span class="line"><span>      result.subQuestions.forEach((s, i) =&gt;console.log(`  ${i + 1}. ${s}`));</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    console.log(&quot;\n【检索相关内容（累计）】&quot;);</span></span>
+<span class="line"><span>    if (result.documents.length === 0) {</span></span>
+<span class="line"><span>      console.log(&quot;未找到相关内容&quot;);</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>      result.documents.forEach((item, i) =&gt; {</span></span>
+<span class="line"><span>        console.log(`\n[片段 ${i + 1}] 相似度: ${Number(item.score).toFixed(4)}`);</span></span>
+<span class="line"><span>        console.log(`书籍: ${item.book_id}`);</span></span>
+<span class="line"><span>        console.log(`章节: 第 ${item.chapter_num} 章`);</span></span>
+<span class="line"><span>        console.log(`片段索引: ${item.index}`);</span></span>
+<span class="line"><span>        console.log(</span></span>
+<span class="line"><span>          `内容: ${item.content.substring(0, 200)}${item.content.length &gt; 200 ? &quot;...&quot; : &quot;&quot;}`,</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>      });</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    console.log(`\n检索轮数: ${result.retrievalCount} / ${result.maxRetrievals}`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`\n最终策略: ${result.strategy}`);</span></span>
+<span class="line"><span>if (!result.generation?.trim()) {</span></span>
+<span class="line"><span>    console.log(&quot;模型未返回内容。&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>main().catch((err) =&gt; {</span></span>
+<span class="line"><span>console.error(&quot;运行失败:&quot;, err);</span></span>
+<span class="line"><span>  process.exit(1);</span></span>
+<span class="line"><span>});</span></span></code></pre></div><p>整体流程如图：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwffUL51YnDm6INJZugEM5LZTlTGXoqXqh11l3ZSRzuicTplskrfKn2YkMUibiacp1gTYEowToI4gvfDuL9ia92EZjxWFPePqnhpqNQg/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=9" alt="图片" referrerpolicy="no-referrer"></p><p>首先拆分成多个子问题：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwffZZGC3iaGVabVfrdMbQbsuXKjaPrJAbJGAYNP7gZnLSoIrFYEibleEbeg9LxGc5NWQot3jwXIZBp6r2V2Lj6uzfCHVibAPiauW2EA/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=10" alt="图片" referrerpolicy="no-referrer"></p><p>把原始问题拆成多个子问题的数组。</p><p>然后检索的时候根据 state 里的当前下标来检索对应问题的文档：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcZib9OfanJXMI6kzHZAibpVxmZAtka6yoLI34pVB2wXenskrUWIriafFqmVYB2D6qdb28dSHtiakgcsjaQw85fcewKQrAfnkKAcho/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=11" alt="图片" referrerpolicy="no-referrer"></p><p>这里因为会检索多轮，所以做了一下 id 的去重。</p><p>接下来判断是否检索完了，如果没有就继续检索：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfcJr6WJiaibhqqVyFVZRmicVlQvSo1pfZbnkyjQOiazd35suYdp30kS44RRK8dEjcfGicZkuql6dUicJyTXVq0XTl3qVlPkxLuNT2b0E/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=12" alt="图片" referrerpolicy="no-referrer"></p><p>直到循环完，就检索完了所有子问题，接下来就生成回答就好了。</p><p>然后继续来看传统 RAG 的其他问题：</p><ul><li>本地知识库没有的内容，不会主动去网络搜索补充，容易编造答案</li></ul><p>如果知识库中没有的内容，这时候 agent 就不知道怎么回答了。</p><p>这种情况我们可以调用网络搜索来兜底，把搜索结果放到 prompt 里来参考生成回答。</p><p>src/rag-webfallback.mjs</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import &quot;dotenv/config&quot;;</span></span>
+<span class="line"><span>import { z } from&quot;zod&quot;;</span></span>
+<span class="line"><span>import { ChatOpenAI, OpenAIEmbeddings } from&quot;@langchain/openai&quot;;</span></span>
+<span class="line"><span>import { Annotation, END, START, StateGraph } from&quot;@langchain/langgraph&quot;;</span></span>
+<span class="line"><span>import { Milvus } from&quot;@langchain/community/vectorstores/milvus&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const llm = new ChatOpenAI({</span></span>
+<span class="line"><span>temperature: 0,</span></span>
+<span class="line"><span>model: &quot;qwen-plus&quot;,</span></span>
+<span class="line"><span>configuration: { baseURL: process.env.OPENAI_BASE_URL },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const embeddings = new OpenAIEmbeddings({</span></span>
+<span class="line"><span>model: &quot;text-embedding-v3&quot;,</span></span>
+<span class="line"><span>dimensions: 1024,</span></span>
+<span class="line"><span>configuration: { baseURL: process.env.OPENAI_BASE_URL },</span></span>
+<span class="line"><span>apiKey: process.env.OPENAI_API_KEY,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const GraphState = Annotation.Root({</span></span>
+<span class="line"><span>question: Annotation,</span></span>
+<span class="line"><span>k: Annotation,</span></span>
+<span class="line"><span>strategy: Annotation,</span></span>
+<span class="line"><span>routeReason: Annotation,</span></span>
+<span class="line"><span>retrievedDocs: Annotation,</span></span>
+<span class="line"><span>localContext: Annotation,</span></span>
+<span class="line"><span>webContext: Annotation,</span></span>
+<span class="line"><span>evaluation: Annotation,</span></span>
+<span class="line"><span>generation: Annotation,</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let vectorStore;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction retrieveRelevantContent(query, k) {</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    const docsWithScores = await vectorStore.similaritySearchWithScore(query, k);</span></span>
+<span class="line"><span>    return docsWithScores.map(([doc, score]) =&gt; ({</span></span>
+<span class="line"><span>      score,</span></span>
+<span class="line"><span>      content: doc.pageContent,</span></span>
+<span class="line"><span>      id: doc.metadata?.id ?? &quot;unknown&quot;,</span></span>
+<span class="line"><span>      book_id: doc.metadata?.book_id ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      chapter_num: doc.metadata?.chapter_num ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>      index: doc.metadata?.index ?? &quot;未知&quot;,</span></span>
+<span class="line"><span>    }));</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    console.error(&quot;检索内容时出错:&quot;, error.message);</span></span>
+<span class="line"><span>    return [];</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const RouteSchema = z.object({</span></span>
+<span class="line"><span>strategy: z.enum([&quot;simple&quot;, &quot;complex&quot;]),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const routeQuestionNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---ROUTE_QUESTION---&quot;);</span></span>
+<span class="line"><span>const router = llm.withStructuredOutput(RouteSchema);</span></span>
+<span class="line"><span>const route = await router.invoke(`</span></span>
+<span class="line"><span>你是问答路由器。请判断用户问题是否需要外部检索。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>规则：</span></span>
+<span class="line"><span>- simple: 常识问答、简短定义、无需特定小说细节即可回答。</span></span>
+<span class="line"><span>- complex: 需要《天龙八部》具体情节、人物关系、章节事实、原文细节或证据支持。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span>console.log(`路由策略: ${route.strategy} (${route.reason})`);</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    strategy: route.strategy,</span></span>
+<span class="line"><span>    routeReason: route.reason,</span></span>
+<span class="line"><span>    retrievedDocs: [],</span></span>
+<span class="line"><span>    localContext: &quot;&quot;,</span></span>
+<span class="line"><span>    webContext: &quot;&quot;,</span></span>
+<span class="line"><span>    evaluation: &quot;&quot;,</span></span>
+<span class="line"><span>    generation: &quot;&quot;,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const directAnswerNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---DIRECT_ANSWER---&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个中文问答助手，请直接简洁回答问题。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>问题：${state.question}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span>return { generation };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const retrieveLocalNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---LOCAL_RETRIEVE---&quot;);</span></span>
+<span class="line"><span>const retrievedDocs = await retrieveRelevantContent(state.question, state.k);</span></span>
+<span class="line"><span>console.log(`本地检索命中: ${retrievedDocs.length} 条`);</span></span>
+<span class="line"><span>const localContext = (retrievedDocs ?? []).map((d) =&gt; d.content).join(&quot;\n\n&quot;);</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    retrievedDocs,</span></span>
+<span class="line"><span>    localContext,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const EvaluateSchema = z.object({</span></span>
+<span class="line"><span>enough: z.boolean(),</span></span>
+<span class="line"><span>missing: z.array(z.string()).max(6),</span></span>
+<span class="line"><span>reason: z.string(),</span></span>
+<span class="line"><span>web_query: z.string().optional(),</span></span>
+<span class="line"><span>});</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const evaluateNode = async (state) =&gt; {</span></span>
+<span class="line"><span>const hasWeb = Boolean(state.webContext &amp;&amp; String(state.webContext).trim());</span></span>
+<span class="line"><span>console.log(hasWeb ? &quot;---EVALUATE_CONTEXT_WITH_WEB---&quot; : &quot;---EVALUATE_LOCAL_CONTEXT---&quot;);</span></span>
+<span class="line"><span>const evaluator = llm.withStructuredOutput(EvaluateSchema);</span></span>
+<span class="line"><span>const out = await evaluator.invoke(`你是信息充分性评估器。判断当前上下文是否足以回答用户问题。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题：${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>已检索上下文（来自本地知识库）：</span></span>
+<span class="line"><span>${state.localContext || &quot;（空）&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>${hasWeb ? `联网搜索结果：\n${state.webContext || &quot;（空）&quot;}\n` : &quot;&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>输出字段：</span></span>
+<span class="line"><span>- enough: 是否足够回答（true/false）</span></span>
+<span class="line"><span>- missing: 若不够，列出缺失信息点（最多 6 条）</span></span>
+<span class="line"><span>- reason: 简短原因</span></span>
+<span class="line"><span>${hasWeb ? &quot;&quot; : &quot;- web_query: 若不够，给出一个适合联网搜索的中文查询句（完整句，不用代词；为空也可）&quot;}</span></span>
+<span class="line"><span>`);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`${hasWeb ? &quot;二次评估&quot; : &quot;评估&quot;}: enough=${out.enough} (${out.reason})`);</span></span>
+<span class="line"><span>if (!out.enough &amp;&amp; out.missing?.length) {</span></span>
+<span class="line"><span>    out.missing.forEach((m, i) =&gt;console.log(`  缺失${i + 1}: ${m}`));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>return {</span></span>
+<span class="line"><span>    evaluation: JSON.stringify(out),</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/**</span></span>
+<span class="line"><span> * Call Bocha Web Search API</span></span>
+<span class="line"><span> */</span></span>
+<span class="line"><span>asyncfunction bochaWebSearch(query, count) {</span></span>
+<span class="line"><span>const apiKey = process.env.BOCHA_API_KEY;</span></span>
+<span class="line"><span>if (!apiKey) {</span></span>
+<span class="line"><span>    thrownewError(&quot;Bocha Web Search 的 API Key 未配置（环境变量 BOCHA_API_KEY）。&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>const url = &quot;https://api.bochaai.com/v1/web-search&quot;;</span></span>
+<span class="line"><span>const body = {</span></span>
+<span class="line"><span>    query,</span></span>
+<span class="line"><span>    freshness: &quot;noLimit&quot;,</span></span>
+<span class="line"><span>    summary: true,</span></span>
+<span class="line"><span>    count: count ?? 10,</span></span>
+<span class="line"><span>  };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let response;</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    response = await fetch(url, {</span></span>
+<span class="line"><span>      method: &quot;POST&quot;,</span></span>
+<span class="line"><span>      headers: {</span></span>
+<span class="line"><span>        Authorization: `Bearer ${apiKey}`,</span></span>
+<span class="line"><span>        &quot;Content-Type&quot;: &quot;application/json&quot;,</span></span>
+<span class="line"><span>      },</span></span>
+<span class="line"><span>      body: JSON.stringify(body),</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    thrownewError(`搜索 API 请求失败（网络错误）：${error.message}`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (!response.ok) {</span></span>
+<span class="line"><span>    const errorText = await response.text().catch(() =&gt;&quot;&quot;);</span></span>
+<span class="line"><span>    thrownewError(`搜索 API 请求失败，状态码: ${response.status}, 错误信息: ${errorText}`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>let json;</span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    json = await response.json();</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    thrownewError(`搜索结果解析失败：${error.message}`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if (json?.code !== 200 || !json?.data) {</span></span>
+<span class="line"><span>    thrownewError(`搜索 API 返回失败：${json?.msg ?? &quot;未知错误&quot;}`);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const webpages = json.data.webPages?.value ?? [];</span></span>
+<span class="line"><span>if (!webpages.length) {</span></span>
+<span class="line"><span>    return&quot;未找到相关结果。&quot;;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>return webpages</span></span>
+<span class="line"><span>    .map(</span></span>
+<span class="line"><span>      (page, idx) =&gt;`引用: ${idx + 1}</span></span>
+<span class="line"><span>标题: ${page.name}</span></span>
+<span class="line"><span>URL: ${page.url}</span></span>
+<span class="line"><span>摘要: ${page.summary}</span></span>
+<span class="line"><span>网站名称: ${page.siteName}</span></span>
+<span class="line"><span>网站图标: ${page.siteIcon}</span></span>
+<span class="line"><span>发布时间: ${page.dateLastCrawled}`,</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span>    .join(&quot;\n\n&quot;);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const webSearchNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---WEB_SEARCH---&quot;);</span></span>
+<span class="line"><span>const parsed = (() =&gt; {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      returnJSON.parse(state.evaluation || &quot;{}&quot;);</span></span>
+<span class="line"><span>    } catch {</span></span>
+<span class="line"><span>      return {};</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  })();</span></span>
+<span class="line"><span>const query = (parsed.web_query ?? &quot;&quot;).trim() || state.question;</span></span>
+<span class="line"><span>console.log(`联网查询: ${query}`);</span></span>
+<span class="line"><span>const webContext = await bochaWebSearch(query, 8);</span></span>
+<span class="line"><span>console.log(`联网结果长度: ${webContext.length}`);</span></span>
+<span class="line"><span>return { webContext };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const generateNode = async (state) =&gt; {</span></span>
+<span class="line"><span>console.log(&quot;---GENERATE---&quot;);</span></span>
+<span class="line"><span>const context = [state.localContext, state.webContext].filter(Boolean).join(&quot;\n\n===== 联网补充 =====\n\n&quot;);</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n【AI 回答（流式）】\n&quot;);</span></span>
+<span class="line"><span>let generation = &quot;&quot;;</span></span>
+<span class="line"><span>const stream = await llm.stream(`你是一个严谨的中文问答助手。优先依据上下文作答，不要编造。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>上下文（本地知识库 + 可选联网补充）：</span></span>
+<span class="line"><span>${context || &quot;（空）&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>用户问题：${state.question}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回答要求：</span></span>
+<span class="line"><span>1. 如果上下文足够，给出清晰、可核对的回答；需要时引用“引用: n / URL”或小说片段来支撑。</span></span>
+<span class="line"><span>2. 如果上下文仍不足以确定关键事实，明确说明“不确定/无法从上下文确认”，并说明缺失点。</span></span>
+<span class="line"><span>3. 不要输出表情符号。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>回答：`);</span></span>
+<span class="line"><span>forawait (const chunk of stream) {</span></span>
+<span class="line"><span>    const text = typeof chunk.content === &quot;string&quot; ? chunk.content : &quot;&quot;;</span></span>
+<span class="line"><span>    if (!text) continue;</span></span>
+<span class="line"><span>    generation += text;</span></span>
+<span class="line"><span>    process.stdout.write(text);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  process.stdout.write(&quot;\n&quot;);</span></span>
+<span class="line"><span>return { generation };</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function afterRoute(state) {</span></span>
+<span class="line"><span>return state.strategy === &quot;simple&quot; ? &quot;direct_answer&quot; : &quot;local_retrieve&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function afterEvaluateLocal(state) {</span></span>
+<span class="line"><span>if (state.webContext &amp;&amp; String(state.webContext).trim()) {</span></span>
+<span class="line"><span>    return&quot;generate&quot;;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>const parsed = (() =&gt; {</span></span>
+<span class="line"><span>    try {</span></span>
+<span class="line"><span>      returnJSON.parse(state.evaluation || &quot;{}&quot;);</span></span>
+<span class="line"><span>    } catch {</span></span>
+<span class="line"><span>      return {};</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  })();</span></span>
+<span class="line"><span>return parsed.enough === true ? &quot;generate&quot; : &quot;web_search&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const graph = new StateGraph(GraphState)</span></span>
+<span class="line"><span>  .addNode(&quot;route_question&quot;, routeQuestionNode)</span></span>
+<span class="line"><span>  .addNode(&quot;direct_answer&quot;, directAnswerNode)</span></span>
+<span class="line"><span>  .addNode(&quot;local_retrieve&quot;, retrieveLocalNode)</span></span>
+<span class="line"><span>  .addNode(&quot;evaluate_local&quot;, evaluateNode)</span></span>
+<span class="line"><span>  .addNode(&quot;web_search&quot;, webSearchNode)</span></span>
+<span class="line"><span>  .addNode(&quot;generate&quot;, generateNode)</span></span>
+<span class="line"><span>  .addEdge(START, &quot;route_question&quot;)</span></span>
+<span class="line"><span>  .addConditionalEdges(&quot;route_question&quot;, afterRoute, {</span></span>
+<span class="line"><span>    direct_answer: &quot;direct_answer&quot;,</span></span>
+<span class="line"><span>    local_retrieve: &quot;local_retrieve&quot;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .addEdge(&quot;local_retrieve&quot;, &quot;evaluate_local&quot;)</span></span>
+<span class="line"><span>  .addConditionalEdges(&quot;evaluate_local&quot;, afterEvaluateLocal, {</span></span>
+<span class="line"><span>    generate: &quot;generate&quot;,</span></span>
+<span class="line"><span>    web_search: &quot;web_search&quot;,</span></span>
+<span class="line"><span>  })</span></span>
+<span class="line"><span>  .addEdge(&quot;web_search&quot;, &quot;evaluate_local&quot;)</span></span>
+<span class="line"><span>  .addEdge(&quot;direct_answer&quot;, END)</span></span>
+<span class="line"><span>  .addEdge(&quot;generate&quot;, END)</span></span>
+<span class="line"><span>  .compile();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>asyncfunction main() {</span></span>
+<span class="line"><span>const question =</span></span>
+<span class="line"><span>    &quot;请回答《天龙八部》小说里“雁门关事件”的主谋是谁，并说明其儿子的最终结局；另外请补充：在《天龙八部》2013 版电视剧中，这段“雁门关事件”主要出现在哪几集？请给出可核对的来源链接。&quot;;</span></span>
+<span class="line"><span>const k = 8;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const drawable = await graph.getGraphAsync();</span></span>
+<span class="line"><span>console.log(drawable.drawMermaid({ withStyles: true }));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;连接到 Milvus...&quot;);</span></span>
+<span class="line"><span>  vectorStore = await Milvus.fromExistingCollection(embeddings, {</span></span>
+<span class="line"><span>    collectionName: &quot;ebook_collection&quot;,</span></span>
+<span class="line"><span>    url: &quot;localhost:19530&quot;,</span></span>
+<span class="line"><span>    textField: &quot;content&quot;,</span></span>
+<span class="line"><span>    primaryField: &quot;id&quot;,</span></span>
+<span class="line"><span>    vectorField: &quot;vector&quot;,</span></span>
+<span class="line"><span>    indexCreateOptions: {</span></span>
+<span class="line"><span>      metric_type: &quot;COSINE&quot;,</span></span>
+<span class="line"><span>      index_type: &quot;HNSW&quot;,</span></span>
+<span class="line"><span>      params: { M: 16, efConstruction: 200 },</span></span>
+<span class="line"><span>      search_params: { ef: 64 },</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span>  vectorStore.indexSearchParams = { metric_type: &quot;COSINE&quot;, params: JSON.stringify({ ef: 64 }) };</span></span>
+<span class="line"><span>console.log(&quot;✓ 已连接\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>try {</span></span>
+<span class="line"><span>    await vectorStore.client.loadCollection({ collection_name: &quot;ebook_collection&quot; });</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已加载\n&quot;);</span></span>
+<span class="line"><span>  } catch (error) {</span></span>
+<span class="line"><span>    if (!error.message.includes(&quot;already loaded&quot;)) throw error;</span></span>
+<span class="line"><span>    console.log(&quot;✓ 集合 ebook_collection 已处于加载状态\n&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span>console.log(`问题: ${question}`);</span></span>
+<span class="line"><span>console.log(&quot;=&quot;.repeat(80));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const result = await graph.invoke({</span></span>
+<span class="line"><span>    question,</span></span>
+<span class="line"><span>    k,</span></span>
+<span class="line"><span>    strategy: &quot;&quot;,</span></span>
+<span class="line"><span>    routeReason: &quot;&quot;,</span></span>
+<span class="line"><span>    retrievedDocs: [],</span></span>
+<span class="line"><span>    localContext: &quot;&quot;,</span></span>
+<span class="line"><span>    webContext: &quot;&quot;,</span></span>
+<span class="line"><span>    evaluation: &quot;&quot;,</span></span>
+<span class="line"><span>    generation: &quot;&quot;,</span></span>
+<span class="line"><span>  });</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>console.log(`\n最终策略: ${result.strategy}`);</span></span>
+<span class="line"><span>if (!result.generation?.trim()) {</span></span>
+<span class="line"><span>    console.log(&quot;模型未返回内容。&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>main()</span></span></code></pre></div><p>现在的流程如下：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfec1XlDKPibxibGmC4YDzcLhQ7icicX07TwK30zMyZtBDmlfdoxMRI28ibIfQzaY6FqfhNlpMPZAibZ0ZKw9CU7AyVsOZUvFKdG4hegc/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=13" alt="图片" referrerpolicy="no-referrer"></p><p>检索完向量数据库，会评估一下信息是否足够：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwfdWDrwT0MbL82Q83zOB7AiakAicdibGJKmWPHvA7kV9JxQdiblU1IJnLf0WlPia3rVRRxYiczl8ANV1GERlbSeZaGHNIib0QadsOAP4oM/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=14" alt="图片" referrerpolicy="no-referrer"></p><p>根据问题和检索的文档判断信息是否足够</p><p>不够的话生成一个 web search 用的 query，走网络搜索节点：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwferlcqsTyMaicvIkMubBPoCPLguRjv7OEDA1v9PIyrGuAsw5MKapfXjeAS1NHMjXnBZoQVLm63TBTEkM708GG1B26YJmgQVicvIw/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=15" alt="图片" referrerpolicy="no-referrer"></p><p>取出 state 里的网络搜索 query，调用博查来搜索。</p><p>这里配置下博查的 api key：</p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/NMByQQfVwfftAyaMH1OhIjlCFHWY6GSGgx1tINEJIMkHjEwIicqYRHxfE96FI1PPMSEg1Nbiaq5nK7L6ZLDToubx59L40oBicapfU6iciboDjctY/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=16" alt="图片" referrerpolicy="no-referrer"></p><p>继续来看 RAG 其他问题：</p><ul><li>没有纠错和评估机制，无法判断检索内容是否准确、是否足够</li><li>专业术语、精确实体更适合关键词检索，纯语义检索容易匹配不准</li></ul><p>评估阶段我们现在已经加了。</p><p>而关键词检索需要用到 ElasticSearch 全文检索数据库，后面再讲。</p><p>至此，我们基于 LangGraph 的多 Agent 架构实现了自主决策的 Agentic RAG 流程。</p><p>什么是 Agentic RAG 呢？</p><p><strong>将 LLM 作为系统的决策大脑，让它自主决定如何检索、检索多少次、判断检索结果是否足够可靠，以及是否需要补充检索、优化查询或切换数据源，这种自我决策、自我反思、自我修正的自主检索闭环，就叫 Agentic RAG。</strong></p><p>当然，具体要根据业务场景来设计实际方案。</p><p>比如我们公司项目的 RAG 是这样的：</p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/NMByQQfVwff3sBFvLjegHvfcnEIXcAhO9MFlPUtzWotCO60u8ILg7n4eC1SiaK1SpmbLSV9Byqs4ribGL7htD7bLlp7wrO7b4aicPAiaHxrKy5k/640?wx_fmt=png&amp;from=appmsg&amp;tp=wxpic&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=17" alt="图片" referrerpolicy="no-referrer"></p><p>有意图识别也就是路由，后面按照不同的流程来检索，之后合并生成回答</p><p>并不是完全按照 Agentic RAG 那种有评估、有重新检索的闭环来的。</p><p>但这是适合我们业务场景的 RAG 流程。</p><p>所以，学了 Agentic RAG 的各种策略并不是说都得用上，具体还是得根据业务场景来设计方案。</p><blockquote><p>代码上传了课程仓库： <a href="https://github.com/QuarkGluonPlasma/ai-agent-course-code" target="_blank" rel="noreferrer">https://github.com/QuarkGluonPlasma/ai-agent-course-code</a></p></blockquote><h2 id="总结" tabindex="-1"><strong>总结</strong> <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;**总结**&quot;">​</a></h2><p>传统的 RAG 流程很固定，用户问题向量化 → 相似度检索 → prompt 拼接 → 生成回答</p><p>但它有一系列的问题：</p><ul><li>简单常识问题也走向量检索，造成资源浪费</li><li>缺乏检索结果的评估与纠错机制，无法判断信息是否准确充足</li><li>无法处理需多步检索的链式推理问题</li><li>纯语义检索对专业术语、精确实体匹配不准</li><li>无联网补充能力，知识库缺失信息时易编造答案</li></ul><p>解决方案就是 Agentic RAG。</p><p>Agentic RAG 是由大模型作为决策中枢，自主控制检索方式、评估检索效果、判断是否需要补充检索或发起网络搜索，形成自主思考与迭代优化的闭环检索系统。</p><p>我们基于 LangGraph 的图，实现了这个闭环的决策循环，用多 Agent 架构实现了 Agentic RAG。</p><p>比如加入了意图识别路由、多跳检索的循环、效果评估和网络搜索（ElasticSearch 的关键词检索后面再学）</p><p>当然，具体的 Agentic RAG 还是要根据业务场景来设计，不是完全照搬，比如我们公司项目就是简化版相对固定的检索流程。</p><p>主要是理解什么是 Agentic RAG，如何基于 LangGraph 实现这个决策循环，然后针对传统 RAG 的不同的问题怎么解决就可以了。</p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-e257564d><span class="visually-hidden" id="doc-footer-aria-label" data-v-e257564d>Pager</span><div class="pager" data-v-e257564d><a class="VPLink link pager-link prev" href="/ai-docs/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Previous page</span><span class="title" data-v-e257564d>23-图编排引擎：LangGraph 和多 Agent 架构</span><!--]--></a></div><div class="pager" data-v-e257564d><a class="VPLink link pager-link next" href="/ai-docs/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/" data-v-e257564d><!--[--><span class="desc" data-v-e257564d>Next page</span><span class="title" data-v-e257564d>25-基于 Docker Compose 的本地开发提效和生产环境部署</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-5d98c3a5 data-v-e315a0ad><div class="container" data-v-e315a0ad><!----><p class="copyright" data-v-e315a0ad>Copyright © 2026 Broly</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"9in8dfBd\",\"前端转ai agent_00-使用前必看_00-使用前必看.md\":\"vRBR51V1\",\"前端转ai agent_00-使用前必看_index.md\":\"CbTYS_Eb\",\"前端转ai agent_00-使用前必看_readme.md\":\"CCl9lush\",\"前端转ai agent_01-ai agent 开发要学什么？_index.md\":\"K1bvlp7D\",\"前端转ai agent_01-ai agent 开发要学什么？_readme.md\":\"r280E0HR\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_index.md\":\"BR8y3Rx-\",\"前端转ai agent_02-从 tool 开始：让大模型自动调工具读文件_readme.md\":\"CPS19Jds\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_index.md\":\"uevMc9jJ\",\"前端转ai agent_03-实现 mini cursor：大模型自动调用 tool 执行命令_readme.md\":\"fv_PJpcc\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_index.md\":\"CQFwjUY4\",\"前端转ai agent_04-mcp 可跨进程调用的 tool_readme.md\":\"Dauq-g01\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_index.md\":\"Dlv8XNVU\",\"前端转ai agent_05-高德 mcp _ 浏览器 mcp：langchain 复用别人的 mcp server 有多爽！_readme.md\":\"CbSTEnTT\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_index.md\":\"DDTGNKby\",\"前端转ai agent_06-rag：把文档向量化，基于向量实现真正的语义搜索_readme.md\":\"DNdEFKT6\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_index.md\":\"d3Ff9pnH\",\"前端转ai agent_07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块_readme.md\":\"vM0Tv4bo\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_index.md\":\"-nnHYLJJ\",\"前端转ai agent_08-langchain 全部 splitter，其实只需要其中的一个_readme.md\":\"-P7BvoH7\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_index.md\":\"DoCV-mZ1\",\"前端转ai agent_09-向量数据库 milvus：做 ai agent 开发必备技术_readme.md\":\"DNpP_NKJ\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_index.md\":\"NF6swDka\",\"前端转ai agent_10-milvus _ rag 实战：电子书语义检索助手_readme.md\":\"g5ORvcwt\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_index.md\":\"C6owZzsL\",\"前端转ai agent_11-memory 管理的三大策略：截断、总结、检索_readme.md\":\"9LaNiTPL\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_index.md\":\"CDhwzkpk\",\"前端转ai agent_12-结构化大模型输出：output parser 还是 tool？_readme.md\":\"CBIRaqqG\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_index.md\":\"3a4M612j\",\"前端转ai agent_13-output parser 实战：智能录入 _ 流式版 mini curosr_readme.md\":\"B93sSY-q\",\"前端转ai agent_14-prompt template：组件化管理 prompt_index.md\":\"rn4q-WuQ\",\"前端转ai agent_14-prompt template：组件化管理 prompt_readme.md\":\"B2P5Ib1W\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_index.md\":\"98EDEZn4\",\"前端转ai agent_15-runnable：把写逻辑变成组装 chain_readme.md\":\"CsxP2wpi\",\"前端转ai agent_16-实战练习 lcel 组装 chain_index.md\":\"Cw6wTwvm\",\"前端转ai agent_16-实战练习 lcel 组装 chain_readme.md\":\"4TGYH26M\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_index.md\":\"Dnx8hJX1\",\"前端转ai agent_17-langchain 整体总结：ai agent 第一阶段学习完成_readme.md\":\"B6f3zgYP\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_index.md\":\"dsYJoRzd\",\"前端转ai agent_18-nest _ langchain 实现基于 sse 的流式 ai 接口_readme.md\":\"CYJef_cl\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_index.md\":\"Wb8snKbo\",\"前端转ai agent_19-nest _ tool 实现 openclaw 同款定时任务功能（上）_readme.md\":\"CwCIxuKO\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_index.md\":\"DAvbttsE\",\"前端转ai agent_20-nest _ tool 实现 openclaw 同款定时任务功能（下）_readme.md\":\"CGyuW48n\",\"前端转ai agent_21-豆包同款语音功能：语音识别 asr _ 流式语音合成 tts_index.md\":\"BvzkAkZE\",\"前端转ai agent_22-agui 协议：vercel ai sdk _ langchain 实现流式组件渲染_index.md\":\"C9l5yQ0r\",\"前端转ai agent_23-图编排引擎：langgraph 和多 agent 架构_index.md\":\"JFycbGth\",\"前端转ai agent_24-agentic rag：基于 langgraph 实现大模型自主决策的 rag 闭环系统_index.md\":\"CNMTWNm2\",\"前端转ai agent_25-基于 docker compose 的本地开发提效和生产环境部署_index.md\":\"COKhwZcQ\",\"前端转ai agent_26-elasticsearch 全文检索：倒排索引表 _ ik 分词器 _ bm25 算法_index.md\":\"F6c4YINg\",\"前端转ai agent_27-neo4j 知识图谱和 graph rag_index.md\":\"CLhPw4y6\",\"前端转ai agent_28-langsmith 全链路观测：从 agent 调试到 rag 量化评估_index.md\":\"Cn4inZdB\",\"前端转ai agent_29-deepagents：开箱即用的 skill、上下文压缩等 middleware_index.md\":\"DbbKdg4N\",\"前端转ai agent_30-deepagents 实战：多 agent 架构的深度调研助手_index.md\":\"C3RLogEt\",\"前端转ai agent_31-postgresql：ai 时代最适合的数据库_index.md\":\"C_yU6PnR\",\"前端转ai agent_32-redis：实现 agent 短期记忆存储的最佳方案_index.md\":\"zdAhZc5S\",\"前端转ai agent_33-mem0：分层记忆 _ 三路召回的长期记忆方案_index.md\":\"D6wI3o4G\",\"前端转ai agent_34-nest 进阶：企业级 node.js 后端最主流框架_index.md\":\"DqZPfK77\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_index.md\":\"K740KrRB\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_agent 的对象存储方案：minio、rustfs、阿里云 oss_20260726_135707.md\":\"BowQcI5P\",\"前端转ai agent_35-agent 的对象存储方案：minio、rustfs、阿里云 oss_index.md\":\"Cqu_ck56\",\"前端转ai agent_36-多模态与 oss 前端直传实战：ai 画板_index.md\":\"BtkIvueB\",\"前端转ai agent_37-rabbitmq：agent 中异步处理的标配方案_index.md\":\"DCN6ixuu\",\"前端转ai agent_index.md\":\"ClSoPTDr\",\"前端转ai agent_语雀答疑资料.md\":\"CQGtr2ih\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"我的学习文档\",\"description\":\"前端转 AI Agent 课程笔记\",\"base\":\"/ai-docs/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"📚\",\"siteTitle\":\"我的学习文档\",\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"前端转AI Agent\",\"link\":\"/前端转AI Agent/\"}],\"sidebar\":{\"/\":[{\"text\":\"前端转AI Agent\",\"collapsed\":false,\"items\":[{\"text\":\"00-使用前必看\",\"link\":\"/前端转AI Agent/00-使用前必看/\"},{\"text\":\"01-AI Agent 开发要学什么？\",\"link\":\"/前端转AI Agent/01-AI Agent 开发要学什么？/\"},{\"text\":\"02-从 Tool 开始：让大模型自动调工具读文件\",\"link\":\"/前端转AI Agent/02-从 Tool 开始：让大模型自动调工具读文件/\"},{\"text\":\"03-实现 mini cursor：大模型自动调用 tool 执行命令\",\"link\":\"/前端转AI Agent/03-实现 mini cursor：大模型自动调用 tool 执行命令/\"},{\"text\":\"04-MCP 可跨进程调用的 Tool\",\"link\":\"/前端转AI Agent/04-MCP 可跨进程调用的 Tool/\"},{\"text\":\"05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！\",\"link\":\"/前端转AI Agent/05-高德 MCP + 浏览器 MCP：LangChain 复用别人的 MCP Server 有多爽！/\"},{\"text\":\"06-RAG：把文档向量化，基于向量实现真正的语义搜索\",\"link\":\"/前端转AI Agent/06-RAG：把文档向量化，基于向量实现真正的语义搜索/\"},{\"text\":\"07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块\",\"link\":\"/前端转AI Agent/07-知识库的 loader 和 splitter：从各种来源加载文档并分割成小块/\"},{\"text\":\"08-LangChain 全部 Splitter，其实只需要其中的一个\",\"link\":\"/前端转AI Agent/08-LangChain 全部 Splitter，其实只需要其中的一个/\"},{\"text\":\"09-向量数据库 Milvus：做 AI Agent 开发必备技术\",\"link\":\"/前端转AI Agent/09-向量数据库 Milvus：做 AI Agent 开发必备技术/\"},{\"text\":\"10-Milvus + RAG 实战：电子书语义检索助手\",\"link\":\"/前端转AI Agent/10-Milvus + RAG 实战：电子书语义检索助手/\"},{\"text\":\"11-Memory 管理的三大策略：截断、总结、检索\",\"link\":\"/前端转AI Agent/11-Memory 管理的三大策略：截断、总结、检索/\"},{\"text\":\"12-结构化大模型输出：Output Parser 还是 tool？\",\"link\":\"/前端转AI Agent/12-结构化大模型输出：Output Parser 还是 tool？/\"},{\"text\":\"13-Output Parser 实战：智能录入 + 流式版 mini curosr\",\"link\":\"/前端转AI Agent/13-Output Parser 实战：智能录入 + 流式版 mini curosr/\"},{\"text\":\"14-Prompt Template：组件化管理 prompt\",\"link\":\"/前端转AI Agent/14-Prompt Template：组件化管理 prompt/\"},{\"text\":\"15-Runnable：把写逻辑变成组装 chain\",\"link\":\"/前端转AI Agent/15-Runnable：把写逻辑变成组装 chain/\"},{\"text\":\"16-实战练习 LCEL 组装 chain\",\"link\":\"/前端转AI Agent/16-实战练习 LCEL 组装 chain/\"},{\"text\":\"17-LangChain 整体总结：AI Agent 第一阶段学习完成\",\"link\":\"/前端转AI Agent/17-LangChain 整体总结：AI Agent 第一阶段学习完成/\"},{\"text\":\"18-Nest + LangChain 实现基于 SSE 的流式 ai 接口\",\"link\":\"/前端转AI Agent/18-Nest + LangChain 实现基于 SSE 的流式 ai 接口/\"},{\"text\":\"19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）\",\"link\":\"/前端转AI Agent/19-Nest + tool 实现 OpenClaw 同款定时任务功能（上）/\"},{\"text\":\"20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）\",\"link\":\"/前端转AI Agent/20-Nest + tool 实现 OpenClaw 同款定时任务功能（下）/\"},{\"text\":\"21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS\",\"link\":\"/前端转AI Agent/21-豆包同款语音功能：语音识别 ASR + 流式语音合成 TTS/\"},{\"text\":\"22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染\",\"link\":\"/前端转AI Agent/22-AGUI 协议：Vercel AI SDK + LangChain 实现流式组件渲染/\"},{\"text\":\"23-图编排引擎：LangGraph 和多 Agent 架构\",\"link\":\"/前端转AI Agent/23-图编排引擎：LangGraph 和多 Agent 架构/\"},{\"text\":\"24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统\",\"link\":\"/前端转AI Agent/24-Agentic RAG：基于 LangGraph 实现大模型自主决策的 RAG 闭环系统/\"},{\"text\":\"25-基于 Docker Compose 的本地开发提效和生产环境部署\",\"link\":\"/前端转AI Agent/25-基于 Docker Compose 的本地开发提效和生产环境部署/\"},{\"text\":\"26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法\",\"link\":\"/前端转AI Agent/26-ElasticSearch 全文检索：倒排索引表 + IK 分词器 + BM25 算法/\"},{\"text\":\"27-Neo4j 知识图谱和 Graph RAG\",\"link\":\"/前端转AI Agent/27-Neo4j 知识图谱和 Graph RAG/\"},{\"text\":\"28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估\",\"link\":\"/前端转AI Agent/28-LangSmith 全链路观测：从 Agent 调试到 RAG 量化评估/\"},{\"text\":\"29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware\",\"link\":\"/前端转AI Agent/29-DeepAgents：开箱即用的 skill、上下文压缩等 middleware/\"},{\"text\":\"30-DeepAgents 实战：多 Agent 架构的深度调研助手\",\"link\":\"/前端转AI Agent/30-DeepAgents 实战：多 Agent 架构的深度调研助手/\"},{\"text\":\"31-PostgreSQL：AI 时代最适合的数据库\",\"link\":\"/前端转AI Agent/31-PostgreSQL：AI 时代最适合的数据库/\"},{\"text\":\"32-Redis：实现 Agent 短期记忆存储的最佳方案\",\"link\":\"/前端转AI Agent/32-Redis：实现 Agent 短期记忆存储的最佳方案/\"},{\"text\":\"33-Mem0：分层记忆 + 三路召回的长期记忆方案\",\"link\":\"/前端转AI Agent/33-Mem0：分层记忆 + 三路召回的长期记忆方案/\"},{\"text\":\"34-Nest 进阶：企业级 Node.js 后端最主流框架\",\"link\":\"/前端转AI Agent/34-Nest 进阶：企业级 Node.js 后端最主流框架/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS/\"},{\"text\":\"35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726\",\"link\":\"/前端转AI Agent/35-Agent 的对象存储方案：MinIO、RustFS、阿里云 OSS_20260726/\"},{\"text\":\"36-多模态与 OSS 前端直传实战：AI 画板\",\"link\":\"/前端转AI Agent/36-多模态与 OSS 前端直传实战：AI 画板/\"},{\"text\":\"37-RabbitMQ：Agent 中异步处理的标配方案\",\"link\":\"/前端转AI Agent/37-RabbitMQ：Agent 中异步处理的标配方案/\"}]}]},\"search\":{\"provider\":\"local\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/Broly789/ai-docs\"}],\"footer\":{\"copyright\":\"Copyright © 2026 Broly\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>
