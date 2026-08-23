@@ -18,5 +18,6 @@
     "pagefind": "^1.4.0",
     "vitepress": "^1.6.4",
     "vitepress-plugin-pagefind": "^0.4.19"
-  }
+  },
+  "url": "https://broly789.github.io/ai-docs/"
 }
