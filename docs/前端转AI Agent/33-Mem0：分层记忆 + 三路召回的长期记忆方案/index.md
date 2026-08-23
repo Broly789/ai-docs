@@ -112,13 +112,13 @@ if (error.suggestion) {
 
 跑一下：
 
-<video src="./assets/video/1.mp4" controls></video>
+<video src="./assets/1.mp4" controls></video>
 
 mem0 只要配一个 apikey 就可以存储记忆、检索记忆了。
 
 但免费版是有调用次数限制的：
 
-<video src="./assets/video/2.mp4" controls></video>
+<video src="./assets/2.mp4" controls></video>
 
 后面我们自己部署一下。
 
